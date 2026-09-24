@@ -163,7 +163,7 @@ export const OrderTrackingScreen: React.FC = () => {
                   <Text style={styles.itemCustom}>Spice: {it.customization.spiceLevel}</Text>
                 ) : null}
               </View>
-              <Text style={styles.itemPrice}>${it.itemTotal.toFixed(2)}</Text>
+              <Text style={styles.itemPrice}>Rs. {it.itemTotal.toFixed(2)}</Text>
             </View>
           ))}
 
@@ -171,7 +171,7 @@ export const OrderTrackingScreen: React.FC = () => {
 
           <View style={styles.summaryTotalRow}>
             <Text style={styles.summaryTotalLabel}>Total Paid ({currentOrder.paymentMethod})</Text>
-            <Text style={styles.summaryTotalAmount}>${currentOrder.total.toFixed(2)}</Text>
+            <Text style={styles.summaryTotalAmount}>Rs. {currentOrder.total.toFixed(2)}</Text>
           </View>
         </View>
 

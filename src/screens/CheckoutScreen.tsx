@@ -39,7 +39,7 @@ export const CheckoutScreen: React.FC = () => {
       id: 'Campus Smartcard',
       label: 'Campus Smartcard / RFID',
       icon: 'card-outline',
-      desc: `Balance: $${user?.walletBalance.toFixed(2) || '0.00'}`,
+      desc: `Balance: Rs. ${user?.walletBalance.toFixed(2) || '0.00'}`,
     },
     {
       id: 'UPI / GPay',
@@ -194,8 +194,7 @@ export const CheckoutScreen: React.FC = () => {
               <Ionicons name="warning-outline" size={18} color="#D97706" />
               <View style={{ flex: 1 }}>
                 <Text style={styles.warningText}>
-                  Your campus balance (${user?.walletBalance.toFixed(2)}) is less than total amount ($
-                  {cartTotal.toFixed(2)}).
+                  Your campus balance (Rs. {user?.walletBalance.toFixed(2)}) is less than total amount (Rs. {cartTotal.toFixed(2)}).
                 </Text>
                 <TouchableOpacity onPress={() => navigateTo('Profile')}>
                   <Text style={styles.topUpLink}>Top-up campus wallet now →</Text>
@@ -235,7 +234,7 @@ export const CheckoutScreen: React.FC = () => {
           </View>
           <View style={styles.summaryRow}>
             <Text style={styles.summaryLabel}>Total Payable Amount</Text>
-            <Text style={styles.summaryTotalVal}>${cartTotal.toFixed(2)}</Text>
+            <Text style={styles.summaryTotalVal}>Rs. {cartTotal.toFixed(2)}</Text>
           </View>
         </View>
       </ScrollView>
@@ -250,7 +249,7 @@ export const CheckoutScreen: React.FC = () => {
         >
           <Ionicons name="lock-closed" size={16} color="#FFFFFF" />
           <Text style={styles.confirmBtnText}>
-            {isSubmitting ? 'Placing Order...' : `Pay & Place Order • $${cartTotal.toFixed(2)}`}
+            {isSubmitting ? 'Placing Order...' : `Pay & Place Order • Rs. ${cartTotal.toFixed(2)}`}
           </Text>
         </TouchableOpacity>
       </View>

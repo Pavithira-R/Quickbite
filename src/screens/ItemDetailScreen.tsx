@@ -148,7 +148,7 @@ export const ItemDetailScreen: React.FC = () => {
             </View>
 
             <View style={styles.priceBox}>
-              <Text style={styles.priceText}>${item.price.toFixed(2)}</Text>
+              <Text style={styles.priceText}>Rs. {item.price.toFixed(2)}</Text>
             </View>
           </View>
 
@@ -244,7 +244,7 @@ export const ItemDetailScreen: React.FC = () => {
                         </View>
                         <Text style={styles.addOnName}>{addon.name}</Text>
                       </View>
-                      <Text style={styles.addOnPrice}>+${addon.price.toFixed(2)}</Text>
+                      <Text style={styles.addOnPrice}>+Rs. {addon.price.toFixed(2)}</Text>
                     </TouchableOpacity>
                   );
                 })}
@@ -299,7 +299,7 @@ export const ItemDetailScreen: React.FC = () => {
         >
           <View style={styles.btnContentRow}>
             <Text style={styles.addToCartBtnText}>Add to Cart</Text>
-            <Text style={styles.btnPriceText}>•  ${totalPrice.toFixed(2)}</Text>
+            <Text style={styles.btnPriceText}>•  Rs. {totalPrice.toFixed(2)}</Text>
           </View>
         </TouchableOpacity>
       </View>

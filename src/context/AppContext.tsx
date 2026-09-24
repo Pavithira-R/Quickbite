@@ -195,7 +195,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const topUpWallet = (amount: number) => {
     if (user) {
       setUser(prev => prev ? { ...prev, walletBalance: prev.walletBalance + amount } : null);
-      showToast(`Added $${amount.toFixed(2)} to Campus Wallet!`, 'success');
+      showToast(`Added Rs. ${amount.toFixed(2)} to Campus Wallet!`, 'success');
     }
   };
 
@@ -283,9 +283,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     if (cleanCode === 'STUDENT15' || cleanCode === 'QUICK15') {
       setAppliedPromoCode(cleanCode);
       return { success: true, message: '15% Student Discount applied!' };
-    } else if (cleanCode === 'FREEDRINK' || cleanCode === 'BITE2') {
+    } else if (cleanCode === 'FREEDRINK' || cleanCode === 'BITE250') {
       setAppliedPromoCode(cleanCode);
-      return { success: true, message: '$2.00 off applied successfully!' };
+      return { success: true, message: 'Rs. 250.00 discount applied successfully!' };
     } else {
       return { success: false, message: 'Invalid or expired promo code' };
     }
@@ -312,7 +312,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   }, [cartSubtotal]);
 
   const cartPackagingFee = useMemo(() => {
-    return cartSubtotal > 0 ? 0.50 : 0;
+    return cartSubtotal > 0 ? 50.00 : 0;
   }, [cartSubtotal]);
 
   const promoDiscount = useMemo(() => {
@@ -320,8 +320,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     if (appliedPromoCode === 'STUDENT15' || appliedPromoCode === 'QUICK15') {
       return parseFloat((cartSubtotal * 0.15).toFixed(2));
     }
-    if (appliedPromoCode === 'FREEDRINK' || appliedPromoCode === 'BITE2') {
-      return Math.min(2.00, cartSubtotal);
+    if (appliedPromoCode === 'FREEDRINK' || appliedPromoCode === 'BITE250') {
+      return Math.min(250.00, cartSubtotal);
     }
     return 0;
   }, [cartSubtotal, appliedPromoCode]);
@@ -431,10 +431,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       id: 'TC-02',
       title: 'Dynamic Cart Subtotal & Add-to-Cart Logic',
       category: 'Cart Logic',
-      description: 'Verify adding items with quantities and customizations correctly recalculates subtotal, taxes (5%), packaging ($0.50), and promo discounts.',
-      steps: ['Add Smash Burger ($6.99)', 'Add customizations ($0.99)', 'Verify itemTotal $7.98', 'Verify tax & grand total calculation'],
+      description: 'Verify adding items with quantities and customizations correctly recalculates subtotal, taxes (5%), packaging (Rs. 50.00), and promo discounts.',
+      steps: ['Add Smash Burger (Rs. 950.00)', 'Add customizations (Rs. 150.00)', 'Verify itemTotal Rs. 1,100.00', 'Verify tax & grand total calculation'],
       expectedResult: 'Cart subtotal matches exact mathematical sum of items + modifications.',
-      actualResult: 'Passed. Dynamic formulas recalculate synchronously.',
+      actualResult: 'Passed. Dynamic formulas recalculate synchronously in LKR.',
       status: 'PASS',
       executedAt: 'Verified'
     },

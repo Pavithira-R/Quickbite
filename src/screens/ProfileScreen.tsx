@@ -24,7 +24,7 @@ export const ProfileScreen: React.FC = () => {
   } = useApp();
 
   const [topUpModalVisible, setTopUpModalVisible] = useState(false);
-  const [selectedTopUpAmount, setSelectedTopUpAmount] = useState(25);
+  const [selectedTopUpAmount, setSelectedTopUpAmount] = useState(1000);
 
   const handleTopUpConfirm = () => {
     topUpWallet(selectedTopUpAmount);
@@ -66,7 +66,7 @@ export const ProfileScreen: React.FC = () => {
               <Ionicons name="wallet-outline" size={24} color={Colors.primary} />
               <View>
                 <Text style={styles.walletLabel}>Campus Smartcard Balance</Text>
-                <Text style={styles.walletBalance}>${user?.walletBalance.toFixed(2) || '0.00'}</Text>
+                <Text style={styles.walletBalance}>Rs. {user?.walletBalance.toFixed(2) || '0.00'}</Text>
               </View>
             </View>
 
@@ -131,7 +131,7 @@ export const ProfileScreen: React.FC = () => {
 
                 {/* Footer with total & Reorder */}
                 <View style={styles.orderCardFooter}>
-                  <Text style={styles.orderTotal}>Total: ${ord.total.toFixed(2)}</Text>
+                  <Text style={styles.orderTotal}>Total: Rs. {ord.total.toFixed(2)}</Text>
 
                   <View style={styles.orderActions}>
                     <TouchableOpacity
@@ -193,7 +193,7 @@ export const ProfileScreen: React.FC = () => {
             <Text style={styles.modalSub}>Select reload amount for instant contactless payment:</Text>
 
             <View style={styles.topUpOptionsRow}>
-              {[10, 25, 50, 100].map((amt) => {
+              {[500, 1000, 2500, 5000].map((amt) => {
                 const isSelected = selectedTopUpAmount === amt;
                 return (
                   <TouchableOpacity
@@ -202,7 +202,7 @@ export const ProfileScreen: React.FC = () => {
                     onPress={() => setSelectedTopUpAmount(amt)}
                   >
                     <Text style={[styles.topUpAmtText, isSelected && styles.topUpAmtTextActive]}>
-                      ${amt}
+                      Rs. {amt}
                     </Text>
                   </TouchableOpacity>
                 );
@@ -214,7 +214,7 @@ export const ProfileScreen: React.FC = () => {
               onPress={handleTopUpConfirm}
             >
               <Text style={styles.confirmTopUpText}>
-                Add ${selectedTopUpAmount}.00 to Smartcard
+                Add Rs. {selectedTopUpAmount}.00 to Smartcard
               </Text>
             </TouchableOpacity>
           </View>

@@ -84,7 +84,7 @@ export const HomeScreen: React.FC = () => {
             activeOpacity={0.8}
           >
             <Ionicons name="wallet-outline" size={15} color={Colors.primaryDark} />
-            <Text style={styles.walletText}>${user?.walletBalance.toFixed(2) || '0.00'}</Text>
+            <Text style={styles.walletText}>Rs. {user?.walletBalance.toFixed(2) || '0.00'}</Text>
           </TouchableOpacity>
         </View>
 

@@ -104,7 +104,7 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
         <View style={styles.bottomRow}>
           <View>
             <Text style={styles.priceLabel}>Price</Text>
-            <Text style={styles.price}>${item.price.toFixed(2)}</Text>
+            <Text style={styles.price}>Rs. {item.price.toFixed(2)}</Text>
           </View>
 
           <TouchableOpacity

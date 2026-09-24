@@ -140,7 +140,7 @@ export const CartScreen: React.FC = () => {
 
                   {/* Price & Quantity stepper */}
                   <View style={styles.itemBottomRow}>
-                    <Text style={styles.itemTotalPrice}>${item.itemTotal.toFixed(2)}</Text>
+                    <Text style={styles.itemTotalPrice}>Rs. {item.itemTotal.toFixed(2)}</Text>
 
                     <View style={styles.qtyStepper}>
                       <TouchableOpacity
@@ -182,7 +182,7 @@ export const CartScreen: React.FC = () => {
                 <View>
                   <Text style={styles.appliedCodeText}>Promo applied: {appliedPromoCode}</Text>
                   <Text style={styles.appliedSavingsText}>
-                    You saved ${promoDiscount.toFixed(2)}!
+                    You saved Rs. {promoDiscount.toFixed(2)}!
                   </Text>
                 </View>
               </View>
@@ -230,7 +230,7 @@ export const CartScreen: React.FC = () => {
                     applyPromoCode('FREEDRINK');
                   }}
                 >
-                  <Text style={styles.promoChipText}>🥤 FREEDRINK ($2.00 OFF)</Text>
+                  <Text style={styles.promoChipText}>🥤 FREEDRINK (Rs. 250 OFF)</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -243,17 +243,17 @@ export const CartScreen: React.FC = () => {
 
           <View style={styles.billRow}>
             <Text style={styles.billLabel}>Item Subtotal</Text>
-            <Text style={styles.billValue}>${cartSubtotal.toFixed(2)}</Text>
+            <Text style={styles.billValue}>Rs. {cartSubtotal.toFixed(2)}</Text>
           </View>
 
           <View style={styles.billRow}>
             <Text style={styles.billLabel}>Campus Canteen Tax (5%)</Text>
-            <Text style={styles.billValue}>${cartTax.toFixed(2)}</Text>
+            <Text style={styles.billValue}>Rs. {cartTax.toFixed(2)}</Text>
           </View>
 
           <View style={styles.billRow}>
             <Text style={styles.billLabel}>Eco-Packaging & Cutlery Fee</Text>
-            <Text style={styles.billValue}>${cartPackagingFee.toFixed(2)}</Text>
+            <Text style={styles.billValue}>Rs. {cartPackagingFee.toFixed(2)}</Text>
           </View>
 
           {promoDiscount > 0 && (
@@ -262,7 +262,7 @@ export const CartScreen: React.FC = () => {
                 Campus Voucher Discount
               </Text>
               <Text style={[styles.billValue, { color: Colors.secondary }]}>
-                -${promoDiscount.toFixed(2)}
+                -Rs. {promoDiscount.toFixed(2)}
               </Text>
             </View>
           )}
@@ -274,7 +274,7 @@ export const CartScreen: React.FC = () => {
               <Text style={styles.totalLabel}>Grand Total</Text>
               <Text style={styles.totalSub}>Inclusive of all canteen charges</Text>
             </View>
-            <Text style={styles.grandTotalText}>${cartTotal.toFixed(2)}</Text>
+            <Text style={styles.grandTotalText}>Rs. {cartTotal.toFixed(2)}</Text>
           </View>
         </View>
       </ScrollView>
@@ -283,7 +283,7 @@ export const CartScreen: React.FC = () => {
       <View style={styles.bottomBar}>
         <View style={styles.bottomTotalCol}>
           <Text style={styles.bottomTotalLabel}>Total Amount</Text>
-          <Text style={styles.bottomTotalValue}>${cartTotal.toFixed(2)}</Text>
+          <Text style={styles.bottomTotalValue}>Rs. {cartTotal.toFixed(2)}</Text>
         </View>
 
         <TouchableOpacity

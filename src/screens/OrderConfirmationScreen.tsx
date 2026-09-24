@@ -80,7 +80,7 @@ export const OrderConfirmationScreen: React.FC = () => {
                 <Text style={styles.itemName} numberOfLines={1}>
                   {item.menuItem.name}
                 </Text>
-                <Text style={styles.itemPrice}>${item.itemTotal.toFixed(2)}</Text>
+                <Text style={styles.itemPrice}>Rs. {item.itemTotal.toFixed(2)}</Text>
               </View>
             ))}
 
@@ -88,7 +88,7 @@ export const OrderConfirmationScreen: React.FC = () => {
 
             <View style={styles.totalRow}>
               <Text style={styles.totalLabel}>Paid with {order.paymentMethod}</Text>
-              <Text style={styles.totalValue}>${order.total.toFixed(2)}</Text>
+              <Text style={styles.totalValue}>Rs. {order.total.toFixed(2)}</Text>
             </View>
           </View>
         </View>

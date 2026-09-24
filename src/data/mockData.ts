@@ -15,7 +15,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'm1',
     name: 'Campus Classic Smash Burger',
     category: 'meals',
-    price: 6.99,
+    price: 950.00,
     rating: 4.8,
     reviewsCount: 142,
     prepTime: '8-10 min',
@@ -27,9 +27,9 @@ export const MENU_ITEMS: MenuItem[] = [
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
       addOns: [
-        { id: 'addon-cheese', name: 'Extra Melted Cheddar', price: 0.99 },
-        { id: 'addon-bacon', name: 'Crispy Turkey Bacon', price: 1.49 },
-        { id: 'addon-jalapeno', name: 'Pickled Jalapeños', price: 0.50 },
+        { id: 'addon-cheese', name: 'Extra Melted Cheddar', price: 150.00 },
+        { id: 'addon-bacon', name: 'Crispy Chicken Bacon', price: 200.00 },
+        { id: 'addon-jalapeno', name: 'Pickled Jalapeños', price: 80.00 },
       ],
     },
   },
@@ -37,7 +37,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'm2',
     name: 'Grilled Chicken Burrito Bowl',
     category: 'meals',
-    price: 7.49,
+    price: 1150.00,
     rating: 4.9,
     reviewsCount: 98,
     prepTime: '6-8 min',
@@ -49,8 +49,8 @@ export const MENU_ITEMS: MenuItem[] = [
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
       addOns: [
-        { id: 'addon-guac', name: 'Extra Scoop Guacamole', price: 1.25 },
-        { id: 'addon-sourcream', name: 'Side Sour Cream', price: 0.50 },
+        { id: 'addon-guac', name: 'Extra Scoop Guacamole', price: 180.00 },
+        { id: 'addon-sourcream', name: 'Side Sour Cream', price: 80.00 },
       ],
     },
   },
@@ -58,7 +58,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'm3',
     name: 'Paneer Tikka Rice Bowl',
     category: 'meals',
-    price: 6.49,
+    price: 890.00,
     rating: 4.7,
     reviewsCount: 86,
     prepTime: '7-9 min',
@@ -70,8 +70,8 @@ export const MENU_ITEMS: MenuItem[] = [
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
       addOns: [
-        { id: 'addon-chutney', name: 'Extra Mint Yogurt Dip', price: 0.40 },
-        { id: 'addon-paneer', name: 'Extra Paneer Portion', price: 1.50 },
+        { id: 'addon-chutney', name: 'Extra Mint Yogurt Dip', price: 60.00 },
+        { id: 'addon-paneer', name: 'Extra Paneer Portion', price: 200.00 },
       ],
     },
   },
@@ -79,7 +79,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'm4',
     name: 'Vegan Buddha Grain Bowl',
     category: 'meals',
-    price: 6.99,
+    price: 850.00,
     rating: 4.6,
     reviewsCount: 54,
     prepTime: '5-7 min',
@@ -89,8 +89,8 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Nutritious quinoa, roasted chickpeas, massaged kale, edamame, sliced avocado, pickled red cabbage, and creamy tahini lemon dressing.',
     availableCustomizations: {
       addOns: [
-        { id: 'addon-tofu', name: 'Crispy Grilled Tofu', price: 1.20 },
-        { id: 'addon-avocado', name: 'Half Avocado Slices', price: 1.00 },
+        { id: 'addon-tofu', name: 'Crispy Grilled Tofu', price: 150.00 },
+        { id: 'addon-avocado', name: 'Half Avocado Slices', price: 150.00 },
       ],
     },
   },
@@ -100,7 +100,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 's1',
     name: 'Crispy Loaded Waffle Fries',
     category: 'snacks',
-    price: 3.99,
+    price: 550.00,
     rating: 4.8,
     reviewsCount: 165,
     prepTime: '5 min',
@@ -112,8 +112,8 @@ export const MENU_ITEMS: MenuItem[] = [
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
       addOns: [
-        { id: 'addon-jalapeno-f', name: 'Jalapeños', price: 0.45 },
-        { id: 'addon-ranch', name: 'Ranch Dipping Cup', price: 0.50 },
+        { id: 'addon-jalapeno-f', name: 'Jalapeños', price: 60.00 },
+        { id: 'addon-ranch', name: 'Ranch Dipping Cup', price: 80.00 },
       ],
     },
   },
@@ -121,7 +121,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 's2',
     name: 'Spicy Mozzarella Sticks (5 pcs)',
     category: 'snacks',
-    price: 4.49,
+    price: 650.00,
     rating: 4.7,
     reviewsCount: 110,
     prepTime: '4-6 min',
@@ -131,8 +131,8 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Herb-crusted stretchy mozzarella sticks fried to golden crispness, served with warm marinara dipping sauce.',
     availableCustomizations: {
       addOns: [
-        { id: 'addon-marinara', name: 'Extra Marinara Sauce', price: 0.50 },
-        { id: 'addon-garlicdip', name: 'Garlic Herb Aioli', price: 0.60 },
+        { id: 'addon-marinara', name: 'Extra Marinara Sauce', price: 80.00 },
+        { id: 'addon-garlicdip', name: 'Garlic Herb Aioli', price: 90.00 },
       ],
     },
   },
@@ -140,7 +140,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 's3',
     name: 'Chicken Tenders & Honey Mustard (4 pcs)',
     category: 'snacks',
-    price: 5.25,
+    price: 750.00,
     rating: 4.9,
     reviewsCount: 180,
     prepTime: '6 min',
@@ -151,8 +151,8 @@ export const MENU_ITEMS: MenuItem[] = [
     isPopular: true,
     availableCustomizations: {
       addOns: [
-        { id: 'addon-bbq', name: 'Smoky BBQ Sauce', price: 0.40 },
-        { id: 'addon-tenders-fries', name: 'Add Side Small Fries', price: 1.50 },
+        { id: 'addon-bbq', name: 'Smoky BBQ Sauce', price: 60.00 },
+        { id: 'addon-tenders-fries', name: 'Add Side Small Fries', price: 200.00 },
       ],
     },
   },
@@ -162,7 +162,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'b1',
     name: 'Iced Caramel Macchiato',
     category: 'beverages',
-    price: 3.75,
+    price: 580.00,
     rating: 4.9,
     reviewsCount: 220,
     prepTime: '2-3 min',
@@ -177,8 +177,8 @@ export const MENU_ITEMS: MenuItem[] = [
         { name: 'Large (16oz)', priceMultiplier: 1.25 },
       ],
       addOns: [
-        { id: 'addon-oatmilk', name: 'Substitute Oat Milk', price: 0.50 },
-        { id: 'addon-extraespresso', name: 'Extra Espresso Shot', price: 0.75 },
+        { id: 'addon-oatmilk', name: 'Substitute Oat Milk', price: 90.00 },
+        { id: 'addon-extraespresso', name: 'Extra Espresso Shot', price: 120.00 },
       ],
     },
   },
@@ -186,7 +186,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'b2',
     name: 'Fresh Mango Mint Lemonade',
     category: 'beverages',
-    price: 2.99,
+    price: 420.00,
     rating: 4.7,
     reviewsCount: 88,
     prepTime: '2 min',
@@ -200,7 +200,7 @@ export const MENU_ITEMS: MenuItem[] = [
         { name: 'Large (16oz)', priceMultiplier: 1.3 },
       ],
       addOns: [
-        { id: 'addon-chia', name: 'Add Chia Seeds', price: 0.35 },
+        { id: 'addon-chia', name: 'Add Chia Seeds', price: 50.00 },
       ],
     },
   },
@@ -208,7 +208,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'b3',
     name: 'Classic Hot Chocolate with Marshmallows',
     category: 'beverages',
-    price: 3.25,
+    price: 480.00,
     rating: 4.8,
     reviewsCount: 75,
     prepTime: '3 min',
@@ -223,7 +223,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'c1',
     name: 'Study Buddy Rush Combo',
     category: 'combos',
-    price: 8.99,
+    price: 1450.00,
     rating: 4.9,
     reviewsCount: 230,
     prepTime: '8 min',
@@ -236,7 +236,7 @@ export const MENU_ITEMS: MenuItem[] = [
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
       addOns: [
-        { id: 'combo-cookie', name: 'Add Warm Choco Chip Cookie', price: 1.00 },
+        { id: 'combo-cookie', name: 'Add Warm Choco Chip Cookie', price: 150.00 },
       ],
     },
   },
@@ -244,7 +244,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'c2',
     name: 'Green Power Lunch Combo',
     category: 'combos',
-    price: 8.49,
+    price: 1250.00,
     rating: 4.8,
     reviewsCount: 65,
     prepTime: '6 min',
@@ -260,7 +260,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'd1',
     name: 'Warm Nutella Lava Brownie',
     category: 'desserts',
-    price: 3.99,
+    price: 520.00,
     rating: 4.9,
     reviewsCount: 190,
     prepTime: '3-4 min',
@@ -271,7 +271,7 @@ export const MENU_ITEMS: MenuItem[] = [
     isPopular: true,
     availableCustomizations: {
       addOns: [
-        { id: 'addon-icecream', name: 'Add Vanilla Ice Cream Scoop', price: 0.99 },
+        { id: 'addon-icecream', name: 'Add Vanilla Ice Cream Scoop', price: 150.00 },
       ],
     },
   },
@@ -279,7 +279,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'd2',
     name: 'Churros with Dulce de Leche Dip (3 pcs)',
     category: 'desserts',
-    price: 3.49,
+    price: 480.00,
     rating: 4.7,
     reviewsCount: 78,
     prepTime: '4 min',
@@ -296,9 +296,9 @@ export const INITIAL_USER_PROFILE: UserProfile = {
   email: 'alex.j@campus.edu',
   studentId: 'CS-2024-8841',
   campusRole: 'Student',
-  walletBalance: 32.50,
+  walletBalance: 4500.00,
   dietaryPreference: 'all',
-  phone: '+1 (555) 382-9011',
+  phone: '+94 77 123 4567',
 };
 
 export const INITIAL_SAMPLE_ORDERS: Order[] = [
@@ -308,23 +308,23 @@ export const INITIAL_SAMPLE_ORDERS: Order[] = [
     items: [
       {
         id: 'cart-init-1',
-        menuItem: MENU_ITEMS[0], // Smash Burger
+        menuItem: MENU_ITEMS[0], // Smash Burger (Rs. 950)
         quantity: 1,
-        itemTotal: 6.99,
+        itemTotal: 950.00,
         customization: { spiceLevel: 'Medium' }
       },
       {
         id: 'cart-init-2',
-        menuItem: MENU_ITEMS[7], // Iced Caramel Macchiato
+        menuItem: MENU_ITEMS[7], // Iced Caramel Macchiato (Rs. 580)
         quantity: 1,
-        itemTotal: 3.75,
+        itemTotal: 580.00,
       }
     ],
-    subtotal: 10.74,
-    tax: 0.54,
-    packagingFee: 0.50,
-    discount: 1.07,
-    total: 10.71,
+    subtotal: 1530.00,
+    tax: 76.50,
+    packagingFee: 50.00,
+    discount: 229.50,
+    total: 1427.00,
     status: 'Ready for Pickup',
     pickupTime: 'Today at 10:45 AM (Break 1)',
     pickupCounter: 'Express Counter 2',
@@ -339,16 +339,16 @@ export const INITIAL_SAMPLE_ORDERS: Order[] = [
     items: [
       {
         id: 'cart-init-3',
-        menuItem: MENU_ITEMS[10], // Study Buddy Rush Combo
+        menuItem: MENU_ITEMS[10], // Study Buddy Rush Combo (Rs. 1450)
         quantity: 1,
-        itemTotal: 8.99,
+        itemTotal: 1450.00,
       }
     ],
-    subtotal: 8.99,
-    tax: 0.45,
-    packagingFee: 0.50,
+    subtotal: 1450.00,
+    tax: 72.50,
+    packagingFee: 50.00,
     discount: 0.00,
-    total: 9.94,
+    total: 1572.50,
     status: 'Completed',
     pickupTime: 'Yesterday at 1:15 PM',
     pickupCounter: 'Express Counter 1',
