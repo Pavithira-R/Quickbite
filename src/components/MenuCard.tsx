@@ -32,7 +32,7 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={() => onPress(item)} activeOpacity={0.88}>
       <View style={styles.imageContainer}>
-        <Image source={{ uri: item.image }} style={styles.image} resizeMode="cover" />
+        <Image source={item.image} style={styles.image} resizeMode="cover" />
 
         <View style={styles.topBadgeRow}>
           <View style={[styles.dietaryTag, { backgroundColor: badge.bg }]}>

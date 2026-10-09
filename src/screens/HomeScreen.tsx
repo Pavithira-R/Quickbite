@@ -100,7 +100,7 @@ export const HomeScreen: React.FC = () => {
             />
             <TextInput
               style={styles.searchInput}
-              placeholder="Search burgers, coffee, rice bowls..."
+              placeholder="Search kottu, rice & curry, tea..."
               placeholderTextColor={Colors.textMuted}
               value={searchQuery}
               onChangeText={setSearchQuery}

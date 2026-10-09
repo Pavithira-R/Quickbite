@@ -103,7 +103,7 @@ export const ItemDetailScreen: React.FC = () => {
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: item.image }} style={styles.image} resizeMode="cover" />
+          <Image source={item.image} style={styles.image} resizeMode="cover" />
           <View style={styles.imageOverlay} />
 
           <View style={styles.floatingTagRow}>

@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'react';
+import type { ImageSourcePropType } from 'react-native';
 import type { Ionicons } from '@expo/vector-icons';
 
 export type IconName = ComponentProps<typeof Ionicons>['name'];
@@ -23,7 +24,7 @@ export interface MenuItem {
   prepTime: string; // e.g. "8-12 min"
   calories: string;
   dietary: DietaryType;
-  image: string;
+  image: ImageSourcePropType;
   description: string;
   isPopular?: boolean;
   isSpecial?: boolean;

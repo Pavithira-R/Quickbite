@@ -8,7 +8,7 @@ Built with **React Native**, **Expo SDK 57** and **TypeScript**, running on Andr
 
 ## Features
 
-- **Menu & search:** categories (Meals, Beverages, Snacks, Combos, Desserts), live search, veg-only filter and dietary tags.
+- **Menu & search:** Sri Lankan canteen favourites (rice & curry, kottu, string hoppers, short eats, milk tea, watalappan) alongside a few international items; categories, live search, veg-only filter and dietary tags.
 - **Item customization:** portion sizes, spice levels, add-ons and notes, with live pricing.
 - **Cart:** quantity controls, promo codes, 5% campus tax and Rs. 50 packaging fee. All prices in Sri Lankan Rupees (LKR).
 - **Checkout:** pickup time slots around lecture breaks; pay with Campus Smartcard, LankaQR, card or cash on pickup.
@@ -61,3 +61,7 @@ src/
 ```
 
 Pricing, promo, validation and order-status rules live in `src/utils/cartLogic.ts` as pure functions, so the app and the tests use the same code.
+
+## Credits
+
+Menu photos are used under free licences; see [assets/menu/CREDITS.md](assets/menu/CREDITS.md).

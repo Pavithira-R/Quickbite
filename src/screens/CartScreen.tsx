@@ -98,11 +98,7 @@ export const CartScreen: React.FC = () => {
           {cart.map((item, index) => {
             return (
               <View key={item.id} style={[styles.cartItemRow, index > 0 && styles.cartItemBorder]}>
-                <Image
-                  source={{ uri: item.menuItem.image }}
-                  style={styles.itemImage}
-                  resizeMode="cover"
-                />
+                <Image source={item.menuItem.image} style={styles.itemImage} resizeMode="cover" />
 
                 <View style={styles.itemDetails}>
                   <View style={styles.itemNameRow}>
