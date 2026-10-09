@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
 import { useApp } from '../context/AppContext';
@@ -39,7 +39,7 @@ export const OrderTrackingScreen: React.FC = () => {
           <Ionicons name="time-outline" size={54} color={Colors.textMuted} />
           <Text style={styles.emptyTitle}>No Active Orders</Text>
           <Text style={styles.emptySub}>
-            You don't have any placed orders yet. Choose something tasty from the menu!
+            You don&apos;t have any orders yet. Pick something from the menu to get started.
           </Text>
           <TouchableOpacity
             style={styles.menuBtn}

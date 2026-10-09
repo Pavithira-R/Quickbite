@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-  Platform,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
 import { useApp } from '../context/AppContext';
@@ -15,8 +7,7 @@ import { Header } from '../components/Header';
 import { Order } from '../types';
 
 export const CheckoutScreen: React.FC = () => {
-  const { cart, cartTotal, cartItemCount, user, placeOrder, goBack, navigateTo, showToast } =
-    useApp();
+  const { cart, cartTotal, cartItemCount, user, placeOrder, navigateTo, showToast } = useApp();
 
   const pickupSlots = [
     { id: 'asap', label: 'Express ASAP (~10-15 min)', icon: 'flash-outline' },

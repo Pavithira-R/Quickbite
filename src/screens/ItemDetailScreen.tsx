@@ -7,7 +7,6 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-  Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
@@ -17,7 +16,7 @@ import { CustomizationOption } from '../types';
 import { calculateUnitPrice } from '../utils/cartLogic';
 
 export const ItemDetailScreen: React.FC = () => {
-  const { selectedMenuItem, addToCart, navigateTo, goBack, favorites, toggleFavorite } = useApp();
+  const { selectedMenuItem, addToCart, goBack, favorites, toggleFavorite } = useApp();
 
   const item = selectedMenuItem;
 
