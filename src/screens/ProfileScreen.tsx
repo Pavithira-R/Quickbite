@@ -56,7 +56,7 @@ export const ProfileScreen: React.FC = () => {
               </View>
               <Text style={styles.userName}>{user?.name || 'Campus Student'}</Text>
               <Text style={styles.userEmail}>{user?.email || 'student@campus.edu'}</Text>
-              <Text style={styles.studentIdBadge}>ID: {user?.studentId || 'CS-2024-8841'}</Text>
+              {!!user?.studentId && <Text style={styles.studentIdBadge}>ID: {user.studentId}</Text>}
             </View>
           </View>
 

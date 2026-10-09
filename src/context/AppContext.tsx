@@ -31,7 +31,7 @@ interface AppContextType {
   // Auth / User
   user: UserProfile | null;
   isGuest: boolean;
-  loginUser: (emailOrId: string, name?: string, isGuestMode?: boolean) => void;
+  loginUser: (emailOrId: string, role?: UserProfile['campusRole'], isGuestMode?: boolean) => void;
   logoutUser: () => void;
   updateUserProfile: (updates: Partial<UserProfile>) => void;
   topUpWallet: (amount: number) => void;
@@ -143,7 +143,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   // Auth actions
-  const loginUser = (emailOrId: string, name?: string, isGuestMode: boolean = false) => {
+  const loginUser = (emailOrId: string, role: UserProfile['campusRole'] = 'Student', isGuestMode: boolean = false) => {
     if (isGuestMode) {
       setIsGuest(true);
       setUser({
@@ -161,13 +161,14 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       return;
     }
 
+    const isEmail = emailOrId.includes('@');
     setIsGuest(false);
     setUser({
       id: 'usr-' + Math.floor(1000 + Math.random() * 9000),
-      name: name || (emailOrId.includes('@') ? emailOrId.split('@')[0] : 'Campus Student'),
-      email: emailOrId.includes('@') ? emailOrId : `${emailOrId.toLowerCase()}@campus.edu`,
-      studentId: emailOrId.includes('@') ? 'STU-9921' : emailOrId.toUpperCase(),
-      campusRole: 'Student',
+      name: isEmail ? emailOrId.split('@')[0] : role === 'Student' ? 'Campus Student' : 'Campus Staff',
+      email: isEmail ? emailOrId : `${emailOrId.toLowerCase()}@campus.edu`,
+      studentId: isEmail ? '' : emailOrId.toUpperCase(),
+      campusRole: role,
       walletBalance: 4500.00,
       dietaryPreference: 'all',
       phone: '+1 (555) 839-2019'

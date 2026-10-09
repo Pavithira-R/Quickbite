@@ -17,8 +17,8 @@ import { validateLoginInput } from '../utils/cartLogic';
 export const LoginScreen: React.FC = () => {
   const { loginUser, navigateTo } = useApp();
 
-  const [studentId, setStudentId] = useState('CS-2024-8841');
-  const [password, setPassword] = useState('campuspass');
+  const [studentId, setStudentId] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [userRole, setUserRole] = useState<'student' | 'faculty'>('student');
   const [errorMessage, setErrorMessage] = useState('');
@@ -30,11 +30,11 @@ export const LoginScreen: React.FC = () => {
       return;
     }
     setErrorMessage('');
-    loginUser(studentId.trim(), userRole === 'student' ? 'Alex Johnson (Student)' : 'Prof. Davis (Staff)');
+    loginUser(studentId.trim(), userRole === 'student' ? 'Student' : 'Faculty / Staff');
   };
 
   const handleGuestAccess = () => {
-    loginUser('guest', 'Campus Guest Explorer', true);
+    loginUser('guest', 'Guest', true);
   };
 
   return (
@@ -121,7 +121,7 @@ export const LoginScreen: React.FC = () => {
               <Ionicons name="person-outline" size={18} color={Colors.textMuted} style={styles.inputIcon} />
               <TextInput
                 style={styles.input}
-                placeholder={userRole === 'student' ? 'e.g. CS-2024-8841 or student@campus.edu' : 'e.g. STF-1029'}
+                placeholder={userRole === 'student' ? 'e.g. CS-2024-0001 or name@campus.edu' : 'e.g. STF-1029'}
                 placeholderTextColor={Colors.textMuted}
                 value={studentId}
                 onChangeText={(text) => {
@@ -193,14 +193,6 @@ export const LoginScreen: React.FC = () => {
             <Ionicons name="sparkles-outline" size={18} color={Colors.primary} />
             <Text style={styles.guestButtonText}>Continue as Campus Guest</Text>
           </TouchableOpacity>
-
-          {/* Test Credentials Hint */}
-          <View style={styles.hintBox}>
-            <Ionicons name="information-circle-outline" size={16} color={Colors.textSecondary} />
-            <Text style={styles.hintText}>
-              Pre-filled demo student account: <Text style={{ fontWeight: '700' }}>CS-2024-8841</Text>
-            </Text>
-          </View>
         </View>
 
         <TouchableOpacity 
@@ -415,19 +407,6 @@ const styles = StyleSheet.create({
     color: Colors.primaryDark,
     fontSize: 14,
     fontWeight: '700',
-  },
-  hintBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: Colors.background,
-    padding: Spacing.sm,
-    borderRadius: BorderRadius.sm,
-    marginTop: Spacing.md,
-    gap: 6,
-  },
-  hintText: {
-    fontSize: 11,
-    color: Colors.textSecondary,
   },
   splashBackLink: {
     alignSelf: 'center',
