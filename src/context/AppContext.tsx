@@ -106,7 +106,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       menuItem: MENU_ITEMS[0],
       quantity: 1,
       customization: { spiceLevel: 'Medium' },
-      itemTotal: 6.99,
+      itemTotal: 950.00,
     }
   ]);
   const [appliedPromoCode, setAppliedPromoCode] = useState('');
@@ -156,7 +156,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         email: 'guest@quickbite.local',
         studentId: 'GUEST-ACCESS',
         campusRole: 'Guest',
-        walletBalance: 20.00,
+        walletBalance: 1500.00,
         dietaryPreference: 'all',
         phone: 'N/A'
       });
@@ -172,7 +172,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       email: emailOrId.includes('@') ? emailOrId : `${emailOrId.toLowerCase()}@campus.edu`,
       studentId: emailOrId.includes('@') ? 'STU-9921' : emailOrId.toUpperCase(),
       campusRole: 'Student',
-      walletBalance: 45.00,
+      walletBalance: 4500.00,
       dietaryPreference: 'all',
       phone: '+1 (555) 839-2019'
     });
