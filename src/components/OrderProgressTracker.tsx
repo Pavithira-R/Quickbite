@@ -160,12 +160,12 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
       {showControls && (
         <View style={styles.controlsBox}>
           <View style={styles.controlsHeader}>
-            <Ionicons name="hardware-chip-outline" size={16} color={Colors.textSecondary} />
-            <Text style={styles.controlsTitle}>Live Simulation Control (Rubric Requirement)</Text>
+            <Ionicons name="construct-outline" size={16} color={Colors.textSecondary} />
+            <Text style={styles.controlsTitle}>Developer tools</Text>
           </View>
           <Text style={styles.controlsSubtext}>
-            Advance status through states (Placed → Preparing → Ready for pickup → Completed) to
-            simulate kitchen updates.
+            Until the kitchen system is connected, order status is advanced manually here. Only
+            visible in development builds.
           </Text>
           <TouchableOpacity
             style={[styles.advanceButton, status === 'Completed' && styles.advanceButtonDisabled]}
@@ -176,12 +176,12 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
             <Ionicons name="arrow-forward-circle" size={18} color="#FFFFFF" />
             <Text style={styles.advanceButtonText}>
               {status === 'Placed'
-                ? 'Simulate: Kitchen Starts Cooking'
+                ? 'Mark as Preparing'
                 : status === 'Preparing'
-                  ? 'Simulate: Food Ready for Pickup'
+                  ? 'Mark as Ready for Pickup'
                   : status === 'Ready for Pickup'
-                    ? 'Simulate: Student Picked Up'
-                    : 'Order Finished'}
+                    ? 'Mark as Completed'
+                    : 'Order completed'}
             </Text>
           </TouchableOpacity>
         </View>

@@ -16,7 +16,7 @@ export const OrderTrackingScreen: React.FC = () => {
     reorderPastOrder,
   } = useApp();
 
-  const [simulatedMinutesLeft, setSimulatedMinutesLeft] = useState(8);
+  const [estimatedMinutesLeft, setEstimatedMinutesLeft] = useState(8);
 
   const currentOrder = activeOrder || orders[0];
 
@@ -24,7 +24,7 @@ export const OrderTrackingScreen: React.FC = () => {
     if (!currentOrder || currentOrder.status === 'Completed') return;
 
     const timer = setInterval(() => {
-      setSimulatedMinutesLeft((prev) => (prev > 1 ? prev - 1 : 1));
+      setEstimatedMinutesLeft((prev) => (prev > 1 ? prev - 1 : 1));
     }, 45000);
 
     return () => clearInterval(timer);
@@ -97,7 +97,7 @@ export const OrderTrackingScreen: React.FC = () => {
                   ? 'Order Completed'
                   : currentOrder.status === 'Ready for Pickup'
                     ? 'Ready at Counter!'
-                    : `Approx. ${simulatedMinutesLeft} Mins Remaining`}
+                    : `Approx. ${estimatedMinutesLeft} Mins Remaining`}
               </Text>
             </View>
             <View style={styles.etaIconCircle}>
@@ -129,7 +129,7 @@ export const OrderTrackingScreen: React.FC = () => {
         <OrderProgressTracker
           status={currentOrder.status}
           onAdvanceStatus={() => advanceOrderStatus(currentOrder.id)}
-          showControls={true}
+          showControls={__DEV__}
         />
 
         <View style={styles.detailsCard}>
