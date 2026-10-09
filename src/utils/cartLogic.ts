@@ -9,8 +9,8 @@ import {
 
 // All amounts are in LKR
 export const TAX_RATE = 0.05;
-export const PACKAGING_FEE = 50.0;
-export const FLAT_PROMO_DISCOUNT = 250.0;
+export const PACKAGING_FEE = 20.0;
+export const FLAT_PROMO_DISCOUNT = 100.0;
 
 const round2 = (value: number) => parseFloat(value.toFixed(2));
 
@@ -88,7 +88,7 @@ export const updateItemQuantity = (
 export const normalizePromoCode = (code: string) => code.trim().toUpperCase();
 
 export const isPercentPromo = (code: string) => code === 'STUDENT15' || code === 'QUICK15';
-export const isFlatPromo = (code: string) => code === 'FREEDRINK' || code === 'BITE250';
+export const isFlatPromo = (code: string) => code === 'FREEDRINK' || code === 'BITE100';
 
 export const validatePromoCode = (
   code: string,
@@ -98,7 +98,7 @@ export const validatePromoCode = (
     return { success: true, message: '15% student discount applied', code: cleanCode };
   }
   if (isFlatPromo(cleanCode)) {
-    return { success: true, message: 'Rs. 250 discount applied', code: cleanCode };
+    return { success: true, message: 'Rs. 100 discount applied', code: cleanCode };
   }
   return { success: false, message: 'Invalid or expired promo code', code: cleanCode };
 };

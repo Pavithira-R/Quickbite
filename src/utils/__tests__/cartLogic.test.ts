@@ -25,31 +25,31 @@ describe('cart pricing', () => {
     expect(cart[0].itemTotal).toBe(1060);
   });
 
-  it('adds 5% tax and Rs. 50 packaging', () => {
+  it('adds 5% tax and Rs. 20 packaging', () => {
     expect(calculateCartTotals(cart, '')).toEqual({
       subtotal: 1060,
       tax: 53,
-      packagingFee: 50,
+      packagingFee: 20,
       discount: 0,
-      total: 1163,
+      total: 1133,
     });
   });
 
   it('applies a 15% discount for STUDENT15', () => {
     const totals = calculateCartTotals(cart, 'STUDENT15');
     expect(totals.discount).toBe(159);
-    expect(totals.total).toBe(1004);
+    expect(totals.total).toBe(974);
   });
 
-  it('applies a flat Rs. 250 discount for BITE250', () => {
-    const totals = calculateCartTotals(cart, 'BITE250');
-    expect(totals.discount).toBe(250);
-    expect(totals.total).toBe(913);
+  it('applies a flat Rs. 100 discount for BITE100', () => {
+    const totals = calculateCartTotals(cart, 'BITE100');
+    expect(totals.discount).toBe(100);
+    expect(totals.total).toBe(1033);
   });
 
   it('never discounts more than the subtotal', () => {
-    const cheapCart = addItemToCart([], { ...burger, price: 100 }, 1);
-    expect(calculateCartTotals(cheapCart, 'BITE250').discount).toBe(100);
+    const cheapCart = addItemToCart([], { ...burger, price: 60 }, 1);
+    expect(calculateCartTotals(cheapCart, 'BITE100').discount).toBe(60);
   });
 
   it('returns all zeros for an empty cart', () => {

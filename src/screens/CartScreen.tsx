@@ -214,7 +214,7 @@ export const CartScreen: React.FC = () => {
                     applyPromoCode('FREEDRINK');
                   }}
                 >
-                  <Text style={styles.promoChipText}>FREEDRINK · Rs. 250 off</Text>
+                  <Text style={styles.promoChipText}>FREEDRINK · Rs. 100 off</Text>
                 </TouchableOpacity>
               </View>
             </View>

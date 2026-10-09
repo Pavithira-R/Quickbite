@@ -10,7 +10,7 @@ Built with **React Native**, **Expo SDK 57** and **TypeScript**, running on Andr
 
 - **Menu & search:** Sri Lankan canteen favourites (rice & curry, kottu, string hoppers, short eats, milk tea, watalappan) alongside a few international items; categories, live search, veg-only filter and dietary tags.
 - **Item customization:** portion sizes, spice levels, add-ons and notes, with live pricing.
-- **Cart:** quantity controls, promo codes, 5% campus tax and Rs. 50 packaging fee. All prices in Sri Lankan Rupees (LKR).
+- **Cart:** quantity controls, promo codes, 5% campus tax and Rs. 20 packaging fee. All prices in Sri Lankan Rupees (LKR).
 - **Checkout:** pickup time slots around lecture breaks; pay with Campus Smartcard, LankaQR, card or cash on pickup.
 - **Order tracking:** order number and QR pickup ticket, assigned counter, and status updates (Placed → Preparing → Ready for Pickup → Completed).
 - **Profile & wallet:** Campus Smartcard balance with top-up, order history and one-tap reorder.
