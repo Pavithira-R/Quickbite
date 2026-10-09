@@ -186,7 +186,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setFavorites((prev) => {
       const exists = prev.includes(itemId);
       const updated = exists ? prev.filter((id) => id !== itemId) : [...prev, itemId];
-      showToast(exists ? 'Removed from favorites' : 'Saved to favorites ❤️', 'info');
+      showToast(exists ? 'Removed from favorites' : 'Saved to favorites', 'info');
       return updated;
     });
   };
@@ -289,7 +289,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setOrders((prev) => [newOrder, ...prev]);
     setActiveOrderId(newOrderId);
     clearCart();
-    showToast(`Order #${newOrder.orderNumber} placed successfully! 🍕`, 'success');
+    showToast(`Order #${newOrder.orderNumber} placed`, 'success');
     navigateTo('OrderConfirmation', { orderId: newOrderId });
 
     return newOrder;

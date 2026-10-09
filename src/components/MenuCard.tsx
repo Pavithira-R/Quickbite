@@ -91,7 +91,7 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
             <Text style={styles.ratingText}>{item.rating.toFixed(1)}</Text>
             <Text style={styles.reviewsCount}>({item.reviewsCount})</Text>
           </View>
-          <Text style={styles.caloriesText}>🔥 {item.calories}</Text>
+          <Text style={styles.caloriesText}>{item.calories}</Text>
         </View>
 
         <View style={styles.bottomRow}>

@@ -123,7 +123,7 @@ export const CartScreen: React.FC = () => {
                       <Text style={styles.customPill}>{item.customization.size}</Text>
                     )}
                     {item.customization?.spiceLevel && (
-                      <Text style={styles.customPill}>🔥 {item.customization.spiceLevel}</Text>
+                      <Text style={styles.customPill}>{item.customization.spiceLevel} spice</Text>
                     )}
                     {item.customization?.addOns?.map((addon) => (
                       <Text key={addon.id} style={styles.customPill}>
@@ -216,7 +216,7 @@ export const CartScreen: React.FC = () => {
                     applyPromoCode('STUDENT15');
                   }}
                 >
-                  <Text style={styles.promoChipText}>🏷️ STUDENT15 (15% OFF)</Text>
+                  <Text style={styles.promoChipText}>STUDENT15 · 15% off</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.promoChip}
@@ -225,7 +225,7 @@ export const CartScreen: React.FC = () => {
                     applyPromoCode('FREEDRINK');
                   }}
                 >
-                  <Text style={styles.promoChipText}>🥤 FREEDRINK (Rs. 250 OFF)</Text>
+                  <Text style={styles.promoChipText}>FREEDRINK · Rs. 250 off</Text>
                 </TouchableOpacity>
               </View>
             </View>

@@ -56,7 +56,7 @@ export const HomeScreen: React.FC = () => {
         <View style={styles.greetingBar}>
           <View>
             <Text style={styles.greetingTitle}>
-              Hello, {user?.name ? user.name.split(' ')[0] : 'Student'} 👋
+              Hello, {user?.name ? user.name.split(' ')[0] : 'Student'}
             </Text>
             <Text style={styles.greetingSub}>What are you craving for between lectures today?</Text>
           </View>
