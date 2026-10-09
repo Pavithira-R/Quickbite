@@ -33,8 +33,8 @@ export const Header: React.FC<HeaderProps> = ({
     <View style={styles.headerContainer}>
       <View style={styles.leftSection}>
         {showBack ? (
-          <TouchableOpacity 
-            style={styles.iconButton} 
+          <TouchableOpacity
+            style={styles.iconButton}
             onPress={handleBack}
             activeOpacity={0.7}
             accessibilityLabel="Go back"
@@ -42,8 +42,8 @@ export const Header: React.FC<HeaderProps> = ({
             <Ionicons name="arrow-back" size={22} color={Colors.textPrimary} />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity 
-            style={styles.brandRow} 
+          <TouchableOpacity
+            style={styles.brandRow}
             onPress={() => navigateTo('Home')}
             activeOpacity={0.8}
           >
@@ -51,7 +51,9 @@ export const Header: React.FC<HeaderProps> = ({
               <Ionicons name="fast-food" size={18} color="#FFFFFF" />
             </View>
             <View>
-              <Text style={styles.brandName}>Quick<Text style={styles.brandHighlight}>Bite</Text></Text>
+              <Text style={styles.brandName}>
+                Quick<Text style={styles.brandHighlight}>Bite</Text>
+              </Text>
               <Text style={styles.campusTag}>Campus Canteen • Express</Text>
             </View>
           </TouchableOpacity>
@@ -60,8 +62,14 @@ export const Header: React.FC<HeaderProps> = ({
 
       {title && (
         <View style={styles.titleSection}>
-          <Text style={styles.titleText} numberOfLines={1}>{title}</Text>
-          {subtitle && <Text style={styles.subtitleText} numberOfLines={1}>{subtitle}</Text>}
+          <Text style={styles.titleText} numberOfLines={1}>
+            {title}
+          </Text>
+          {subtitle && (
+            <Text style={styles.subtitleText} numberOfLines={1}>
+              {subtitle}
+            </Text>
+          )}
         </View>
       )}
 

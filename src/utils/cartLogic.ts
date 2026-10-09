@@ -1,18 +1,23 @@
 import { CartItem, CartCustomization, MenuItem, OrderStatus, ScreenName } from '../types';
 
 export const TAX_RATE = 0.05; // 5% campus tax
-export const PACKAGING_FEE = 50.00; // Rs. 50 flat packaging fee
-export const FLAT_PROMO_DISCOUNT = 250.00; // Rs. 250 off
+export const PACKAGING_FEE = 50.0; // Rs. 50 flat packaging fee
+export const FLAT_PROMO_DISCOUNT = 250.0; // Rs. 250 off
 
 const round2 = (value: number) => parseFloat(value.toFixed(2));
 
 // Unique key so identical item + customization combos merge into one cart line
 export const buildCartKey = (item: MenuItem, customization?: CartCustomization) =>
-  `${item.id}-${customization?.size || 'std'}-${customization?.spiceLevel || 'std'}-${(customization?.addOns || []).map(a => a.id).sort().join('_')}`;
+  `${item.id}-${customization?.size || 'std'}-${customization?.spiceLevel || 'std'}-${(
+    customization?.addOns || []
+  )
+    .map((a) => a.id)
+    .sort()
+    .join('_')}`;
 
 // Size multiplier applies to the base price only; add-ons keep their flat price
 export const getSizeMultiplier = (item: MenuItem, sizeName?: string) =>
-  item.availableCustomizations?.sizes?.find(s => s.name === sizeName)?.priceMultiplier ?? 1;
+  item.availableCustomizations?.sizes?.find((s) => s.name === sizeName)?.priceMultiplier ?? 1;
 
 export const calculateUnitPrice = (item: MenuItem, customization?: CartCustomization) => {
   const basePrice = round2(item.price * getSizeMultiplier(item, customization?.size));
@@ -24,11 +29,11 @@ export const addItemToCart = (
   cart: CartItem[],
   item: MenuItem,
   quantity: number,
-  customization?: CartCustomization
+  customization?: CartCustomization,
 ): CartItem[] => {
   const customKey = buildCartKey(item, customization);
   const unitPrice = calculateUnitPrice(item, customization);
-  const existingIndex = cart.findIndex(c => c.id === customKey);
+  const existingIndex = cart.findIndex((c) => c.id === customKey);
 
   if (existingIndex > -1) {
     const updated = [...cart];
@@ -53,18 +58,22 @@ export const addItemToCart = (
   ];
 };
 
-export const updateItemQuantity = (cart: CartItem[], cartItemId: string, newQuantity: number): CartItem[] => {
+export const updateItemQuantity = (
+  cart: CartItem[],
+  cartItemId: string,
+  newQuantity: number,
+): CartItem[] => {
   if (newQuantity <= 0) {
-    return cart.filter(item => item.id !== cartItemId);
+    return cart.filter((item) => item.id !== cartItemId);
   }
-  return cart.map(item =>
+  return cart.map((item) =>
     item.id === cartItemId
       ? {
           ...item,
           quantity: newQuantity,
           itemTotal: round2(calculateUnitPrice(item.menuItem, item.customization) * newQuantity),
         }
-      : item
+      : item,
   );
 };
 
@@ -74,7 +83,9 @@ export const normalizePromoCode = (code: string) => code.trim().toUpperCase();
 export const isPercentPromo = (code: string) => code === 'STUDENT15' || code === 'QUICK15';
 export const isFlatPromo = (code: string) => code === 'FREEDRINK' || code === 'BITE250';
 
-export const validatePromoCode = (code: string): { success: boolean; message: string; code: string } => {
+export const validatePromoCode = (
+  code: string,
+): { success: boolean; message: string; code: string } => {
   const cleanCode = normalizePromoCode(code);
   if (isPercentPromo(cleanCode)) {
     return { success: true, message: '15% Student Discount applied!', code: cleanCode };

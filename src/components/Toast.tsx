@@ -11,17 +11,23 @@ export const Toast: React.FC = () => {
 
   const getIconName = () => {
     switch (toast.type) {
-      case 'success': return 'checkmark-circle';
-      case 'error': return 'alert-circle';
-      default: return 'information-circle';
+      case 'success':
+        return 'checkmark-circle';
+      case 'error':
+        return 'alert-circle';
+      default:
+        return 'information-circle';
     }
   };
 
   const getBgColor = () => {
     switch (toast.type) {
-      case 'success': return '#065F46'; // dark emerald
-      case 'error': return '#991B1B';
-      default: return '#1E293B';
+      case 'success':
+        return '#065F46'; // dark emerald
+      case 'error':
+        return '#991B1B';
+      default:
+        return '#1E293B';
     }
   };
 

@@ -96,7 +96,7 @@ export const CartScreen: React.FC = () => {
         {/* Cart items list */}
         <View style={styles.sectionCard}>
           <Text style={styles.sectionHeader}>Selected Food Items</Text>
-          
+
           {cart.map((item, index) => {
             return (
               <View key={item.id} style={[styles.cartItemRow, index > 0 && styles.cartItemBorder]}>

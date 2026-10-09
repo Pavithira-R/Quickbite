@@ -15,21 +15,23 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'm1',
     name: 'Campus Classic Smash Burger',
     category: 'meals',
-    price: 950.00,
+    price: 950.0,
     rating: 4.8,
     reviewsCount: 142,
     prepTime: '8-10 min',
     calories: '540 kcal',
     dietary: 'non-veg',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
-    description: 'Juicy smashed beef patty with melted aged cheddar, crisp iceberg lettuce, caramelized onions, pickles, and signature QuickBite house sauce in a toasted brioche bun.',
+    image:
+      'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Juicy smashed beef patty with melted aged cheddar, crisp iceberg lettuce, caramelized onions, pickles, and signature QuickBite house sauce in a toasted brioche bun.',
     isPopular: true,
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
       addOns: [
-        { id: 'addon-cheese', name: 'Extra Melted Cheddar', price: 150.00 },
-        { id: 'addon-bacon', name: 'Crispy Chicken Bacon', price: 200.00 },
-        { id: 'addon-jalapeno', name: 'Pickled Jalapeños', price: 80.00 },
+        { id: 'addon-cheese', name: 'Extra Melted Cheddar', price: 150.0 },
+        { id: 'addon-bacon', name: 'Crispy Chicken Bacon', price: 200.0 },
+        { id: 'addon-jalapeno', name: 'Pickled Jalapeños', price: 80.0 },
       ],
     },
   },
@@ -37,20 +39,22 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'm2',
     name: 'Grilled Chicken Burrito Bowl',
     category: 'meals',
-    price: 1150.00,
+    price: 1150.0,
     rating: 4.9,
     reviewsCount: 98,
     prepTime: '6-8 min',
     calories: '610 kcal',
     dietary: 'non-veg',
-    image: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80',
-    description: 'Cilantro-lime brown rice topped with marinated grilled chicken breast, black beans, charred corn, fresh pico de gallo, guacamole, and chipotle crema.',
+    image:
+      'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Cilantro-lime brown rice topped with marinated grilled chicken breast, black beans, charred corn, fresh pico de gallo, guacamole, and chipotle crema.',
     isPopular: true,
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
       addOns: [
-        { id: 'addon-guac', name: 'Extra Scoop Guacamole', price: 180.00 },
-        { id: 'addon-sourcream', name: 'Side Sour Cream', price: 80.00 },
+        { id: 'addon-guac', name: 'Extra Scoop Guacamole', price: 180.0 },
+        { id: 'addon-sourcream', name: 'Side Sour Cream', price: 80.0 },
       ],
     },
   },
@@ -58,20 +62,22 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'm3',
     name: 'Paneer Tikka Rice Bowl',
     category: 'meals',
-    price: 890.00,
+    price: 890.0,
     rating: 4.7,
     reviewsCount: 86,
     prepTime: '7-9 min',
     calories: '490 kcal',
     dietary: 'veg',
-    image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80',
-    description: 'Tandoori-spiced cottage cheese cubes charred to perfection with roasted bell peppers and spiced basmati rice, served with mint chutney.',
+    image:
+      'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Tandoori-spiced cottage cheese cubes charred to perfection with roasted bell peppers and spiced basmati rice, served with mint chutney.',
     isPopular: false,
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
       addOns: [
-        { id: 'addon-chutney', name: 'Extra Mint Yogurt Dip', price: 60.00 },
-        { id: 'addon-paneer', name: 'Extra Paneer Portion', price: 200.00 },
+        { id: 'addon-chutney', name: 'Extra Mint Yogurt Dip', price: 60.0 },
+        { id: 'addon-paneer', name: 'Extra Paneer Portion', price: 200.0 },
       ],
     },
   },
@@ -79,18 +85,20 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'm4',
     name: 'Vegan Buddha Grain Bowl',
     category: 'meals',
-    price: 850.00,
+    price: 850.0,
     rating: 4.6,
     reviewsCount: 54,
     prepTime: '5-7 min',
     calories: '420 kcal',
     dietary: 'vegan',
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80',
-    description: 'Nutritious quinoa, roasted chickpeas, massaged kale, edamame, sliced avocado, pickled red cabbage, and creamy tahini lemon dressing.',
+    image:
+      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Nutritious quinoa, roasted chickpeas, massaged kale, edamame, sliced avocado, pickled red cabbage, and creamy tahini lemon dressing.',
     availableCustomizations: {
       addOns: [
-        { id: 'addon-tofu', name: 'Crispy Grilled Tofu', price: 150.00 },
-        { id: 'addon-avocado', name: 'Half Avocado Slices', price: 150.00 },
+        { id: 'addon-tofu', name: 'Crispy Grilled Tofu', price: 150.0 },
+        { id: 'addon-avocado', name: 'Half Avocado Slices', price: 150.0 },
       ],
     },
   },
@@ -100,20 +108,22 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 's1',
     name: 'Crispy Loaded Waffle Fries',
     category: 'snacks',
-    price: 550.00,
+    price: 550.0,
     rating: 4.8,
     reviewsCount: 165,
     prepTime: '5 min',
     calories: '380 kcal',
     dietary: 'veg',
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80',
-    description: 'Golden seasoned criss-cut waffle fries drenched in warm queso cheese sauce, fresh scallions, and signature spicy dust.',
+    image:
+      'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Golden seasoned criss-cut waffle fries drenched in warm queso cheese sauce, fresh scallions, and signature spicy dust.',
     isPopular: true,
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
       addOns: [
-        { id: 'addon-jalapeno-f', name: 'Jalapeños', price: 60.00 },
-        { id: 'addon-ranch', name: 'Ranch Dipping Cup', price: 80.00 },
+        { id: 'addon-jalapeno-f', name: 'Jalapeños', price: 60.0 },
+        { id: 'addon-ranch', name: 'Ranch Dipping Cup', price: 80.0 },
       ],
     },
   },
@@ -121,18 +131,20 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 's2',
     name: 'Spicy Mozzarella Sticks (5 pcs)',
     category: 'snacks',
-    price: 650.00,
+    price: 650.0,
     rating: 4.7,
     reviewsCount: 110,
     prepTime: '4-6 min',
     calories: '390 kcal',
     dietary: 'veg',
-    image: 'https://images.unsplash.com/photo-1548340748-6d2b7d7da280?auto=format&fit=crop&w=600&q=80',
-    description: 'Herb-crusted stretchy mozzarella sticks fried to golden crispness, served with warm marinara dipping sauce.',
+    image:
+      'https://images.unsplash.com/photo-1548340748-6d2b7d7da280?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Herb-crusted stretchy mozzarella sticks fried to golden crispness, served with warm marinara dipping sauce.',
     availableCustomizations: {
       addOns: [
-        { id: 'addon-marinara', name: 'Extra Marinara Sauce', price: 80.00 },
-        { id: 'addon-garlicdip', name: 'Garlic Herb Aioli', price: 90.00 },
+        { id: 'addon-marinara', name: 'Extra Marinara Sauce', price: 80.0 },
+        { id: 'addon-garlicdip', name: 'Garlic Herb Aioli', price: 90.0 },
       ],
     },
   },
@@ -140,19 +152,21 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 's3',
     name: 'Chicken Tenders & Honey Mustard (4 pcs)',
     category: 'snacks',
-    price: 750.00,
+    price: 750.0,
     rating: 4.9,
     reviewsCount: 180,
     prepTime: '6 min',
     calories: '440 kcal',
     dietary: 'non-veg',
-    image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80',
-    description: 'Buttermilk soaked, hand-breaded crispy chicken breast tenders seasoned with paprika and sea salt, served with tangy honey mustard.',
+    image:
+      'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Buttermilk soaked, hand-breaded crispy chicken breast tenders seasoned with paprika and sea salt, served with tangy honey mustard.',
     isPopular: true,
     availableCustomizations: {
       addOns: [
-        { id: 'addon-bbq', name: 'Smoky BBQ Sauce', price: 60.00 },
-        { id: 'addon-tenders-fries', name: 'Add Side Small Fries', price: 200.00 },
+        { id: 'addon-bbq', name: 'Smoky BBQ Sauce', price: 60.0 },
+        { id: 'addon-tenders-fries', name: 'Add Side Small Fries', price: 200.0 },
       ],
     },
   },
@@ -162,14 +176,16 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'b1',
     name: 'Iced Caramel Macchiato',
     category: 'beverages',
-    price: 580.00,
+    price: 580.0,
     rating: 4.9,
     reviewsCount: 220,
     prepTime: '2-3 min',
     calories: '180 kcal',
     dietary: 'veg',
-    image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80',
-    description: 'Freshly pulled double espresso shot poured over velvety whole milk, vanilla syrup, ice, and finished with rich buttery caramel drizzle.',
+    image:
+      'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Freshly pulled double espresso shot poured over velvety whole milk, vanilla syrup, ice, and finished with rich buttery caramel drizzle.',
     isPopular: true,
     availableCustomizations: {
       sizes: [
@@ -177,8 +193,8 @@ export const MENU_ITEMS: MenuItem[] = [
         { name: 'Large (16oz)', priceMultiplier: 1.25 },
       ],
       addOns: [
-        { id: 'addon-oatmilk', name: 'Substitute Oat Milk', price: 90.00 },
-        { id: 'addon-extraespresso', name: 'Extra Espresso Shot', price: 120.00 },
+        { id: 'addon-oatmilk', name: 'Substitute Oat Milk', price: 90.0 },
+        { id: 'addon-extraespresso', name: 'Extra Espresso Shot', price: 120.0 },
       ],
     },
   },
@@ -186,36 +202,38 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'b2',
     name: 'Fresh Mango Mint Lemonade',
     category: 'beverages',
-    price: 420.00,
+    price: 420.0,
     rating: 4.7,
     reviewsCount: 88,
     prepTime: '2 min',
     calories: '120 kcal',
     dietary: 'vegan',
-    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80',
-    description: 'Cold-pressed Alphonso mango nectar shaken with freshly squeezed lemon juice, crushed garden mint, and crushed ice.',
+    image:
+      'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Cold-pressed Alphonso mango nectar shaken with freshly squeezed lemon juice, crushed garden mint, and crushed ice.',
     availableCustomizations: {
       sizes: [
         { name: 'Regular (12oz)', priceMultiplier: 1.0 },
         { name: 'Large (16oz)', priceMultiplier: 1.3 },
       ],
-      addOns: [
-        { id: 'addon-chia', name: 'Add Chia Seeds', price: 50.00 },
-      ],
+      addOns: [{ id: 'addon-chia', name: 'Add Chia Seeds', price: 50.0 }],
     },
   },
   {
     id: 'b3',
     name: 'Classic Hot Chocolate with Marshmallows',
     category: 'beverages',
-    price: 480.00,
+    price: 480.0,
     rating: 4.8,
     reviewsCount: 75,
     prepTime: '3 min',
     calories: '240 kcal',
     dietary: 'veg',
-    image: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=600&q=80',
-    description: 'Steamed milk infused with Belgian dark chocolate ganache, topped with fluffy mini marshmallows and cocoa dusting.',
+    image:
+      'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Steamed milk infused with Belgian dark chocolate ganache, topped with fluffy mini marshmallows and cocoa dusting.',
   },
 
   // COMBOS
@@ -223,35 +241,37 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'c1',
     name: 'Study Buddy Rush Combo',
     category: 'combos',
-    price: 1450.00,
+    price: 1450.0,
     rating: 4.9,
     reviewsCount: 230,
     prepTime: '8 min',
     calories: '780 kcal',
     dietary: 'non-veg',
-    image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=600&q=80',
-    description: 'Best seller! Includes Smash Burger + Seasoned Waffle Fries + Choice of Iced Coffee or Lemonade. Save 25% compared to individual items.',
+    image:
+      'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Best seller! Includes Smash Burger + Seasoned Waffle Fries + Choice of Iced Coffee or Lemonade. Save 25% compared to individual items.',
     isPopular: true,
     isSpecial: true,
     availableCustomizations: {
       spiceLevels: ['Mild', 'Medium', 'Extra Spicy'],
-      addOns: [
-        { id: 'combo-cookie', name: 'Add Warm Choco Chip Cookie', price: 150.00 },
-      ],
+      addOns: [{ id: 'combo-cookie', name: 'Add Warm Choco Chip Cookie', price: 150.0 }],
     },
   },
   {
     id: 'c2',
     name: 'Green Power Lunch Combo',
     category: 'combos',
-    price: 1250.00,
+    price: 1250.0,
     rating: 4.8,
     reviewsCount: 65,
     prepTime: '6 min',
     calories: '540 kcal',
     dietary: 'vegan',
-    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
-    description: 'Vegan Buddha Bowl + Fresh Mango Mint Lemonade + Organic Fruit Cup. Perfect energizing meal between lectures.',
+    image:
+      'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Vegan Buddha Bowl + Fresh Mango Mint Lemonade + Organic Fruit Cup. Perfect energizing meal between lectures.',
     isSpecial: true,
   },
 
@@ -260,32 +280,34 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'd1',
     name: 'Warm Nutella Lava Brownie',
     category: 'desserts',
-    price: 520.00,
+    price: 520.0,
     rating: 4.9,
     reviewsCount: 190,
     prepTime: '3-4 min',
     calories: '360 kcal',
     dietary: 'veg',
-    image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80',
-    description: 'Decadent warm fudge brownie with molten Nutella core, served warm with a drizzle of dark chocolate sauce.',
+    image:
+      'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Decadent warm fudge brownie with molten Nutella core, served warm with a drizzle of dark chocolate sauce.',
     isPopular: true,
     availableCustomizations: {
-      addOns: [
-        { id: 'addon-icecream', name: 'Add Vanilla Ice Cream Scoop', price: 150.00 },
-      ],
+      addOns: [{ id: 'addon-icecream', name: 'Add Vanilla Ice Cream Scoop', price: 150.0 }],
     },
   },
   {
     id: 'd2',
     name: 'Churros with Dulce de Leche Dip (3 pcs)',
     category: 'desserts',
-    price: 480.00,
+    price: 480.0,
     rating: 4.7,
     reviewsCount: 78,
     prepTime: '4 min',
     calories: '310 kcal',
     dietary: 'veg',
-    image: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80',
-    description: 'Golden Spanish churros rolled in cinnamon sugar, served with thick warm caramel dulce de leche.',
-  }
+    image:
+      'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80',
+    description:
+      'Golden Spanish churros rolled in cinnamon sugar, served with thick warm caramel dulce de leche.',
+  },
 ];

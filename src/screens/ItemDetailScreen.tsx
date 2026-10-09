@@ -23,10 +23,12 @@ export const ItemDetailScreen: React.FC = () => {
 
   const [quantity, setQuantity] = useState(1);
   const [selectedSpice, setSelectedSpice] = useState<string>(
-    item?.availableCustomizations?.spiceLevels ? item.availableCustomizations.spiceLevels[0] : 'Mild'
+    item?.availableCustomizations?.spiceLevels
+      ? item.availableCustomizations.spiceLevels[0]
+      : 'Mild',
   );
   const [selectedSize, setSelectedSize] = useState<string>(
-    item?.availableCustomizations?.sizes ? item.availableCustomizations.sizes[0].name : 'Regular'
+    item?.availableCustomizations?.sizes ? item.availableCustomizations.sizes[0].name : 'Regular',
   );
   const [selectedAddOns, setSelectedAddOns] = useState<CustomizationOption[]>([]);
   const [specialNote, setSpecialNote] = useState('');
@@ -115,14 +117,12 @@ export const ItemDetailScreen: React.FC = () => {
                       item.dietary === 'veg'
                         ? Colors.veg
                         : item.dietary === 'vegan'
-                        ? Colors.vegan
-                        : Colors.nonVeg,
+                          ? Colors.vegan
+                          : Colors.nonVeg,
                   },
                 ]}
               />
-              <Text style={styles.dietaryPillText}>
-                {item.dietary.toUpperCase()}
-              </Text>
+              <Text style={styles.dietaryPillText}>{item.dietary.toUpperCase()}</Text>
             </View>
 
             <View style={styles.prepTimePill}>
@@ -173,10 +173,7 @@ export const ItemDetailScreen: React.FC = () => {
                       activeOpacity={0.7}
                     >
                       <Text
-                        style={[
-                          styles.optionPillText,
-                          isSelected && styles.optionPillTextActive,
-                        ]}
+                        style={[styles.optionPillText, isSelected && styles.optionPillTextActive]}
                       >
                         {sz.name}
                         {sizeExtra > 0 ? `  +Rs. ${sizeExtra.toFixed(2)}` : ''}
@@ -208,10 +205,7 @@ export const ItemDetailScreen: React.FC = () => {
                         color={isSelected ? '#FFFFFF' : Colors.primary}
                       />
                       <Text
-                        style={[
-                          styles.optionPillText,
-                          isSelected && styles.optionPillTextActive,
-                        ]}
+                        style={[styles.optionPillText, isSelected && styles.optionPillTextActive]}
                       >
                         {spice}
                       </Text>
@@ -223,39 +217,33 @@ export const ItemDetailScreen: React.FC = () => {
           )}
 
           {/* Add-ons Checklist if available */}
-          {item.availableCustomizations?.addOns && item.availableCustomizations.addOns.length > 0 && (
-            <View style={styles.sectionBlock}>
-              <Text style={styles.sectionTitle}>Add Extras & Dips</Text>
-              <View style={styles.addOnsList}>
-                {item.availableCustomizations.addOns.map((addon) => {
-                  const isChecked = selectedAddOns.some((a) => a.id === addon.id);
-                  return (
-                    <TouchableOpacity
-                      key={addon.id}
-                      style={[styles.addOnRow, isChecked && styles.addOnRowChecked]}
-                      onPress={() => toggleAddOn(addon)}
-                      activeOpacity={0.7}
-                    >
-                      <View style={styles.addOnLeft}>
-                        <View
-                          style={[
-                            styles.checkbox,
-                            isChecked && styles.checkboxChecked,
-                          ]}
-                        >
-                          {isChecked && (
-                            <Ionicons name="checkmark" size={14} color="#FFFFFF" />
-                          )}
+          {item.availableCustomizations?.addOns &&
+            item.availableCustomizations.addOns.length > 0 && (
+              <View style={styles.sectionBlock}>
+                <Text style={styles.sectionTitle}>Add Extras & Dips</Text>
+                <View style={styles.addOnsList}>
+                  {item.availableCustomizations.addOns.map((addon) => {
+                    const isChecked = selectedAddOns.some((a) => a.id === addon.id);
+                    return (
+                      <TouchableOpacity
+                        key={addon.id}
+                        style={[styles.addOnRow, isChecked && styles.addOnRowChecked]}
+                        onPress={() => toggleAddOn(addon)}
+                        activeOpacity={0.7}
+                      >
+                        <View style={styles.addOnLeft}>
+                          <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
+                            {isChecked && <Ionicons name="checkmark" size={14} color="#FFFFFF" />}
+                          </View>
+                          <Text style={styles.addOnName}>{addon.name}</Text>
                         </View>
-                        <Text style={styles.addOnName}>{addon.name}</Text>
-                      </View>
-                      <Text style={styles.addOnPrice}>+Rs. {addon.price.toFixed(2)}</Text>
-                    </TouchableOpacity>
-                  );
-                })}
+                        <Text style={styles.addOnPrice}>+Rs. {addon.price.toFixed(2)}</Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
               </View>
-            </View>
-          )}
+            )}
 
           {/* Special Instructions */}
           <View style={styles.sectionBlock}>
@@ -304,7 +292,7 @@ export const ItemDetailScreen: React.FC = () => {
         >
           <View style={styles.btnContentRow}>
             <Text style={styles.addToCartBtnText}>Add to Cart</Text>
-            <Text style={styles.btnPriceText}>•  Rs. {totalPrice.toFixed(2)}</Text>
+            <Text style={styles.btnPriceText}>• Rs. {totalPrice.toFixed(2)}</Text>
           </View>
         </TouchableOpacity>
       </View>

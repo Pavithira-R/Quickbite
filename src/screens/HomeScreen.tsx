@@ -36,8 +36,7 @@ export const HomeScreen: React.FC = () => {
   const filteredItems = useMemo(() => {
     return menuItems.filter((item) => {
       // Category match
-      const matchCategory =
-        selectedCategory === 'all' || item.category === selectedCategory;
+      const matchCategory = selectedCategory === 'all' || item.category === selectedCategory;
 
       // Dietary filter match
       const matchDietary =
@@ -73,9 +72,7 @@ export const HomeScreen: React.FC = () => {
             <Text style={styles.greetingTitle}>
               Hello, {user?.name ? user.name.split(' ')[0] : 'Student'} 👋
             </Text>
-            <Text style={styles.greetingSub}>
-              What are you craving for between lectures today?
-            </Text>
+            <Text style={styles.greetingSub}>What are you craving for between lectures today?</Text>
           </View>
 
           <TouchableOpacity
@@ -108,7 +105,12 @@ export const HomeScreen: React.FC = () => {
         {/* Search Bar & Dietary Filter */}
         <View style={styles.searchSection}>
           <View style={styles.searchBox}>
-            <Ionicons name="search-outline" size={20} color={Colors.textMuted} style={styles.searchIcon} />
+            <Ionicons
+              name="search-outline"
+              size={20}
+              color={Colors.textMuted}
+              style={styles.searchIcon}
+            />
             <TextInput
               style={styles.searchInput}
               placeholder="Search burgers, coffee, rice bowls..."
@@ -125,24 +127,15 @@ export const HomeScreen: React.FC = () => {
 
           {/* Quick Veg-Only Toggle */}
           <TouchableOpacity
-            style={[
-              styles.vegToggleBtn,
-              dietaryFilter === 'veg' && styles.vegToggleBtnActive,
-            ]}
+            style={[styles.vegToggleBtn, dietaryFilter === 'veg' && styles.vegToggleBtnActive]}
             onPress={() => setDietaryFilter(dietaryFilter === 'all' ? 'veg' : 'all')}
             activeOpacity={0.7}
           >
             <View
-              style={[
-                styles.vegDot,
-                dietaryFilter === 'veg' && { backgroundColor: '#FFFFFF' },
-              ]}
+              style={[styles.vegDot, dietaryFilter === 'veg' && { backgroundColor: '#FFFFFF' }]}
             />
             <Text
-              style={[
-                styles.vegToggleText,
-                dietaryFilter === 'veg' && styles.vegToggleTextActive,
-              ]}
+              style={[styles.vegToggleText, dietaryFilter === 'veg' && styles.vegToggleTextActive]}
             >
               Veg Only
             </Text>
@@ -150,10 +143,7 @@ export const HomeScreen: React.FC = () => {
         </View>
 
         {/* Horizontal Category Selector */}
-        <CategoryPills
-          selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
-        />
+        <CategoryPills selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} />
 
         {/* Section Header */}
         <View style={styles.sectionHeader}>
@@ -187,11 +177,7 @@ export const HomeScreen: React.FC = () => {
         ) : (
           <View style={styles.menuGrid}>
             {filteredItems.map((item) => (
-              <MenuCard
-                key={item.id}
-                item={item}
-                onPress={handleSelectItem}
-              />
+              <MenuCard key={item.id} item={item} onPress={handleSelectItem} />
             ))}
           </View>
         )}

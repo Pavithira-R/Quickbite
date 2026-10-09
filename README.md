@@ -36,13 +36,15 @@ Then press `w` for the web browser, or scan the QR code with **Expo Go** on an A
 
 ## Scripts
 
-| Command | What it does |
-| --- | --- |
-| `npm start` | Start the Expo dev server |
-| `npm run web` | Start and open in the browser |
+| Command                           | What it does                           |
+| --------------------------------- | -------------------------------------- |
+| `npm start`                       | Start the Expo dev server              |
+| `npm run web`                     | Start and open in the browser          |
 | `npm run android` / `npm run ios` | Start and open on a device or emulator |
-| `npm test` | Run the Jest unit tests |
-| `npm run typecheck` | Type-check the project with TypeScript |
+| `npm test`                        | Run the Jest unit tests                |
+| `npm run typecheck`               | Type-check the project with TypeScript |
+| `npm run lint`                    | Lint with ESLint                       |
+| `npm run format`                  | Format all files with Prettier         |
 
 ## Project structure
 

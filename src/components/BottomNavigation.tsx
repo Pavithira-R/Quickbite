@@ -14,7 +14,7 @@ export const BottomNavigation: React.FC = () => {
   }
 
   const activeOrdersCount = orders.filter(
-    o => o.status === 'Placed' || o.status === 'Preparing' || o.status === 'Ready for Pickup'
+    (o) => o.status === 'Placed' || o.status === 'Preparing' || o.status === 'Ready for Pickup',
   ).length;
 
   interface TabItem {
@@ -57,7 +57,7 @@ export const BottomNavigation: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.navBar}>
-        {tabs.map(tab => {
+        {tabs.map((tab) => {
           const isActive = currentScreen === tab.id;
           return (
             <TouchableOpacity

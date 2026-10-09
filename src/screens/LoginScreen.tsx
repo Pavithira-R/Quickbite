@@ -54,9 +54,7 @@ export const LoginScreen: React.FC = () => {
           <Text style={styles.title}>
             Welcome to Quick<Text style={styles.titleHighlight}>Bite</Text>
           </Text>
-          <Text style={styles.subtitle}>
-            Order ahead, skip the queue & collect in seconds
-          </Text>
+          <Text style={styles.subtitle}>Order ahead, skip the queue & collect in seconds</Text>
         </View>
 
         {/* Card Container */}
@@ -74,10 +72,7 @@ export const LoginScreen: React.FC = () => {
                 color={userRole === 'student' ? Colors.primary : Colors.textMuted}
               />
               <Text
-                style={[
-                  styles.roleTabText,
-                  userRole === 'student' && styles.roleTabTextActive,
-                ]}
+                style={[styles.roleTabText, userRole === 'student' && styles.roleTabTextActive]}
               >
                 Student
               </Text>
@@ -94,10 +89,7 @@ export const LoginScreen: React.FC = () => {
                 color={userRole === 'faculty' ? Colors.primary : Colors.textMuted}
               />
               <Text
-                style={[
-                  styles.roleTabText,
-                  userRole === 'faculty' && styles.roleTabTextActive,
-                ]}
+                style={[styles.roleTabText, userRole === 'faculty' && styles.roleTabTextActive]}
               >
                 Faculty / Staff
               </Text>
@@ -118,10 +110,17 @@ export const LoginScreen: React.FC = () => {
               {userRole === 'student' ? 'Student ID or Campus Email' : 'Staff ID or Email'}
             </Text>
             <View style={styles.inputWrapper}>
-              <Ionicons name="person-outline" size={18} color={Colors.textMuted} style={styles.inputIcon} />
+              <Ionicons
+                name="person-outline"
+                size={18}
+                color={Colors.textMuted}
+                style={styles.inputIcon}
+              />
               <TextInput
                 style={styles.input}
-                placeholder={userRole === 'student' ? 'e.g. CS-2024-0001 or name@campus.edu' : 'e.g. STF-1029'}
+                placeholder={
+                  userRole === 'student' ? 'e.g. CS-2024-0001 or name@campus.edu' : 'e.g. STF-1029'
+                }
                 placeholderTextColor={Colors.textMuted}
                 value={studentId}
                 onChangeText={(text) => {
@@ -142,7 +141,12 @@ export const LoginScreen: React.FC = () => {
               </TouchableOpacity>
             </View>
             <View style={styles.inputWrapper}>
-              <Ionicons name="lock-closed-outline" size={18} color={Colors.textMuted} style={styles.inputIcon} />
+              <Ionicons
+                name="lock-closed-outline"
+                size={18}
+                color={Colors.textMuted}
+                style={styles.inputIcon}
+              />
               <TextInput
                 style={styles.input}
                 placeholder="Enter password"
@@ -168,11 +172,7 @@ export const LoginScreen: React.FC = () => {
           </View>
 
           {/* Login Button */}
-          <TouchableOpacity
-            style={styles.loginButton}
-            onPress={handleLogin}
-            activeOpacity={0.85}
-          >
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin} activeOpacity={0.85}>
             <Text style={styles.loginButtonText}>Sign In to Canteen</Text>
             <Ionicons name="arrow-forward" size={18} color="#FFFFFF" />
           </TouchableOpacity>
@@ -195,10 +195,7 @@ export const LoginScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity 
-          style={styles.splashBackLink} 
-          onPress={() => navigateTo('Splash')}
-        >
+        <TouchableOpacity style={styles.splashBackLink} onPress={() => navigateTo('Splash')}>
           <Text style={styles.splashBackText}>← Back to Intro Splash</Text>
         </TouchableOpacity>
       </ScrollView>

@@ -15,16 +15,8 @@ import { Header } from '../components/Header';
 import { Order } from '../types';
 
 export const CheckoutScreen: React.FC = () => {
-  const {
-    cart,
-    cartTotal,
-    cartItemCount,
-    user,
-    placeOrder,
-    goBack,
-    navigateTo,
-    showToast,
-  } = useApp();
+  const { cart, cartTotal, cartItemCount, user, placeOrder, goBack, navigateTo, showToast } =
+    useApp();
 
   const pickupSlots = [
     { id: 'asap', label: 'Express ASAP (~10-15 min)', icon: 'flash-outline' },
@@ -77,7 +69,10 @@ export const CheckoutScreen: React.FC = () => {
     }
 
     if (isWalletInsufficient) {
-      showToast('Insufficient Smartcard balance. Please top-up or choose another payment method.', 'error');
+      showToast(
+        'Insufficient Smartcard balance. Please top-up or choose another payment method.',
+        'error',
+      );
       return;
     }
 
@@ -194,7 +189,8 @@ export const CheckoutScreen: React.FC = () => {
               <Ionicons name="warning-outline" size={18} color="#D97706" />
               <View style={{ flex: 1 }}>
                 <Text style={styles.warningText}>
-                  Your campus balance (Rs. {user?.walletBalance.toFixed(2)}) is less than total amount (Rs. {cartTotal.toFixed(2)}).
+                  Your campus balance (Rs. {user?.walletBalance.toFixed(2)}) is less than total
+                  amount (Rs. {cartTotal.toFixed(2)}).
                 </Text>
                 <TouchableOpacity onPress={() => navigateTo('Profile')}>
                   <Text style={styles.topUpLink}>Top-up campus wallet now →</Text>

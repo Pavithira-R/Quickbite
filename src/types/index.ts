@@ -75,7 +75,7 @@ export interface UserProfile {
   phone?: string;
 }
 
-export type ScreenName = 
+export type ScreenName =
   | 'Splash'
   | 'Login'
   | 'Home'

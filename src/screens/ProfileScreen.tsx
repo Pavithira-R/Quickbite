@@ -14,14 +14,7 @@ import { useApp } from '../context/AppContext';
 import { Header } from '../components/Header';
 
 export const ProfileScreen: React.FC = () => {
-  const {
-    user,
-    orders,
-    logoutUser,
-    topUpWallet,
-    reorderPastOrder,
-    navigateTo,
-  } = useApp();
+  const { user, orders, logoutUser, topUpWallet, reorderPastOrder, navigateTo } = useApp();
 
   const [topUpModalVisible, setTopUpModalVisible] = useState(false);
   const [selectedTopUpAmount, setSelectedTopUpAmount] = useState(1000);
@@ -66,7 +59,9 @@ export const ProfileScreen: React.FC = () => {
               <Ionicons name="wallet-outline" size={24} color={Colors.primary} />
               <View>
                 <Text style={styles.walletLabel}>Campus Smartcard Balance</Text>
-                <Text style={styles.walletBalance}>Rs. {user?.walletBalance.toFixed(2) || '0.00'}</Text>
+                <Text style={styles.walletBalance}>
+                  Rs. {user?.walletBalance.toFixed(2) || '0.00'}
+                </Text>
               </View>
             </View>
 
@@ -91,7 +86,9 @@ export const ProfileScreen: React.FC = () => {
           </View>
 
           {orders.length === 0 && (
-            <Text style={styles.emptyHistoryText}>No orders yet. Your past orders will appear here.</Text>
+            <Text style={styles.emptyHistoryText}>
+              No orders yet. Your past orders will appear here.
+            </Text>
           )}
 
           {orders.map((ord) => {
@@ -163,11 +160,7 @@ export const ProfileScreen: React.FC = () => {
 
         {/* App Info & Logout */}
         <View style={styles.settingsSection}>
-          <TouchableOpacity
-            style={styles.logoutBtn}
-            onPress={logoutUser}
-            activeOpacity={0.8}
-          >
+          <TouchableOpacity style={styles.logoutBtn} onPress={logoutUser} activeOpacity={0.8}>
             <Ionicons name="log-out-outline" size={18} color="#EF4444" />
             <Text style={styles.logoutBtnText}>Sign Out from Canteen</Text>
           </TouchableOpacity>
@@ -185,7 +178,9 @@ export const ProfileScreen: React.FC = () => {
               </TouchableOpacity>
             </View>
 
-            <Text style={styles.modalSub}>Select reload amount for instant contactless payment:</Text>
+            <Text style={styles.modalSub}>
+              Select reload amount for instant contactless payment:
+            </Text>
 
             <View style={styles.topUpOptionsRow}>
               {[500, 1000, 2500, 5000].map((amt) => {
@@ -204,10 +199,7 @@ export const ProfileScreen: React.FC = () => {
               })}
             </View>
 
-            <TouchableOpacity
-              style={styles.confirmTopUpBtn}
-              onPress={handleTopUpConfirm}
-            >
+            <TouchableOpacity style={styles.confirmTopUpBtn} onPress={handleTopUpConfirm}>
               <Text style={styles.confirmTopUpText}>
                 Add Rs. {selectedTopUpAmount}.00 to Smartcard
               </Text>

@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, ReactNode } from 'react';
-import { 
-  MenuItem, 
-  CartItem, 
-  CartCustomization, 
-  Order, 
-  OrderStatus, 
-  UserProfile, 
+import {
+  MenuItem,
+  CartItem,
+  CartCustomization,
+  Order,
+  OrderStatus,
+  UserProfile,
   ScreenName,
 } from '../types';
 import { MENU_ITEMS } from '../data/mockData';
@@ -27,7 +27,7 @@ interface AppContextType {
   screenParams: any;
   navigateTo: (screen: ScreenName, params?: any) => void;
   goBack: () => void;
-  
+
   // Auth / User
   user: UserProfile | null;
   isGuest: boolean;
@@ -72,14 +72,13 @@ interface AppContextType {
   activeOrder: Order | null;
   setActiveOrderById: (orderId: string) => void;
   placeOrder: (
-    pickupTime: string, 
-    paymentMethod: Order['paymentMethod'], 
-    specialInstructions?: string
+    pickupTime: string,
+    paymentMethod: Order['paymentMethod'],
+    specialInstructions?: string,
   ) => Order;
   advanceOrderStatus: (orderId: string, specificStatus?: OrderStatus) => void;
   reorderPastOrder: (order: Order) => void;
 
-  
   // Toast notifications
   toast: { message: string; type: 'success' | 'info' | 'error' } | null;
   showToast: (message: string, type?: 'success' | 'info' | 'error') => void;
@@ -89,9 +88,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   // Navigation state
-  const [screenStack, setScreenStack] = useState<ScreenStack>([
-    { screen: 'Splash' }
-  ]);
+  const [screenStack, setScreenStack] = useState<ScreenStack>([{ screen: 'Splash' }]);
   const currentScreen = screenStack[screenStack.length - 1]?.screen || 'Splash';
   const screenParams = screenStack[screenStack.length - 1]?.params;
 
@@ -115,15 +112,18 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [activeOrderId, setActiveOrderId] = useState<string | null>(null);
 
   // Toast
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [toast, setToast] = useState<{
+    message: string;
+    type: 'success' | 'info' | 'error';
+  } | null>(null);
 
   // Navigation handlers
   const navigateTo = (screen: ScreenName, params?: any) => {
-    setScreenStack(prev => pushScreen(prev, screen, params));
+    setScreenStack((prev) => pushScreen(prev, screen, params));
   };
 
   const goBack = () => {
-    setScreenStack(prev => popScreen(prev));
+    setScreenStack((prev) => popScreen(prev));
   };
 
   // Toast helper
@@ -135,7 +135,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   // Auth actions
-  const loginUser = (emailOrId: string, role: UserProfile['campusRole'] = 'Student', isGuestMode: boolean = false) => {
+  const loginUser = (
+    emailOrId: string,
+    role: UserProfile['campusRole'] = 'Student',
+    isGuestMode: boolean = false,
+  ) => {
     if (isGuestMode) {
       setIsGuest(true);
       setUser({
@@ -144,7 +148,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         email: 'guest@quickbite.local',
         studentId: 'GUEST-ACCESS',
         campusRole: 'Guest',
-        walletBalance: 1500.00,
+        walletBalance: 1500.0,
         dietaryPreference: 'all',
       });
       showToast('Logged in as Campus Guest', 'success');
@@ -156,11 +160,15 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setIsGuest(false);
     setUser({
       id: 'usr-' + Math.floor(1000 + Math.random() * 9000),
-      name: isEmail ? emailOrId.split('@')[0] : role === 'Student' ? 'Campus Student' : 'Campus Staff',
+      name: isEmail
+        ? emailOrId.split('@')[0]
+        : role === 'Student'
+          ? 'Campus Student'
+          : 'Campus Staff',
       email: isEmail ? emailOrId : `${emailOrId.toLowerCase()}@campus.edu`,
       studentId: isEmail ? '' : emailOrId.toUpperCase(),
       campusRole: role,
-      walletBalance: 4500.00,
+      walletBalance: 4500.0,
       dietaryPreference: 'all',
     });
     showToast('Welcome to QuickBite Canteen!', 'success');
@@ -180,21 +188,21 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   const updateUserProfile = (updates: Partial<UserProfile>) => {
-    setUser(prev => prev ? { ...prev, ...updates } : null);
+    setUser((prev) => (prev ? { ...prev, ...updates } : null));
     showToast('Profile updated', 'success');
   };
 
   const topUpWallet = (amount: number) => {
     if (user) {
-      setUser(prev => prev ? { ...prev, walletBalance: prev.walletBalance + amount } : null);
+      setUser((prev) => (prev ? { ...prev, walletBalance: prev.walletBalance + amount } : null));
       showToast(`Added Rs. ${amount.toFixed(2)} to Campus Wallet!`, 'success');
     }
   };
 
   const toggleFavorite = (itemId: string) => {
-    setFavorites(prev => {
+    setFavorites((prev) => {
       const exists = prev.includes(itemId);
-      const updated = exists ? prev.filter(id => id !== itemId) : [...prev, itemId];
+      const updated = exists ? prev.filter((id) => id !== itemId) : [...prev, itemId];
       showToast(exists ? 'Removed from favorites' : 'Saved to favorites ❤️', 'info');
       return updated;
     });
@@ -202,12 +210,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Cart operations
   const addToCart = (item: MenuItem, quantity: number = 1, customization?: CartCustomization) => {
-    setCart(prev => addItemToCart(prev, item, quantity, customization));
+    setCart((prev) => addItemToCart(prev, item, quantity, customization));
     showToast(`Added ${quantity}x "${item.name}" to cart!`, 'success');
   };
 
   const removeFromCart = (cartItemId: string) => {
-    setCart(prev => prev.filter(item => item.id !== cartItemId));
+    setCart((prev) => prev.filter((item) => item.id !== cartItemId));
     showToast('Item removed from cart', 'info');
   };
 
@@ -217,7 +225,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       return;
     }
 
-    setCart(prev => updateItemQuantity(prev, cartItemId, newQuantity));
+    setCart((prev) => updateItemQuantity(prev, cartItemId, newQuantity));
   };
 
   const clearCart = () => {
@@ -240,7 +248,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   // Calculations
-  const cartTotals = useMemo(() => calculateCartTotals(cart, appliedPromoCode), [cart, appliedPromoCode]);
+  const cartTotals = useMemo(
+    () => calculateCartTotals(cart, appliedPromoCode),
+    [cart, appliedPromoCode],
+  );
   const {
     subtotal: cartSubtotal,
     tax: cartTax,
@@ -255,7 +266,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Orders logic
   const activeOrder = useMemo(() => {
-    return orders.find(o => o.id === activeOrderId) || orders[0] || null;
+    return orders.find((o) => o.id === activeOrderId) || orders[0] || null;
   }, [orders, activeOrderId]);
 
   const setActiveOrderById = (orderId: string) => {
@@ -263,9 +274,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   const placeOrder = (
-    pickupTime: string, 
-    paymentMethod: Order['paymentMethod'], 
-    specialInstructions?: string
+    pickupTime: string,
+    paymentMethod: Order['paymentMethod'],
+    specialInstructions?: string,
   ): Order => {
     const orderNumber = generateOrderNumber();
     const newOrderId = 'ord-' + Date.now();
@@ -292,10 +303,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
     // Deduct from wallet if smartcard
     if (paymentMethod === 'Campus Smartcard' && user) {
-      setUser(prev => prev ? { ...prev, walletBalance: Math.max(0, prev.walletBalance - cartTotal) } : null);
+      setUser((prev) =>
+        prev ? { ...prev, walletBalance: Math.max(0, prev.walletBalance - cartTotal) } : null,
+      );
     }
 
-    setOrders(prev => [newOrder, ...prev]);
+    setOrders((prev) => [newOrder, ...prev]);
     setActiveOrderId(newOrderId);
     clearCart();
     showToast(`Order #${newOrder.orderNumber} placed successfully! 🍕`, 'success');
@@ -305,19 +318,21 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   const advanceOrderStatus = (orderId: string, specificStatus?: OrderStatus) => {
-    setOrders(prev => prev.map(ord => {
-      if (ord.id === orderId) {
-        const nextStatus: OrderStatus = specificStatus || getNextOrderStatus(ord.status);
+    setOrders((prev) =>
+      prev.map((ord) => {
+        if (ord.id === orderId) {
+          const nextStatus: OrderStatus = specificStatus || getNextOrderStatus(ord.status);
 
-        showToast(`Order #${ord.orderNumber} is now: ${nextStatus}!`, 'info');
-        return { ...ord, status: nextStatus };
-      }
-      return ord;
-    }));
+          showToast(`Order #${ord.orderNumber} is now: ${nextStatus}!`, 'info');
+          return { ...ord, status: nextStatus };
+        }
+        return ord;
+      }),
+    );
   };
 
   const reorderPastOrder = (order: Order) => {
-    order.items.forEach(item => {
+    order.items.forEach((item) => {
       addToCart(item.menuItem, item.quantity, item.customization);
     });
     showToast(`Re-added ${order.items.length} item(s) to your cart!`, 'success');

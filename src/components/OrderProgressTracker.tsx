@@ -44,11 +44,16 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
 
   const getStepIndex = (st: OrderStatus) => {
     switch (st) {
-      case 'Placed': return 0;
-      case 'Preparing': return 1;
-      case 'Ready for Pickup': return 2;
-      case 'Completed': return 3;
-      default: return 0;
+      case 'Placed':
+        return 0;
+      case 'Preparing':
+        return 1;
+      case 'Ready for Pickup':
+        return 2;
+      case 'Completed':
+        return 3;
+      default:
+        return 0;
     }
   };
 
@@ -58,16 +63,36 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
     <View style={styles.container}>
       <View style={styles.headerRow}>
         <Text style={styles.headerTitle}>Order Status Tracker</Text>
-        <View style={[styles.statusBadge, { 
-          backgroundColor: status === 'Ready for Pickup' ? Colors.secondaryLight :
-                          status === 'Preparing' ? Colors.statusPreparingBg :
-                          status === 'Placed' ? Colors.statusPlacedBg : Colors.statusCompletedBg 
-        }]}>
-          <Text style={[styles.statusBadgeText, {
-            color: status === 'Ready for Pickup' ? Colors.secondaryDark :
-                   status === 'Preparing' ? Colors.accent :
-                   status === 'Placed' ? Colors.statusPlaced : Colors.statusCompleted 
-          }]}>
+        <View
+          style={[
+            styles.statusBadge,
+            {
+              backgroundColor:
+                status === 'Ready for Pickup'
+                  ? Colors.secondaryLight
+                  : status === 'Preparing'
+                    ? Colors.statusPreparingBg
+                    : status === 'Placed'
+                      ? Colors.statusPlacedBg
+                      : Colors.statusCompletedBg,
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.statusBadgeText,
+              {
+                color:
+                  status === 'Ready for Pickup'
+                    ? Colors.secondaryDark
+                    : status === 'Preparing'
+                      ? Colors.accent
+                      : status === 'Placed'
+                        ? Colors.statusPlaced
+                        : Colors.statusCompleted,
+              },
+            ]}
+          >
             {status}
           </Text>
         </View>
@@ -104,10 +129,7 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
                 </View>
                 {idx < steps.length - 1 && (
                   <View
-                    style={[
-                      styles.connectorLine,
-                      isDone ? styles.lineDone : styles.linePending,
-                    ]}
+                    style={[styles.connectorLine, isDone ? styles.lineDone : styles.linePending]}
                   />
                 )}
               </View>
@@ -146,7 +168,8 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
             <Text style={styles.controlsTitle}>Live Simulation Control (Rubric Requirement)</Text>
           </View>
           <Text style={styles.controlsSubtext}>
-            Advance status through states (Placed → Preparing → Ready for pickup → Completed) to simulate kitchen updates.
+            Advance status through states (Placed → Preparing → Ready for pickup → Completed) to
+            simulate kitchen updates.
           </Text>
           <TouchableOpacity
             style={[styles.advanceButton, status === 'Completed' && styles.advanceButtonDisabled]}
@@ -156,9 +179,13 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
           >
             <Ionicons name="arrow-forward-circle" size={18} color="#FFFFFF" />
             <Text style={styles.advanceButtonText}>
-              {status === 'Placed' ? 'Simulate: Kitchen Starts Cooking' :
-               status === 'Preparing' ? 'Simulate: Food Ready for Pickup' :
-               status === 'Ready for Pickup' ? 'Simulate: Student Picked Up' : 'Order Finished'}
+              {status === 'Placed'
+                ? 'Simulate: Kitchen Starts Cooking'
+                : status === 'Preparing'
+                  ? 'Simulate: Food Ready for Pickup'
+                  : status === 'Ready for Pickup'
+                    ? 'Simulate: Student Picked Up'
+                    : 'Order Finished'}
             </Text>
           </TouchableOpacity>
         </View>

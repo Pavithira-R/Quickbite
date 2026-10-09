@@ -18,12 +18,12 @@ export const Colors = {
   // Deep Velvet Slate
   dark: '#18181B',
   darkLight: '#27272A',
-  
+
   // Warm Gourmet Cream & Clean Surface
   background: '#FCF9F7',
   surface: '#FFFFFF',
   surfaceCard: '#FFFFFF',
-  
+
   // Typography
   textPrimary: '#18181B',
   textSecondary: '#52525B',

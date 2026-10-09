@@ -28,15 +28,11 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
   const badge = getDietaryBadge();
 
   return (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={() => onPress(item)}
-      activeOpacity={0.88}
-    >
+    <TouchableOpacity style={styles.card} onPress={() => onPress(item)} activeOpacity={0.88}>
       {/* Image container */}
       <View style={styles.imageContainer}>
         <Image source={{ uri: item.image }} style={styles.image} resizeMode="cover" />
-        
+
         {/* Top Badges */}
         <View style={styles.topBadgeRow}>
           <View style={[styles.dietaryTag, { backgroundColor: badge.bg }]}>
@@ -85,10 +81,14 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
       {/* Content */}
       <View style={styles.content}>
         <View style={styles.headerRow}>
-          <Text style={styles.title} numberOfLines={1}>{item.name}</Text>
+          <Text style={styles.title} numberOfLines={1}>
+            {item.name}
+          </Text>
         </View>
 
-        <Text style={styles.description} numberOfLines={2}>{item.description}</Text>
+        <Text style={styles.description} numberOfLines={2}>
+          {item.description}
+        </Text>
 
         {/* Stats Row */}
         <View style={styles.metaRow}>

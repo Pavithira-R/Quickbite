@@ -14,9 +14,9 @@ import {
   validatePromoCode,
 } from '../cartLogic';
 
-const burger = MENU_ITEMS.find(m => m.id === 'm1')!; // Rs. 950
-const cheese = burger.availableCustomizations!.addOns!.find(a => a.id === 'addon-cheese')!; // Rs. 150
-const macchiato = MENU_ITEMS.find(m => m.id === 'b1')!; // Rs. 580, Large = x1.25
+const burger = MENU_ITEMS.find((m) => m.id === 'm1')!; // Rs. 950
+const cheese = burger.availableCustomizations!.addOns!.find((a) => a.id === 'addon-cheese')!; // Rs. 150
+const macchiato = MENU_ITEMS.find((m) => m.id === 'b1')!; // Rs. 580, Large = x1.25
 
 describe('cart pricing', () => {
   const cart = addItemToCart([], burger, 2, { spiceLevel: 'Medium', addOns: [cheese] });
@@ -84,8 +84,10 @@ describe('cart updates', () => {
   });
 
   it('builds the same key regardless of add-on order', () => {
-    const bacon = burger.availableCustomizations!.addOns!.find(a => a.id === 'addon-bacon')!;
-    expect(buildCartKey(burger, { addOns: [cheese, bacon] })).toBe(buildCartKey(burger, { addOns: [bacon, cheese] }));
+    const bacon = burger.availableCustomizations!.addOns!.find((a) => a.id === 'addon-bacon')!;
+    expect(buildCartKey(burger, { addOns: [cheese, bacon] })).toBe(
+      buildCartKey(burger, { addOns: [bacon, cheese] }),
+    );
   });
 
   it('does not mutate the previous cart', () => {
@@ -108,7 +110,9 @@ describe('cart updates', () => {
 
 describe('validation', () => {
   it('rejects an empty Student ID', () => {
-    expect(validateLoginInput('   ', 'campuspass')).toBe('Please enter your Student ID or Campus Email.');
+    expect(validateLoginInput('   ', 'campuspass')).toBe(
+      'Please enter your Student ID or Campus Email.',
+    );
   });
 
   it('rejects an empty password', () => {
@@ -151,16 +155,20 @@ describe('order lifecycle', () => {
 
 describe('navigation stack', () => {
   it('resets the stack on Login and Home', () => {
-    expect(pushScreen([{ screen: 'Splash' }], 'Login')).toEqual([{ screen: 'Login', params: undefined }]);
-    expect(pushScreen([{ screen: 'Cart' }, { screen: 'Checkout' }], 'Home')).toEqual([{ screen: 'Home', params: undefined }]);
+    expect(pushScreen([{ screen: 'Splash' }], 'Login')).toEqual([
+      { screen: 'Login', params: undefined },
+    ]);
+    expect(pushScreen([{ screen: 'Cart' }, { screen: 'Checkout' }], 'Home')).toEqual([
+      { screen: 'Home', params: undefined },
+    ]);
   });
 
   it('pushes other screens and pops back to the previous one', () => {
     let stack: ScreenStack = [{ screen: 'Home' }];
     stack = pushScreen(stack, 'ItemDetail');
     stack = pushScreen(stack, 'Cart');
-    expect(stack.map(s => s.screen)).toEqual(['Home', 'ItemDetail', 'Cart']);
-    expect(popScreen(stack).map(s => s.screen)).toEqual(['Home', 'ItemDetail']);
+    expect(stack.map((s) => s.screen)).toEqual(['Home', 'ItemDetail', 'Cart']);
+    expect(popScreen(stack).map((s) => s.screen)).toEqual(['Home', 'ItemDetail']);
   });
 
   it('falls back to Home when popping the last screen', () => {

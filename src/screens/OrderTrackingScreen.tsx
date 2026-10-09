@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
 import { useApp } from '../context/AppContext';
@@ -73,7 +66,11 @@ export const OrderTrackingScreen: React.FC = () => {
         {orders.length > 1 && (
           <View style={styles.orderSelector}>
             <Text style={styles.orderSelectorTitle}>Your Orders:</Text>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.orderChipsRow}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.orderChipsRow}
+            >
               {orders.map((ord) => {
                 const isSelected = ord.id === currentOrder.id;
                 return (
@@ -83,12 +80,7 @@ export const OrderTrackingScreen: React.FC = () => {
                     onPress={() => setActiveOrderById(ord.id)}
                     activeOpacity={0.7}
                   >
-                    <Text
-                      style={[
-                        styles.orderChipText,
-                        isSelected && styles.orderChipTextActive,
-                      ]}
-                    >
+                    <Text style={[styles.orderChipText, isSelected && styles.orderChipTextActive]}>
                       {ord.orderNumber} ({ord.status})
                     </Text>
                   </TouchableOpacity>
@@ -107,8 +99,8 @@ export const OrderTrackingScreen: React.FC = () => {
                 {currentOrder.status === 'Completed'
                   ? 'Order Completed'
                   : currentOrder.status === 'Ready for Pickup'
-                  ? 'Ready at Counter!'
-                  : `Approx. ${simulatedMinutesLeft} Mins Remaining`}
+                    ? 'Ready at Counter!'
+                    : `Approx. ${simulatedMinutesLeft} Mins Remaining`}
               </Text>
             </View>
             <View style={styles.etaIconCircle}>
@@ -117,14 +109,12 @@ export const OrderTrackingScreen: React.FC = () => {
                   currentOrder.status === 'Completed'
                     ? 'checkmark-done-circle'
                     : currentOrder.status === 'Ready for Pickup'
-                    ? 'bag-check'
-                    : 'flame'
+                      ? 'bag-check'
+                      : 'flame'
                 }
                 size={28}
                 color={
-                  currentOrder.status === 'Ready for Pickup'
-                    ? Colors.secondary
-                    : Colors.primary
+                  currentOrder.status === 'Ready for Pickup' ? Colors.secondary : Colors.primary
                 }
               />
             </View>
@@ -133,7 +123,8 @@ export const OrderTrackingScreen: React.FC = () => {
           <View style={styles.etaCounterRow}>
             <Ionicons name="location" size={16} color={Colors.primary} />
             <Text style={styles.etaCounterText}>
-              Pickup Location: <Text style={{ fontWeight: '800' }}>{currentOrder.pickupCounter}</Text>
+              Pickup Location:{' '}
+              <Text style={{ fontWeight: '800' }}>{currentOrder.pickupCounter}</Text>
             </Text>
           </View>
         </View>
