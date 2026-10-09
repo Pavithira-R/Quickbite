@@ -13,6 +13,12 @@ import { useApp } from '../context/AppContext';
 import { Header } from '../components/Header';
 import { TestCaseResult } from '../types';
 
+const STATUS_STYLES: Record<TestCaseResult['status'], { icon: 'checkmark-circle' | 'close-circle' | 'time-outline'; color: string; background: string; prefix: string }> = {
+  PASS: { icon: 'checkmark-circle', color: '#059669', background: '#ECFDF5', prefix: '✅ ' },
+  FAIL: { icon: 'close-circle', color: '#DC2626', background: '#FEF2F2', prefix: '❌ ' },
+  PENDING: { icon: 'time-outline', color: Colors.textMuted, background: Colors.background, prefix: '' },
+};
+
 export const TestSuiteScreen: React.FC = () => {
   const { testCases, runTestSuite, navigateTo } = useApp();
   const [expandedId, setExpandedId] = useState<string | null>('TC-01');
@@ -51,7 +57,7 @@ export const TestSuiteScreen: React.FC = () => {
             activeOpacity={0.85}
           >
             <Ionicons name="play" size={16} color="#FFFFFF" />
-            <Text style={styles.runAllBtnText}>Execute & Re-verify All 6 Test Cases</Text>
+            <Text style={styles.runAllBtnText}>Run Automated Tests</Text>
           </TouchableOpacity>
         </View>
 
@@ -59,6 +65,7 @@ export const TestSuiteScreen: React.FC = () => {
         <View style={styles.testsList}>
           {testCases.map((tc) => {
             const isExpanded = expandedId === tc.id;
+            const statusStyle = STATUS_STYLES[tc.status];
             return (
               <View key={tc.id} style={styles.testCard}>
                 <TouchableOpacity
@@ -73,9 +80,9 @@ export const TestSuiteScreen: React.FC = () => {
                   <View style={styles.testHeaderInfo}>
                     <View style={styles.categoryRow}>
                       <Text style={styles.categoryTag}>{tc.category}</Text>
-                      <View style={styles.statusPillPass}>
-                        <Ionicons name="checkmark-circle" size={12} color="#059669" />
-                        <Text style={styles.statusTextPass}>{tc.status}</Text>
+                      <View style={[styles.statusPill, { backgroundColor: statusStyle.background }]}>
+                        <Ionicons name={statusStyle.icon} size={12} color={statusStyle.color} />
+                        <Text style={[styles.statusText, { color: statusStyle.color }]}>{tc.status}</Text>
                       </View>
                     </View>
                     <Text style={styles.testTitle}>{tc.title}</Text>
@@ -108,7 +115,13 @@ export const TestSuiteScreen: React.FC = () => {
                       </View>
                       <View style={styles.resultRow}>
                         <Text style={styles.resultLabel}>Actual Outcome:</Text>
-                        <Text style={styles.resultValSuccess}>✅ {tc.actualResult}</Text>
+                        <Text style={[styles.resultValStatus, { color: statusStyle.color }]}>
+                          {statusStyle.prefix}{tc.actualResult}
+                        </Text>
+                      </View>
+                      <View style={styles.resultRow}>
+                        <Text style={styles.resultLabel}>Executed:</Text>
+                        <Text style={styles.resultVal}>{tc.executedAt || 'Not yet'}</Text>
                       </View>
                     </View>
                   </View>
@@ -272,19 +285,17 @@ const styles = StyleSheet.create({
     color: Colors.textMuted,
     textTransform: 'uppercase',
   },
-  statusPillPass: {
+  statusPill: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#ECFDF5',
     paddingVertical: 1,
     paddingHorizontal: 6,
     borderRadius: BorderRadius.pill,
     gap: 3,
   },
-  statusTextPass: {
+  statusText: {
     fontSize: 9,
     fontWeight: '800',
-    color: '#059669',
   },
   testTitle: {
     fontSize: 14,
@@ -351,10 +362,9 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
     flex: 1,
   },
-  resultValSuccess: {
+  resultValStatus: {
     fontSize: 11,
     fontWeight: '700',
-    color: '#059669',
     flex: 1,
   },
   quickNavSection: {

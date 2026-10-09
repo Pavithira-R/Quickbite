@@ -12,6 +12,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
 import { useApp } from '../context/AppContext';
+import { validateLoginInput } from '../utils/cartLogic';
 
 export const LoginScreen: React.FC = () => {
   const { loginUser, navigateTo } = useApp();
@@ -23,12 +24,9 @@ export const LoginScreen: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = () => {
-    if (!studentId.trim()) {
-      setErrorMessage('Please enter your Student ID or Campus Email.');
-      return;
-    }
-    if (!password.trim()) {
-      setErrorMessage('Please enter your password.');
+    const validationError = validateLoginInput(studentId, password);
+    if (validationError) {
+      setErrorMessage(validationError);
       return;
     }
     setErrorMessage('');

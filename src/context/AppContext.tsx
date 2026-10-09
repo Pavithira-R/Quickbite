@@ -10,6 +10,18 @@ import {
   TestCaseResult 
 } from '../types';
 import { MENU_ITEMS, INITIAL_USER_PROFILE, INITIAL_SAMPLE_ORDERS } from '../data/mockData';
+import {
+  addItemToCart,
+  updateItemQuantity,
+  calculateCartTotals,
+  validatePromoCode,
+  getNextOrderStatus,
+  generateOrderNumber,
+  pushScreen,
+  popScreen,
+  ScreenStack,
+} from '../utils/cartLogic';
+import { runTestCases } from '../utils/testRunner';
 
 interface AppContextType {
   // Navigation
@@ -82,7 +94,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   // Navigation state
-  const [screenStack, setScreenStack] = useState<{ screen: ScreenName; params?: any }[]>([
+  const [screenStack, setScreenStack] = useState<ScreenStack>([
     { screen: 'Splash' }
   ]);
   const currentScreen = screenStack[screenStack.length - 1]?.screen || 'Splash';
@@ -120,22 +132,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Navigation handlers
   const navigateTo = (screen: ScreenName, params?: any) => {
-    setScreenStack(prev => {
-      // If navigating to splash or login or reset to home, handle stack cleanly
-      if (screen === 'Splash' || screen === 'Login' || screen === 'Home') {
-        return [{ screen, params }];
-      }
-      return [...prev, { screen, params }];
-    });
+    setScreenStack(prev => pushScreen(prev, screen, params));
   };
 
   const goBack = () => {
-    setScreenStack(prev => {
-      if (prev.length > 1) {
-        return prev.slice(0, -1);
-      }
-      return [{ screen: 'Home' }];
-    });
+    setScreenStack(prev => popScreen(prev));
   };
 
   // Toast helper
@@ -210,38 +211,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Cart operations
   const addToCart = (item: MenuItem, quantity: number = 1, customization?: CartCustomization) => {
-    const customKey = `${item.id}-${customization?.size || 'std'}-${customization?.spiceLevel || 'std'}-${(customization?.addOns || []).map(a => a.id).sort().join('_')}`;
-    
-    // Calculate unit price including add-ons
-    let unitPrice = item.price;
-    if (customization?.addOns && customization.addOns.length > 0) {
-      const addOnsTotal = customization.addOns.reduce((acc, curr) => acc + curr.price, 0);
-      unitPrice += addOnsTotal;
-    }
-
-    setCart(prev => {
-      const existingIndex = prev.findIndex(c => c.id === customKey);
-      if (existingIndex > -1) {
-        const updated = [...prev];
-        const newQty = updated[existingIndex].quantity + quantity;
-        updated[existingIndex] = {
-          ...updated[existingIndex],
-          quantity: newQty,
-          itemTotal: parseFloat((unitPrice * newQty).toFixed(2))
-        };
-        return updated;
-      } else {
-        const newItem: CartItem = {
-          id: customKey,
-          menuItem: item,
-          quantity,
-          customization,
-          itemTotal: parseFloat((unitPrice * quantity).toFixed(2)),
-        };
-        return [...prev, newItem];
-      }
-    });
-
+    setCart(prev => addItemToCart(prev, item, quantity, customization));
     showToast(`Added ${quantity}x "${item.name}" to cart!`, 'success');
   };
 
@@ -256,20 +226,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       return;
     }
 
-    setCart(prev => prev.map(item => {
-      if (item.id === cartItemId) {
-        let unitPrice = item.menuItem.price;
-        if (item.customization?.addOns) {
-          unitPrice += item.customization.addOns.reduce((acc, c) => acc + c.price, 0);
-        }
-        return {
-          ...item,
-          quantity: newQuantity,
-          itemTotal: parseFloat((unitPrice * newQuantity).toFixed(2))
-        };
-      }
-      return item;
-    }));
+    setCart(prev => updateItemQuantity(prev, cartItemId, newQuantity));
   };
 
   const clearCart = () => {
@@ -279,16 +236,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Promo code discounts
   const applyPromoCode = (code: string) => {
-    const cleanCode = code.trim().toUpperCase();
-    if (cleanCode === 'STUDENT15' || cleanCode === 'QUICK15') {
-      setAppliedPromoCode(cleanCode);
-      return { success: true, message: '15% Student Discount applied!' };
-    } else if (cleanCode === 'FREEDRINK' || cleanCode === 'BITE250') {
-      setAppliedPromoCode(cleanCode);
-      return { success: true, message: 'Rs. 250.00 discount applied successfully!' };
-    } else {
-      return { success: false, message: 'Invalid or expired promo code' };
+    const result = validatePromoCode(code);
+    if (result.success) {
+      setAppliedPromoCode(result.code);
     }
+    return { success: result.success, message: result.message };
   };
 
   const removePromoCode = () => {
@@ -297,40 +249,18 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   // Calculations
-  const cartSubtotal = useMemo(() => {
-    const sum = cart.reduce((acc, item) => acc + item.itemTotal, 0);
-    return parseFloat(sum.toFixed(2));
-  }, [cart]);
+  const cartTotals = useMemo(() => calculateCartTotals(cart, appliedPromoCode), [cart, appliedPromoCode]);
+  const {
+    subtotal: cartSubtotal,
+    tax: cartTax,
+    packagingFee: cartPackagingFee,
+    discount: promoDiscount,
+    total: cartTotal,
+  } = cartTotals;
 
   const cartItemCount = useMemo(() => {
     return cart.reduce((acc, item) => acc + item.quantity, 0);
   }, [cart]);
-
-  const cartTax = useMemo(() => {
-    if (cartSubtotal === 0) return 0;
-    return parseFloat((cartSubtotal * 0.05).toFixed(2)); // 5% campus tax
-  }, [cartSubtotal]);
-
-  const cartPackagingFee = useMemo(() => {
-    return cartSubtotal > 0 ? 50.00 : 0;
-  }, [cartSubtotal]);
-
-  const promoDiscount = useMemo(() => {
-    if (cartSubtotal === 0 || !appliedPromoCode) return 0;
-    if (appliedPromoCode === 'STUDENT15' || appliedPromoCode === 'QUICK15') {
-      return parseFloat((cartSubtotal * 0.15).toFixed(2));
-    }
-    if (appliedPromoCode === 'FREEDRINK' || appliedPromoCode === 'BITE250') {
-      return Math.min(250.00, cartSubtotal);
-    }
-    return 0;
-  }, [cartSubtotal, appliedPromoCode]);
-
-  const cartTotal = useMemo(() => {
-    if (cartSubtotal === 0) return 0;
-    const total = cartSubtotal + cartTax + cartPackagingFee - promoDiscount;
-    return parseFloat(Math.max(0, total).toFixed(2));
-  }, [cartSubtotal, cartTax, cartPackagingFee, promoDiscount]);
 
   // Orders logic
   const activeOrder = useMemo(() => {
@@ -346,14 +276,14 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     paymentMethod: Order['paymentMethod'], 
     specialInstructions?: string
   ): Order => {
-    const randomOrderNum = Math.floor(1000 + Math.random() * 9000);
+    const orderNumber = generateOrderNumber();
     const newOrderId = 'ord-' + Date.now();
     const counters = ['Express Counter 1', 'Express Counter 2', 'Snack Bar Counter 3'];
     const assignedCounter = counters[Math.floor(Math.random() * counters.length)];
 
     const newOrder: Order = {
       id: newOrderId,
-      orderNumber: `QB-${randomOrderNum}`,
+      orderNumber,
       items: [...cart],
       subtotal: cartSubtotal,
       tax: cartTax,
@@ -366,7 +296,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       createdAt: 'Just now',
       paymentMethod,
       specialInstructions: specialInstructions?.trim() || undefined,
-      qrCodeData: `QUICKBITE-ORDER-${randomOrderNum}-VERIFIED-${Date.now()}`,
+      qrCodeData: `QUICKBITE-ORDER-${orderNumber.replace('QB-', '')}-VERIFIED-${Date.now()}`,
     };
 
     // Deduct from wallet if smartcard
@@ -386,18 +316,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const advanceOrderStatus = (orderId: string, specificStatus?: OrderStatus) => {
     setOrders(prev => prev.map(ord => {
       if (ord.id === orderId) {
-        let nextStatus: OrderStatus = 'Preparing';
-        if (specificStatus) {
-          nextStatus = specificStatus;
-        } else if (ord.status === 'Placed') {
-          nextStatus = 'Preparing';
-        } else if (ord.status === 'Preparing') {
-          nextStatus = 'Ready for Pickup';
-        } else if (ord.status === 'Ready for Pickup') {
-          nextStatus = 'Completed';
-        } else {
-          nextStatus = 'Completed';
-        }
+        const nextStatus: OrderStatus = specificStatus || getNextOrderStatus(ord.status);
 
         showToast(`Order #${ord.orderNumber} is now: ${nextStatus}!`, 'info');
         return { ...ord, status: nextStatus };
@@ -421,55 +340,50 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       title: 'Screen Navigation Flow',
       category: 'Navigation',
       description: 'Verify seamless navigation across Splash → Login → Home → Item Detail → Cart → Checkout → Confirmation → Tracking → Profile.',
-      steps: ['Navigate through entire screen flow', 'Verify back-stack integrity', 'Check screen titles & parameters'],
-      expectedResult: 'All screens transition smoothly within <1s without crash or state loss.',
-      actualResult: 'Passed. Stack navigation transitions smoothly.',
-      status: 'PASS',
-      executedAt: 'Verified'
+      steps: ['Login and Home reset the navigation stack', 'Push Item Detail → Cart → Checkout → Confirmation → Tracking → Profile', 'Go back and verify the previous screen is restored'],
+      expectedResult: 'Each navigation lands on the requested screen and Back restores the previous one.',
+      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
+      status: 'PENDING'
     },
     {
       id: 'TC-02',
       title: 'Dynamic Cart Subtotal & Add-to-Cart Logic',
       category: 'Cart Logic',
       description: 'Verify adding items with quantities and customizations correctly recalculates subtotal, taxes (5%), packaging (Rs. 50.00), and promo discounts.',
-      steps: ['Add Smash Burger (Rs. 950.00)', 'Add customizations (Rs. 150.00)', 'Verify itemTotal Rs. 1,100.00', 'Verify tax & grand total calculation'],
+      steps: ['Add 2x Smash Burger (Rs. 950.00) with Extra Cheddar (Rs. 150.00)', 'Verify item total Rs. 2,200.00, tax Rs. 110.00, packaging Rs. 50.00, grand total Rs. 2,360.00', 'Apply STUDENT15 (total Rs. 2,030.00) and BITE250 (total Rs. 2,110.00)'],
       expectedResult: 'Cart subtotal matches exact mathematical sum of items + modifications.',
-      actualResult: 'Passed. Dynamic formulas recalculate synchronously in LKR.',
-      status: 'PASS',
-      executedAt: 'Verified'
+      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
+      status: 'PENDING'
     },
     {
       id: 'TC-03',
       title: 'Form & Input Validation',
       category: 'Validation',
       description: 'Verify user login form checks for empty inputs and valid student roll/email credentials or guest toggle.',
-      steps: ['Attempt login with empty input', 'Enter valid student email', 'Test promo code input with STUDENT15 and invalid string'],
+      steps: ['Attempt login with empty Student ID, then empty password', 'Enter valid Student ID and password', 'Test promo code input with STUDENT15 and an invalid string'],
       expectedResult: 'Proper validation messages triggered; valid codes apply discount.',
-      actualResult: 'Passed. Form constraints and promo validation verified.',
-      status: 'PASS',
-      executedAt: 'Verified'
+      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
+      status: 'PENDING'
     },
     {
       id: 'TC-04',
       title: 'Cart State Persistence Across Screens',
       category: 'State Persistence',
       description: 'Verify that items added to cart remain intact when user browses other categories, views item details, and returns.',
-      steps: ['Add 2 items to cart', 'Navigate to Profile and Home', 'Return to Cart screen'],
+      steps: ['Add the same item twice (merges) and a different customization (separate line)', 'Navigate to Profile and Home', 'Return to Cart screen and compare cart contents'],
       expectedResult: 'Cart retains all selected items, quantities, and customizations.',
-      actualResult: 'Passed. React Context preserves cart state persistently.',
-      status: 'PASS',
-      executedAt: 'Verified'
+      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
+      status: 'PENDING'
     },
     {
       id: 'TC-05',
       title: 'Order Placement & Multi-Stage Status Lifecycle',
       category: 'Order Lifecycle',
       description: 'Verify simulated order placement generates unique Order ID and advances through Placed → Preparing → Ready for Pickup → Completed.',
-      steps: ['Checkout with Campus Smartcard', 'Verify Order ID #QB-XXXX generated', 'Advance status through lifecycle'],
-      expectedResult: 'Order ID is generated, QR code renders, and status updates dynamically in UI tracker.',
-      actualResult: 'Passed. State machine progresses seamlessly with live countdown.',
-      status: 'PASS',
-      executedAt: 'Verified'
+      steps: ['Generate order numbers and verify #QB-XXXX format', 'Advance status from Placed until Completed', 'Verify Completed is a final state'],
+      expectedResult: 'Order numbers match #QB-XXXX and status follows Placed → Preparing → Ready for Pickup → Completed.',
+      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
+      status: 'PENDING'
     },
     {
       id: 'TC-06',
@@ -478,21 +392,22 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       description: 'Verify UI adapts gracefully to both phone and tablet/web screen widths with clean grid/list scaling.',
       steps: ['Test narrow mobile portrait view (375px)', 'Test wider tablet/desktop view (768px+)', 'Check touch targets and button sizes'],
       expectedResult: 'Cards, sticky checkout footer, and grids adjust responsively without layout clipping.',
-      actualResult: 'Passed. Responsive flex containers adapt across form factors.',
+      actualResult: 'Manual check: verified with the Phone (390px), Tablet (720px) and Full Width viewport switcher on web. Layout cannot be asserted from app logic, so this case is not part of the automated run.',
       status: 'PASS',
-      executedAt: 'Verified'
+      executedAt: 'Manual'
     }
   ]);
 
   const runTestSuite = () => {
-    const updated = testCases.map(tc => ({
-      ...tc,
-      status: 'PASS' as const,
-      executedAt: new Date().toLocaleTimeString(),
-      actualResult: 'Executed & Verified: All assertions succeeded.'
-    }));
+    const updated = runTestCases(testCases);
     setTestCases(updated);
-    showToast('Test Suite executed: 6/6 Tests PASSED! ✅', 'success');
+
+    const passed = updated.filter(tc => tc.status === 'PASS').length;
+    const allPassed = passed === updated.length;
+    showToast(
+      `Test Suite executed: ${passed}/${updated.length} passed${allPassed ? ' ✅' : ''}`,
+      allPassed ? 'success' : 'error'
+    );
   };
 
   return (
