@@ -10,9 +10,14 @@ const round2 = (value: number) => parseFloat(value.toFixed(2));
 export const buildCartKey = (item: MenuItem, customization?: CartCustomization) =>
   `${item.id}-${customization?.size || 'std'}-${customization?.spiceLevel || 'std'}-${(customization?.addOns || []).map(a => a.id).sort().join('_')}`;
 
+// Size multiplier applies to the base price only; add-ons keep their flat price
+export const getSizeMultiplier = (item: MenuItem, sizeName?: string) =>
+  item.availableCustomizations?.sizes?.find(s => s.name === sizeName)?.priceMultiplier ?? 1;
+
 export const calculateUnitPrice = (item: MenuItem, customization?: CartCustomization) => {
+  const basePrice = round2(item.price * getSizeMultiplier(item, customization?.size));
   const addOnsTotal = (customization?.addOns || []).reduce((acc, curr) => acc + curr.price, 0);
-  return item.price + addOnsTotal;
+  return basePrice + addOnsTotal;
 };
 
 export const addItemToCart = (

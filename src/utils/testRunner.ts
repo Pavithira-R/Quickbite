@@ -33,6 +33,7 @@ class Checker {
 
 const burger = MENU_ITEMS.find(m => m.id === 'm1')!; // Rs. 950
 const cheese = burger.availableCustomizations!.addOns!.find(a => a.id === 'addon-cheese')!; // Rs. 150
+const macchiato = MENU_ITEMS.find(m => m.id === 'b1')!; // Rs. 580, Large = x1.25
 
 const testNavigation = (c: Checker) => {
   let stack: ScreenStack = [{ screen: 'Splash' }];
@@ -72,6 +73,11 @@ const testCartLogic = (c: Checker) => {
   c.equal('Grand total with BITE250', flat.total, 2110);
 
   c.equal('Empty cart has zero total', calculateCartTotals([], 'STUDENT15').total, 0);
+
+  const largeDrink = addItemToCart([], macchiato, 1, { size: 'Large (16oz)' });
+  c.equal('Large size = 580 x 1.25', largeDrink[0].itemTotal, 725);
+  const regularDrink = addItemToCart([], macchiato, 1, { size: 'Regular (12oz)' });
+  c.equal('Regular size keeps base price', regularDrink[0].itemTotal, 580);
 };
 
 const testValidation = (c: Checker) => {

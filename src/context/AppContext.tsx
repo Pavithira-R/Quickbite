@@ -350,7 +350,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       title: 'Dynamic Cart Subtotal & Add-to-Cart Logic',
       category: 'Cart Logic',
       description: 'Verify adding items with quantities and customizations correctly recalculates subtotal, taxes (5%), packaging (Rs. 50.00), and promo discounts.',
-      steps: ['Add 2x Smash Burger (Rs. 950.00) with Extra Cheddar (Rs. 150.00)', 'Verify item total Rs. 2,200.00, tax Rs. 110.00, packaging Rs. 50.00, grand total Rs. 2,360.00', 'Apply STUDENT15 (total Rs. 2,030.00) and BITE250 (total Rs. 2,110.00)'],
+      steps: ['Add 2x Smash Burger (Rs. 950.00) with Extra Cheddar (Rs. 150.00)', 'Verify item total Rs. 2,200.00, tax Rs. 110.00, packaging Rs. 50.00, grand total Rs. 2,360.00', 'Apply STUDENT15 (total Rs. 2,030.00) and BITE250 (total Rs. 2,110.00)', 'Add Large Iced Caramel Macchiato and verify size pricing (Rs. 580.00 x 1.25 = Rs. 725.00)'],
       expectedResult: 'Cart subtotal matches exact mathematical sum of items + modifications.',
       actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
       status: 'PENDING'

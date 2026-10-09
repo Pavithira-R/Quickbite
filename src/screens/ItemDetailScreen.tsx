@@ -14,6 +14,7 @@ import { Colors, Spacing, BorderRadius } from '../theme/colors';
 import { useApp } from '../context/AppContext';
 import { Header } from '../components/Header';
 import { CustomizationOption } from '../types';
+import { calculateUnitPrice } from '../utils/cartLogic';
 
 export const ItemDetailScreen: React.FC = () => {
   const { selectedMenuItem, addToCart, navigateTo, goBack, favorites, toggleFavorite } = useApp();
@@ -63,8 +64,10 @@ export const ItemDetailScreen: React.FC = () => {
   const decrementQty = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
 
   // Dynamic unit price & total
-  const addOnsTotal = selectedAddOns.reduce((acc, curr) => acc + curr.price, 0);
-  const unitPrice = item.price + addOnsTotal;
+  const unitPrice = calculateUnitPrice(item, {
+    size: item.availableCustomizations?.sizes ? selectedSize : undefined,
+    addOns: selectedAddOns,
+  });
   const totalPrice = parseFloat((unitPrice * quantity).toFixed(2));
 
   const handleAddToCart = () => {
@@ -161,6 +164,7 @@ export const ItemDetailScreen: React.FC = () => {
               <View style={styles.optionsRow}>
                 {item.availableCustomizations.sizes.map((sz) => {
                   const isSelected = selectedSize === sz.name;
+                  const sizeExtra = item.price * sz.priceMultiplier - item.price;
                   return (
                     <TouchableOpacity
                       key={sz.name}
@@ -175,6 +179,7 @@ export const ItemDetailScreen: React.FC = () => {
                         ]}
                       >
                         {sz.name}
+                        {sizeExtra > 0 ? `  +Rs. ${sizeExtra.toFixed(2)}` : ''}
                       </Text>
                     </TouchableOpacity>
                   );
