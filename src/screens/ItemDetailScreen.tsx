@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
 import { useNavigation } from '../context/NavigationContext';
 import { useMenu } from '../context/MenuContext';
 import { useCart } from '../context/CartContext';
 import { Header } from '../components/Header';
+import { MenuItemImage } from '../components/MenuItemImage';
 import { CustomizationOption } from '../types';
 import { calculateUnitPrice } from '../utils/cartLogic';
 
@@ -103,7 +96,7 @@ export const ItemDetailScreen: React.FC = () => {
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.imageContainer}>
-          <Image source={item.image} style={styles.image} resizeMode="cover" />
+          <MenuItemImage item={item} style={styles.image} iconSize={64} />
           <View style={styles.imageOverlay} />
 
           <View style={styles.floatingTagRow}>

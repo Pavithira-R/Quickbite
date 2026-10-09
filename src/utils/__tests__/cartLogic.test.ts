@@ -14,37 +14,37 @@ import {
   validatePromoCode,
 } from '../cartLogic';
 
-const burger = MENU_ITEMS.find((m) => m.id === 'm1')!; // Rs. 950
-const cheese = burger.availableCustomizations!.addOns!.find((a) => a.id === 'addon-cheese')!; // Rs. 150
-const macchiato = MENU_ITEMS.find((m) => m.id === 'b1')!; // Rs. 580, Large = x1.25
+const burger = MENU_ITEMS.find((m) => m.id === 'm1')!; // Rs. 450
+const cheese = burger.availableCustomizations!.addOns!.find((a) => a.id === 'addon-cheese')!; // Rs. 80
+const macchiato = MENU_ITEMS.find((m) => m.id === 'b1')!; // Rs. 400, Large = x1.25
 
 describe('cart pricing', () => {
   const cart = addItemToCart([], burger, 2, { spiceLevel: 'Medium', addOns: [cheese] });
 
   it('multiplies (base + add-ons) by quantity', () => {
-    expect(cart[0].itemTotal).toBe(2200);
+    expect(cart[0].itemTotal).toBe(1060);
   });
 
   it('adds 5% tax and Rs. 50 packaging', () => {
     expect(calculateCartTotals(cart, '')).toEqual({
-      subtotal: 2200,
-      tax: 110,
+      subtotal: 1060,
+      tax: 53,
       packagingFee: 50,
       discount: 0,
-      total: 2360,
+      total: 1163,
     });
   });
 
   it('applies a 15% discount for STUDENT15', () => {
     const totals = calculateCartTotals(cart, 'STUDENT15');
-    expect(totals.discount).toBe(330);
-    expect(totals.total).toBe(2030);
+    expect(totals.discount).toBe(159);
+    expect(totals.total).toBe(1004);
   });
 
   it('applies a flat Rs. 250 discount for BITE250', () => {
     const totals = calculateCartTotals(cart, 'BITE250');
     expect(totals.discount).toBe(250);
-    expect(totals.total).toBe(2110);
+    expect(totals.total).toBe(913);
   });
 
   it('never discounts more than the subtotal', () => {
@@ -63,8 +63,8 @@ describe('cart pricing', () => {
   });
 
   it('applies the size multiplier to the base price', () => {
-    expect(addItemToCart([], macchiato, 1, { size: 'Large (16oz)' })[0].itemTotal).toBe(725);
-    expect(addItemToCart([], macchiato, 1, { size: 'Regular (12oz)' })[0].itemTotal).toBe(580);
+    expect(addItemToCart([], macchiato, 1, { size: 'Large (16oz)' })[0].itemTotal).toBe(500);
+    expect(addItemToCart([], macchiato, 1, { size: 'Regular (12oz)' })[0].itemTotal).toBe(400);
   });
 });
 
@@ -74,7 +74,7 @@ describe('cart updates', () => {
     cart = addItemToCart(cart, burger, 1, { spiceLevel: 'Medium' });
     expect(cart).toHaveLength(1);
     expect(cart[0].quantity).toBe(2);
-    expect(cart[0].itemTotal).toBe(1900);
+    expect(cart[0].itemTotal).toBe(900);
   });
 
   it('keeps different customizations as separate lines', () => {
@@ -99,7 +99,7 @@ describe('cart updates', () => {
 
   it('recalculates the line total when quantity changes', () => {
     const cart = addItemToCart([], burger, 1, { addOns: [cheese] });
-    expect(updateItemQuantity(cart, cart[0].id, 3)[0].itemTotal).toBe(3300);
+    expect(updateItemQuantity(cart, cart[0].id, 3)[0].itemTotal).toBe(1590);
   });
 
   it('removes the line when quantity drops to 0', () => {

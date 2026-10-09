@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MenuItem } from '../types';
 import { Colors, BorderRadius, Spacing } from '../theme/colors';
 import { useMenu } from '../context/MenuContext';
 import { useCart } from '../context/CartContext';
+import { MenuItemImage } from './MenuItemImage';
 
 interface MenuCardProps {
   item: MenuItem;
@@ -32,7 +33,7 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
   return (
     <TouchableOpacity style={styles.card} onPress={() => onPress(item)} activeOpacity={0.88}>
       <View style={styles.imageContainer}>
-        <Image source={item.image} style={styles.image} resizeMode="cover" />
+        <MenuItemImage item={item} style={styles.image} />
 
         <View style={styles.topBadgeRow}>
           <View style={[styles.dietaryTag, { backgroundColor: badge.bg }]}>

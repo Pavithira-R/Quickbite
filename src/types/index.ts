@@ -24,7 +24,7 @@ export interface MenuItem {
   prepTime: string; // e.g. "8-12 min"
   calories: string;
   dietary: DietaryType;
-  image: ImageSourcePropType;
+  image?: ImageSourcePropType;
   description: string;
   isPopular?: boolean;
   isSpecial?: boolean;

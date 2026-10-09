@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
 import { useToast } from '../context/ToastContext';
 import { useNavigation } from '../context/NavigationContext';
 import { useCart } from '../context/CartContext';
 import { Header } from '../components/Header';
+import { MenuItemImage } from '../components/MenuItemImage';
 
 export const CartScreen: React.FC = () => {
   const { showToast } = useToast();
@@ -98,7 +91,7 @@ export const CartScreen: React.FC = () => {
           {cart.map((item, index) => {
             return (
               <View key={item.id} style={[styles.cartItemRow, index > 0 && styles.cartItemBorder]}>
-                <Image source={item.menuItem.image} style={styles.itemImage} resizeMode="cover" />
+                <MenuItemImage item={item.menuItem} style={styles.itemImage} iconSize={28} />
 
                 <View style={styles.itemDetails}>
                   <View style={styles.itemNameRow}>
