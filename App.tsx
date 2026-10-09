@@ -20,7 +20,6 @@ import { CheckoutScreen } from './src/screens/CheckoutScreen';
 import { OrderConfirmationScreen } from './src/screens/OrderConfirmationScreen';
 import { OrderTrackingScreen } from './src/screens/OrderTrackingScreen';
 import { ProfileScreen } from './src/screens/ProfileScreen';
-import { TestSuiteScreen } from './src/screens/TestSuiteScreen';
 import { BottomNavigation } from './src/components/BottomNavigation';
 import { Toast } from './src/components/Toast';
 import { Colors } from './src/theme/colors';
@@ -48,8 +47,6 @@ const MainNavigator: React.FC = () => {
         return <OrderTrackingScreen />;
       case 'Profile':
         return <ProfileScreen />;
-      case 'TestSuite':
-        return <TestSuiteScreen />;
       default:
         return <HomeScreen />;
     }

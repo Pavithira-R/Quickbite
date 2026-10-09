@@ -84,17 +84,4 @@ export type ScreenName =
   | 'Checkout'
   | 'OrderConfirmation'
   | 'OrderTracking'
-  | 'Profile'
-  | 'TestSuite';
-
-export interface TestCaseResult {
-  id: string;
-  title: string;
-  category: 'Navigation' | 'Cart Logic' | 'Validation' | 'State Persistence' | 'Layout & Responsive' | 'Order Lifecycle';
-  description: string;
-  steps: string[];
-  expectedResult: string;
-  actualResult: string;
-  status: 'PASS' | 'FAIL' | 'PENDING';
-  executedAt?: string;
-}
+  | 'Profile';

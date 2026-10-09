@@ -158,17 +158,6 @@ export const ProfileScreen: React.FC = () => {
         {/* App Info & Logout */}
         <View style={styles.settingsSection}>
           <TouchableOpacity
-            style={styles.settingsRow}
-            onPress={() => navigateTo('TestSuite')}
-          >
-            <View style={styles.settingsRowLeft}>
-              <Ionicons name="flask-outline" size={20} color={Colors.primary} />
-              <Text style={styles.settingsRowText}>Activity QA Test Suite (Part D)</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={18} color={Colors.textMuted} />
-          </TouchableOpacity>
-
-          <TouchableOpacity
             style={styles.logoutBtn}
             onPress={logoutUser}
             activeOpacity={0.8}
@@ -462,23 +451,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.border,
     gap: Spacing.xs,
-  },
-  settingsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: Spacing.md,
-    borderRadius: BorderRadius.md,
-  },
-  settingsRowLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.md,
-  },
-  settingsRowText: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: Colors.textPrimary,
   },
   logoutBtn: {
     flexDirection: 'row',

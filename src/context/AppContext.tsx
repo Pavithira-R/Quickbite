@@ -7,7 +7,6 @@ import {
   OrderStatus, 
   UserProfile, 
   ScreenName,
-  TestCaseResult 
 } from '../types';
 import { MENU_ITEMS, INITIAL_USER_PROFILE, INITIAL_SAMPLE_ORDERS } from '../data/mockData';
 import {
@@ -21,7 +20,6 @@ import {
   popScreen,
   ScreenStack,
 } from '../utils/cartLogic';
-import { runTestCases } from '../utils/testRunner';
 
 interface AppContextType {
   // Navigation
@@ -81,9 +79,6 @@ interface AppContextType {
   advanceOrderStatus: (orderId: string, specificStatus?: OrderStatus) => void;
   reorderPastOrder: (order: Order) => void;
 
-  // Automated Testing Suite (Part D)
-  testCases: TestCaseResult[];
-  runTestSuite: () => void;
   
   // Toast notifications
   toast: { message: string; type: 'success' | 'info' | 'error' } | null;
@@ -333,83 +328,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     navigateTo('Cart');
   };
 
-  // Test Suite State & Runner (Part D)
-  const [testCases, setTestCases] = useState<TestCaseResult[]>([
-    {
-      id: 'TC-01',
-      title: 'Screen Navigation Flow',
-      category: 'Navigation',
-      description: 'Verify seamless navigation across Splash → Login → Home → Item Detail → Cart → Checkout → Confirmation → Tracking → Profile.',
-      steps: ['Login and Home reset the navigation stack', 'Push Item Detail → Cart → Checkout → Confirmation → Tracking → Profile', 'Go back and verify the previous screen is restored'],
-      expectedResult: 'Each navigation lands on the requested screen and Back restores the previous one.',
-      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
-      status: 'PENDING'
-    },
-    {
-      id: 'TC-02',
-      title: 'Dynamic Cart Subtotal & Add-to-Cart Logic',
-      category: 'Cart Logic',
-      description: 'Verify adding items with quantities and customizations correctly recalculates subtotal, taxes (5%), packaging (Rs. 50.00), and promo discounts.',
-      steps: ['Add 2x Smash Burger (Rs. 950.00) with Extra Cheddar (Rs. 150.00)', 'Verify item total Rs. 2,200.00, tax Rs. 110.00, packaging Rs. 50.00, grand total Rs. 2,360.00', 'Apply STUDENT15 (total Rs. 2,030.00) and BITE250 (total Rs. 2,110.00)', 'Add Large Iced Caramel Macchiato and verify size pricing (Rs. 580.00 x 1.25 = Rs. 725.00)'],
-      expectedResult: 'Cart subtotal matches exact mathematical sum of items + modifications.',
-      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
-      status: 'PENDING'
-    },
-    {
-      id: 'TC-03',
-      title: 'Form & Input Validation',
-      category: 'Validation',
-      description: 'Verify user login form checks for empty inputs and valid student roll/email credentials or guest toggle.',
-      steps: ['Attempt login with empty Student ID, then empty password', 'Enter valid Student ID and password', 'Test promo code input with STUDENT15 and an invalid string'],
-      expectedResult: 'Proper validation messages triggered; valid codes apply discount.',
-      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
-      status: 'PENDING'
-    },
-    {
-      id: 'TC-04',
-      title: 'Cart State Persistence Across Screens',
-      category: 'State Persistence',
-      description: 'Verify that items added to cart remain intact when user browses other categories, views item details, and returns.',
-      steps: ['Add the same item twice (merges) and a different customization (separate line)', 'Navigate to Profile and Home', 'Return to Cart screen and compare cart contents'],
-      expectedResult: 'Cart retains all selected items, quantities, and customizations.',
-      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
-      status: 'PENDING'
-    },
-    {
-      id: 'TC-05',
-      title: 'Order Placement & Multi-Stage Status Lifecycle',
-      category: 'Order Lifecycle',
-      description: 'Verify simulated order placement generates unique Order ID and advances through Placed → Preparing → Ready for Pickup → Completed.',
-      steps: ['Generate order numbers and verify #QB-XXXX format', 'Advance status from Placed until Completed', 'Verify Completed is a final state'],
-      expectedResult: 'Order numbers match #QB-XXXX and status follows Placed → Preparing → Ready for Pickup → Completed.',
-      actualResult: 'Not run yet. Tap "Run Automated Tests" to execute.',
-      status: 'PENDING'
-    },
-    {
-      id: 'TC-06',
-      title: 'Responsive Layout Adaptability',
-      category: 'Layout & Responsive',
-      description: 'Verify UI adapts gracefully to both phone and tablet/web screen widths with clean grid/list scaling.',
-      steps: ['Test narrow mobile portrait view (375px)', 'Test wider tablet/desktop view (768px+)', 'Check touch targets and button sizes'],
-      expectedResult: 'Cards, sticky checkout footer, and grids adjust responsively without layout clipping.',
-      actualResult: 'Manual check: verified with the Phone (390px), Tablet (720px) and Full Width viewport switcher on web. Layout cannot be asserted from app logic, so this case is not part of the automated run.',
-      status: 'PASS',
-      executedAt: 'Manual'
-    }
-  ]);
-
-  const runTestSuite = () => {
-    const updated = runTestCases(testCases);
-    setTestCases(updated);
-
-    const passed = updated.filter(tc => tc.status === 'PASS').length;
-    const allPassed = passed === updated.length;
-    showToast(
-      `Test Suite executed: ${passed}/${updated.length} passed${allPassed ? ' ✅' : ''}`,
-      allPassed ? 'success' : 'error'
-    );
-  };
-
   return (
     <AppContext.Provider
       value={{
@@ -452,8 +370,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         placeOrder,
         advanceOrderStatus,
         reorderPastOrder,
-        testCases,
-        runTestSuite,
         toast,
         showToast,
       }}

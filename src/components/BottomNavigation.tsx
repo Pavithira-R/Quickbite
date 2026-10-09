@@ -52,12 +52,6 @@ export const BottomNavigation: React.FC = () => {
       icon: 'person-outline',
       activeIcon: 'person',
     },
-    {
-      id: 'TestSuite',
-      label: 'QA Tests',
-      icon: 'flask-outline',
-      activeIcon: 'flask',
-    }
   ];
 
   return (
