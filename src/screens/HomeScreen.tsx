@@ -2,13 +2,18 @@ import React, { useState, useMemo } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useAuth } from '../context/AuthContext';
+import { useMenu } from '../context/MenuContext';
+import { useCart } from '../context/CartContext';
 import { Header } from '../components/Header';
 import { CategoryPills } from '../components/CategoryPills';
 import { MenuCard } from '../components/MenuCard';
 import { MenuItem } from '../types';
 
 export const HomeScreen: React.FC = () => {
+  const { navigateTo } = useNavigation();
+  const { user } = useAuth();
   const {
     menuItems,
     selectedCategory,
@@ -16,10 +21,8 @@ export const HomeScreen: React.FC = () => {
     searchQuery,
     setSearchQuery,
     setSelectedMenuItem,
-    navigateTo,
-    user,
-    cartItemCount,
-  } = useApp();
+  } = useMenu();
+  const { cartItemCount } = useCart();
 
   const [dietaryFilter, setDietaryFilter] = useState<'all' | 'veg'>('all');
 

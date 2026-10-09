@@ -10,10 +10,14 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useToast } from '../context/ToastContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useCart } from '../context/CartContext';
 import { Header } from '../components/Header';
 
 export const CartScreen: React.FC = () => {
+  const { showToast } = useToast();
+  const { navigateTo } = useNavigation();
   const {
     cart,
     removeFromCart,
@@ -28,9 +32,7 @@ export const CartScreen: React.FC = () => {
     promoDiscount,
     applyPromoCode,
     removePromoCode,
-    navigateTo,
-    showToast,
-  } = useApp();
+  } = useCart();
 
   const [promoInput, setPromoInput] = useState('');
   const [promoError, setPromoError] = useState('');

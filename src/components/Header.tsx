@@ -2,7 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 
 interface HeaderProps {
   title?: string;
@@ -19,7 +21,9 @@ export const Header: React.FC<HeaderProps> = ({
   onBack,
   rightAction,
 }) => {
-  const { currentScreen, goBack, navigateTo, cartItemCount, user } = useApp();
+  const { currentScreen, goBack, navigateTo } = useNavigation();
+  const { user } = useAuth();
+  const { cartItemCount } = useCart();
 
   const handleBack = () => {
     if (onBack) {

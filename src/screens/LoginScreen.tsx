@@ -11,11 +11,13 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useAuth } from '../context/AuthContext';
 import { validateLoginInput } from '../utils/cartLogic';
 
 export const LoginScreen: React.FC = () => {
-  const { loginUser, navigateTo } = useApp();
+  const { navigateTo } = useNavigation();
+  const { loginUser } = useAuth();
 
   const [studentId, setStudentId] = useState('');
   const [password, setPassword] = useState('');

@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useToast } from '../context/ToastContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
+import { useOrders } from '../context/OrdersContext';
 import { Header } from '../components/Header';
 import { IconName, Order } from '../types';
 
 export const CheckoutScreen: React.FC = () => {
-  const { cart, cartTotal, cartItemCount, user, placeOrder, navigateTo, showToast } = useApp();
+  const { showToast } = useToast();
+  const { navigateTo } = useNavigation();
+  const { user } = useAuth();
+  const { cart, cartTotal, cartItemCount } = useCart();
+  const { placeOrder } = useOrders();
 
   const pickupSlots: { id: string; label: string; icon: IconName }[] = [
     { id: 'asap', label: 'As soon as possible (10-15 min)', icon: 'flash-outline' },

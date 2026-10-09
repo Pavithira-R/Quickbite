@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, SafeAreaView, StatusBar, Platform } from 'react-native';
-import { AppProvider, useApp } from './src/context/AppContext';
+import { AppProvider } from './src/context/AppProvider';
+import { useNavigation } from './src/context/NavigationContext';
 import { SplashScreen } from './src/screens/SplashScreen';
 import { LoginScreen } from './src/screens/LoginScreen';
 import { HomeScreen } from './src/screens/HomeScreen';
@@ -15,7 +16,7 @@ import { Toast } from './src/components/Toast';
 import { Colors } from './src/theme/colors';
 
 const MainNavigator: React.FC = () => {
-  const { currentScreen } = useApp();
+  const { currentScreen } = useNavigation();
 
   const renderScreen = () => {
     switch (currentScreen) {

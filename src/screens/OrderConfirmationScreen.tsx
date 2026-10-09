@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useOrders } from '../context/OrdersContext';
 
 export const OrderConfirmationScreen: React.FC = () => {
-  const { activeOrder, navigateTo } = useApp();
+  const { navigateTo } = useNavigation();
+  const { activeOrder } = useOrders();
 
   const order = activeOrder;
 

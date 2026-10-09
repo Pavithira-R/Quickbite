@@ -2,19 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useOrders } from '../context/OrdersContext';
 import { Header } from '../components/Header';
 import { OrderProgressTracker } from '../components/OrderProgressTracker';
 
 export const OrderTrackingScreen: React.FC = () => {
-  const {
-    orders,
-    activeOrder,
-    setActiveOrderById,
-    advanceOrderStatus,
-    navigateTo,
-    reorderPastOrder,
-  } = useApp();
+  const { navigateTo } = useNavigation();
+  const { orders, activeOrder, setActiveOrderById, advanceOrderStatus, reorderPastOrder } =
+    useOrders();
 
   const [estimatedMinutesLeft, setEstimatedMinutesLeft] = useState(8);
 

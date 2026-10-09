@@ -10,13 +10,17 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useMenu } from '../context/MenuContext';
+import { useCart } from '../context/CartContext';
 import { Header } from '../components/Header';
 import { CustomizationOption } from '../types';
 import { calculateUnitPrice } from '../utils/cartLogic';
 
 export const ItemDetailScreen: React.FC = () => {
-  const { selectedMenuItem, addToCart, goBack, favorites, toggleFavorite } = useApp();
+  const { goBack } = useNavigation();
+  const { selectedMenuItem, favorites, toggleFavorite } = useMenu();
+  const { addToCart } = useCart();
 
   const item = selectedMenuItem;
 

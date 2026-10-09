@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MenuItem } from '../types';
 import { Colors, BorderRadius, Spacing } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useMenu } from '../context/MenuContext';
+import { useCart } from '../context/CartContext';
 
 interface MenuCardProps {
   item: MenuItem;
@@ -11,7 +12,8 @@ interface MenuCardProps {
 }
 
 export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
-  const { addToCart, favorites, toggleFavorite } = useApp();
+  const { favorites, toggleFavorite } = useMenu();
+  const { addToCart } = useCart();
   const isFav = favorites.includes(item.id);
 
   const getDietaryBadge = () => {

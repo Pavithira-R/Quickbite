@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { BorderRadius, Spacing } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useToast } from '../context/ToastContext';
 import { IconName } from '../types';
 
 export const Toast: React.FC = () => {
-  const { toast } = useApp();
+  const { toast } = useToast();
 
   if (!toast) return null;
 

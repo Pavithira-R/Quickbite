@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useAuth } from '../context/AuthContext';
+import { useOrders } from '../context/OrdersContext';
 import { Header } from '../components/Header';
 
 export const ProfileScreen: React.FC = () => {
-  const { user, orders, logoutUser, topUpWallet, reorderPastOrder, navigateTo } = useApp();
+  const { navigateTo } = useNavigation();
+  const { user, logoutUser, topUpWallet } = useAuth();
+  const { orders, reorderPastOrder } = useOrders();
 
   const [topUpModalVisible, setTopUpModalVisible] = useState(false);
   const [selectedTopUpAmount, setSelectedTopUpAmount] = useState(1000);

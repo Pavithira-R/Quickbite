@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useAuth } from '../context/AuthContext';
 
 export const SplashScreen: React.FC = () => {
-  const { navigateTo, loginUser } = useApp();
+  const { navigateTo } = useNavigation();
+  const { loginUser } = useAuth();
 
   return (
     <View style={styles.container}>

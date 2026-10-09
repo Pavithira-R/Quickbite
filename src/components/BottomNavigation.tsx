@@ -2,11 +2,15 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../theme/colors';
-import { useApp } from '../context/AppContext';
+import { useNavigation } from '../context/NavigationContext';
+import { useCart } from '../context/CartContext';
+import { useOrders } from '../context/OrdersContext';
 import { IconName, ScreenName } from '../types';
 
 export const BottomNavigation: React.FC = () => {
-  const { currentScreen, navigateTo, cartItemCount, orders } = useApp();
+  const { currentScreen, navigateTo } = useNavigation();
+  const { cartItemCount } = useCart();
+  const { orders } = useOrders();
 
   if (currentScreen === 'Splash' || currentScreen === 'Login') {
     return null;
