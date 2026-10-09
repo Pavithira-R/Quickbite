@@ -18,7 +18,7 @@ export const ProfileScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Header title="Student Profile & History" />
+      <Header title="Profile" />
 
       <ScrollView
         style={styles.scrollView}
@@ -48,7 +48,7 @@ export const ProfileScreen: React.FC = () => {
             <View style={styles.walletLeft}>
               <Ionicons name="wallet-outline" size={24} color={Colors.primary} />
               <View>
-                <Text style={styles.walletLabel}>Campus Smartcard Balance</Text>
+                <Text style={styles.walletLabel}>Smartcard balance</Text>
                 <Text style={styles.walletBalance}>
                   Rs. {user?.walletBalance.toFixed(2) || '0.00'}
                 </Text>
@@ -61,14 +61,14 @@ export const ProfileScreen: React.FC = () => {
               activeOpacity={0.8}
             >
               <Ionicons name="add" size={16} color="#FFFFFF" />
-              <Text style={styles.topUpBtnText}>Top-up</Text>
+              <Text style={styles.topUpBtnText}>Top up</Text>
             </TouchableOpacity>
           </View>
         </View>
 
         <View style={styles.historySection}>
           <View style={styles.historySectionHeader}>
-            <Text style={styles.historySectionTitle}>Campus Order History</Text>
+            <Text style={styles.historySectionTitle}>Order history</Text>
             <Text style={styles.orderCountBadge}>
               {orders.length} {orders.length === 1 ? 'order' : 'orders'}
             </Text>
@@ -128,7 +128,7 @@ export const ProfileScreen: React.FC = () => {
                       style={styles.viewOrderBtn}
                       onPress={() => navigateTo('OrderTracking', { orderId: ord.id })}
                     >
-                      <Text style={styles.viewOrderText}>View Status</Text>
+                      <Text style={styles.viewOrderText}>View</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -148,7 +148,7 @@ export const ProfileScreen: React.FC = () => {
         <View style={styles.settingsSection}>
           <TouchableOpacity style={styles.logoutBtn} onPress={logoutUser} activeOpacity={0.8}>
             <Ionicons name="log-out-outline" size={18} color="#EF4444" />
-            <Text style={styles.logoutBtnText}>Sign Out from Canteen</Text>
+            <Text style={styles.logoutBtnText}>Sign out</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -157,15 +157,13 @@ export const ProfileScreen: React.FC = () => {
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
-              <Text style={styles.modalTitle}>Top-up Campus Wallet</Text>
+              <Text style={styles.modalTitle}>Top up wallet</Text>
               <TouchableOpacity onPress={() => setTopUpModalVisible(false)}>
                 <Ionicons name="close" size={22} color={Colors.textPrimary} />
               </TouchableOpacity>
             </View>
 
-            <Text style={styles.modalSub}>
-              Select reload amount for instant contactless payment:
-            </Text>
+            <Text style={styles.modalSub}>Choose an amount</Text>
 
             <View style={styles.topUpOptionsRow}>
               {[500, 1000, 2500, 5000].map((amt) => {

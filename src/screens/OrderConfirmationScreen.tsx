@@ -14,7 +14,7 @@ export const OrderConfirmationScreen: React.FC = () => {
       <View style={styles.container}>
         <Text>No order found</Text>
         <TouchableOpacity onPress={() => navigateTo('Home')}>
-          <Text>Go to Home</Text>
+          <Text>Back to menu</Text>
         </TouchableOpacity>
       </View>
     );
@@ -31,16 +31,14 @@ export const OrderConfirmationScreen: React.FC = () => {
           <View style={styles.checkCircle}>
             <Ionicons name="checkmark-circle" size={54} color={Colors.secondary} />
           </View>
-          <Text style={styles.successTitle}>Order Placed Successfully!</Text>
-          <Text style={styles.successSub}>
-            Your food ticket was received at the Campus Canteen kitchen.
-          </Text>
+          <Text style={styles.successTitle}>Order placed</Text>
+          <Text style={styles.successSub}>The kitchen has received your order.</Text>
         </View>
 
         <View style={styles.ticketCard}>
           <View style={styles.ticketHeader}>
             <View>
-              <Text style={styles.orderNumLabel}>CANTEEN TOKEN</Text>
+              <Text style={styles.orderNumLabel}>ORDER NUMBER</Text>
               <Text style={styles.orderNumber}>{order.orderNumber}</Text>
             </View>
             <View style={styles.counterBadge}>
@@ -54,7 +52,7 @@ export const OrderConfirmationScreen: React.FC = () => {
           <View style={styles.pickupHighlightBox}>
             <Ionicons name="time" size={24} color={Colors.primary} />
             <View style={{ flex: 1 }}>
-              <Text style={styles.pickupHighlightLabel}>Ready for Pickup at</Text>
+              <Text style={styles.pickupHighlightLabel}>Pickup time</Text>
               <Text style={styles.pickupHighlightTime}>{order.pickupTime}</Text>
             </View>
           </View>
@@ -62,13 +60,13 @@ export const OrderConfirmationScreen: React.FC = () => {
           <View style={styles.qrSection}>
             <View style={styles.qrBox}>
               <Ionicons name="qr-code" size={110} color={Colors.dark} />
-              <Text style={styles.qrScanHint}>Scan at Counter to Collect</Text>
+              <Text style={styles.qrScanHint}>Show this code at the counter</Text>
             </View>
             <Text style={styles.tokenCode}>{order.qrCodeData}</Text>
           </View>
 
           <View style={styles.itemsSummary}>
-            <Text style={styles.itemsSummaryTitle}>Ordered Food Summary</Text>
+            <Text style={styles.itemsSummaryTitle}>Items</Text>
             {order.items.map((item, idx) => (
               <View key={idx} style={styles.itemRow}>
                 <Text style={styles.itemQty}>{item.quantity}x</Text>
@@ -95,7 +93,7 @@ export const OrderConfirmationScreen: React.FC = () => {
             activeOpacity={0.85}
           >
             <Ionicons name="compass-outline" size={18} color="#FFFFFF" />
-            <Text style={styles.trackBtnText}>Track Live Order Status</Text>
+            <Text style={styles.trackBtnText}>Track order</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -103,7 +101,7 @@ export const OrderConfirmationScreen: React.FC = () => {
             onPress={() => navigateTo('Home')}
             activeOpacity={0.7}
           >
-            <Text style={styles.homeBtnText}>Return to Main Menu</Text>
+            <Text style={styles.homeBtnText}>Back to menu</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

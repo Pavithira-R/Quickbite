@@ -128,14 +128,14 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       setIsGuest(true);
       setUser({
         id: 'usr-guest',
-        name: 'Guest Explorer',
+        name: 'Guest',
         email: 'guest@quickbite.local',
         studentId: 'GUEST-ACCESS',
         campusRole: 'Guest',
         walletBalance: 1500.0,
         dietaryPreference: 'all',
       });
-      showToast('Logged in as Campus Guest', 'success');
+      showToast('Signed in as guest', 'success');
       navigateTo('Home');
       return;
     }
@@ -155,7 +155,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       walletBalance: 4500.0,
       dietaryPreference: 'all',
     });
-    showToast('Welcome to QuickBite Canteen!', 'success');
+    showToast('Signed in', 'success');
     navigateTo('Home');
   };
 
@@ -167,7 +167,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setOrders([]);
     setActiveOrderId(null);
     setFavorites([]);
-    showToast('Signed out successfully', 'info');
+    showToast('Signed out', 'info');
     navigateTo('Login');
   };
 
@@ -179,7 +179,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const topUpWallet = (amount: number) => {
     if (user) {
       setUser((prev) => (prev ? { ...prev, walletBalance: prev.walletBalance + amount } : null));
-      showToast(`Added Rs. ${amount.toFixed(2)} to Campus Wallet!`, 'success');
+      showToast(`Rs. ${amount.toFixed(2)} added to your wallet`, 'success');
     }
   };
 
@@ -194,12 +194,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   const addToCart = (item: MenuItem, quantity: number = 1, customization?: CartCustomization) => {
     setCart((prev) => addItemToCart(prev, item, quantity, customization));
-    showToast(`Added ${quantity}x "${item.name}" to cart!`, 'success');
+    showToast(`Added ${quantity} × ${item.name}`, 'success');
   };
 
   const removeFromCart = (cartItemId: string) => {
     setCart((prev) => prev.filter((item) => item.id !== cartItemId));
-    showToast('Item removed from cart', 'info');
+    showToast('Removed from cart', 'info');
   };
 
   const updateCartItemQuantity = (cartItemId: string, newQuantity: number) => {
@@ -302,7 +302,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         if (ord.id === orderId) {
           const nextStatus: OrderStatus = specificStatus || getNextOrderStatus(ord.status);
 
-          showToast(`Order #${ord.orderNumber} is now: ${nextStatus}!`, 'info');
+          showToast(`Order #${ord.orderNumber}: ${nextStatus}`, 'info');
           return { ...ord, status: nextStatus };
         }
         return ord;
@@ -314,7 +314,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     order.items.forEach((item) => {
       addToCart(item.menuItem, item.quantity, item.customization);
     });
-    showToast(`Re-added ${order.items.length} item(s) to your cart!`, 'success');
+    showToast('Items added to your cart', 'success');
     navigateTo('Cart');
   };
 

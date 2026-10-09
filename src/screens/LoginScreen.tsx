@@ -53,7 +53,7 @@ export const LoginScreen: React.FC = () => {
           <Text style={styles.title}>
             Welcome to Quick<Text style={styles.titleHighlight}>Bite</Text>
           </Text>
-          <Text style={styles.subtitle}>Order ahead, skip the queue & collect in seconds</Text>
+          <Text style={styles.subtitle}>Order ahead and skip the queue</Text>
         </View>
 
         <View style={styles.card}>
@@ -102,7 +102,7 @@ export const LoginScreen: React.FC = () => {
 
           <View style={styles.inputGroup}>
             <Text style={styles.label}>
-              {userRole === 'student' ? 'Student ID or Campus Email' : 'Staff ID or Email'}
+              {userRole === 'student' ? 'Student ID or email' : 'Staff ID or email'}
             </Text>
             <View style={styles.inputWrapper}>
               <Ionicons
@@ -166,13 +166,13 @@ export const LoginScreen: React.FC = () => {
           </View>
 
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin} activeOpacity={0.85}>
-            <Text style={styles.loginButtonText}>Sign In to Canteen</Text>
+            <Text style={styles.loginButtonText}>Sign in</Text>
             <Ionicons name="arrow-forward" size={18} color="#FFFFFF" />
           </TouchableOpacity>
 
           <View style={styles.dividerRow}>
             <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>OR QUICK ACCESS</Text>
+            <Text style={styles.dividerText}>OR</Text>
             <View style={styles.dividerLine} />
           </View>
 
@@ -182,12 +182,12 @@ export const LoginScreen: React.FC = () => {
             activeOpacity={0.8}
           >
             <Ionicons name="sparkles-outline" size={18} color={Colors.primary} />
-            <Text style={styles.guestButtonText}>Continue as Campus Guest</Text>
+            <Text style={styles.guestButtonText}>Continue as guest</Text>
           </TouchableOpacity>
         </View>
 
         <TouchableOpacity style={styles.splashBackLink} onPress={() => navigateTo('Splash')}>
-          <Text style={styles.splashBackText}>← Back to Intro Splash</Text>
+          <Text style={styles.splashBackText}>Back</Text>
         </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>

@@ -58,7 +58,7 @@ export const HomeScreen: React.FC = () => {
             <Text style={styles.greetingTitle}>
               Hello, {user?.name ? user.name.split(' ')[0] : 'Student'}
             </Text>
-            <Text style={styles.greetingSub}>What are you craving for between lectures today?</Text>
+            <Text style={styles.greetingSub}>What would you like today?</Text>
           </View>
 
           <TouchableOpacity
@@ -75,9 +75,9 @@ export const HomeScreen: React.FC = () => {
           <View style={styles.promoContent}>
             <View style={styles.promoTag}>
               <Ionicons name="sparkles" size={12} color="#FFFFFF" />
-              <Text style={styles.promoTagText}>CAMPUS FLASH DEAL</Text>
+              <Text style={styles.promoTagText}>OFFER</Text>
             </View>
-            <Text style={styles.promoTitle}>15% Off Your Next Meal!</Text>
+            <Text style={styles.promoTitle}>15% off for students</Text>
             <Text style={styles.promoDesc}>
               Use code <Text style={styles.promoCodeHighlight}>STUDENT15</Text> at checkout.
             </Text>
@@ -120,7 +120,7 @@ export const HomeScreen: React.FC = () => {
             <Text
               style={[styles.vegToggleText, dietaryFilter === 'veg' && styles.vegToggleTextActive]}
             >
-              Veg Only
+              Veg only
             </Text>
           </TouchableOpacity>
         </View>
@@ -130,19 +130,17 @@ export const HomeScreen: React.FC = () => {
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>
             {selectedCategory === 'all'
-              ? 'Daily Canteen Menu'
-              : `${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)} Menu`}
+              ? 'Menu'
+              : `${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}`}
           </Text>
-          <Text style={styles.itemCountText}>{filteredItems.length} items available</Text>
+          <Text style={styles.itemCountText}>{filteredItems.length} items</Text>
         </View>
 
         {filteredItems.length === 0 ? (
           <View style={styles.emptyContainer}>
             <Ionicons name="search-outline" size={48} color={Colors.textMuted} />
             <Text style={styles.emptyTitle}>No menu items found</Text>
-            <Text style={styles.emptySubtitle}>
-              Try searching with a different keyword or resetting filters.
-            </Text>
+            <Text style={styles.emptySubtitle}>Try a different search or clear the filters.</Text>
             <TouchableOpacity
               style={styles.resetFilterBtn}
               onPress={() => {
@@ -151,7 +149,7 @@ export const HomeScreen: React.FC = () => {
                 setDietaryFilter('all');
               }}
             >
-              <Text style={styles.resetFilterText}>Reset All Filters</Text>
+              <Text style={styles.resetFilterText}>Clear filters</Text>
             </TouchableOpacity>
           </View>
         ) : (
@@ -173,7 +171,7 @@ export const HomeScreen: React.FC = () => {
             <View style={styles.cartCountCircle}>
               <Text style={styles.cartCountText}>{cartItemCount}</Text>
             </View>
-            <Text style={styles.floatingCartText}>View Order Cart</Text>
+            <Text style={styles.floatingCartText}>View cart</Text>
             <Ionicons name="arrow-forward" size={18} color="#FFFFFF" />
           </TouchableOpacity>
         </View>

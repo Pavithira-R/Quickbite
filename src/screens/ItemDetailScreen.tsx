@@ -39,7 +39,7 @@ export const ItemDetailScreen: React.FC = () => {
         <View style={styles.notFoundContent}>
           <Text style={styles.notFoundText}>Menu item not found.</Text>
           <TouchableOpacity style={styles.backBtn} onPress={goBack}>
-            <Text style={styles.backBtnText}>Return to Menu</Text>
+            <Text style={styles.backBtnText}>Back to menu</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -153,7 +153,7 @@ export const ItemDetailScreen: React.FC = () => {
 
           {item.availableCustomizations?.sizes && (
             <View style={styles.sectionBlock}>
-              <Text style={styles.sectionTitle}>Choose Portion Size</Text>
+              <Text style={styles.sectionTitle}>Size</Text>
               <View style={styles.optionsRow}>
                 {item.availableCustomizations.sizes.map((sz) => {
                   const isSelected = selectedSize === sz.name;
@@ -211,7 +211,7 @@ export const ItemDetailScreen: React.FC = () => {
           {item.availableCustomizations?.addOns &&
             item.availableCustomizations.addOns.length > 0 && (
               <View style={styles.sectionBlock}>
-                <Text style={styles.sectionTitle}>Add Extras & Dips</Text>
+                <Text style={styles.sectionTitle}>Add-ons</Text>
                 <View style={styles.addOnsList}>
                   {item.availableCustomizations.addOns.map((addon) => {
                     const isChecked = selectedAddOns.some((a) => a.id === addon.id);
@@ -237,7 +237,7 @@ export const ItemDetailScreen: React.FC = () => {
             )}
 
           <View style={styles.sectionBlock}>
-            <Text style={styles.sectionTitle}>Special Note to Canteen Chef (Optional)</Text>
+            <Text style={styles.sectionTitle}>Note (optional)</Text>
             <TextInput
               style={styles.notesInput}
               placeholder="e.g. Extra napkins, sauce on the side, no onions"
@@ -280,7 +280,7 @@ export const ItemDetailScreen: React.FC = () => {
           activeOpacity={0.85}
         >
           <View style={styles.btnContentRow}>
-            <Text style={styles.addToCartBtnText}>Add to Cart</Text>
+            <Text style={styles.addToCartBtnText}>Add to cart</Text>
             <Text style={styles.btnPriceText}>• Rs. {totalPrice.toFixed(2)}</Text>
           </View>
         </TouchableOpacity>

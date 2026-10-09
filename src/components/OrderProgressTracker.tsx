@@ -18,27 +18,27 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
   const steps: { key: OrderStatus; label: string; icon: IconName; desc: string }[] = [
     {
       key: 'Placed',
-      label: 'Order Placed',
+      label: 'Order placed',
       icon: 'receipt-outline',
-      desc: 'Canteen counter received ticket',
+      desc: 'The canteen has your order',
     },
     {
       key: 'Preparing',
-      label: 'Kitchen Preparing',
+      label: 'Preparing',
       icon: 'flame-outline',
-      desc: 'Chef is sizzling your fresh meal',
+      desc: 'Your food is being made',
     },
     {
       key: 'Ready for Pickup',
-      label: 'Ready for Pickup',
+      label: 'Ready for pickup',
       icon: 'bag-check-outline',
-      desc: 'Head to Express Counter with your QR code',
+      desc: 'Collect it at the counter with your QR code',
     },
     {
       key: 'Completed',
-      label: 'Collected & Done',
+      label: 'Collected',
       icon: 'checkmark-circle-outline',
-      desc: 'Enjoy your campus meal!',
+      desc: 'Enjoy your meal',
     },
   ];
 
@@ -62,7 +62,7 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <Text style={styles.headerTitle}>Order Status Tracker</Text>
+        <Text style={styles.headerTitle}>Order status</Text>
         <View
           style={[
             styles.statusBadge,
@@ -176,11 +176,11 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
             <Ionicons name="arrow-forward-circle" size={18} color="#FFFFFF" />
             <Text style={styles.advanceButtonText}>
               {status === 'Placed'
-                ? 'Mark as Preparing'
+                ? 'Mark as preparing'
                 : status === 'Preparing'
-                  ? 'Mark as Ready for Pickup'
+                  ? 'Mark as ready for pickup'
                   : status === 'Ready for Pickup'
-                    ? 'Mark as Completed'
+                    ? 'Mark as completed'
                     : 'Order completed'}
             </Text>
           </TouchableOpacity>

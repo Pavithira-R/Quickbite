@@ -33,10 +33,10 @@ export const OrderTrackingScreen: React.FC = () => {
   if (!currentOrder) {
     return (
       <View style={styles.container}>
-        <Header title="Order Status Tracker" />
+        <Header title="Orders" />
         <View style={styles.emptyBox}>
           <Ionicons name="time-outline" size={54} color={Colors.textMuted} />
-          <Text style={styles.emptyTitle}>No Active Orders</Text>
+          <Text style={styles.emptyTitle}>No orders yet</Text>
           <Text style={styles.emptySub}>
             You don&apos;t have any orders yet. Pick something from the menu to get started.
           </Text>
@@ -45,7 +45,7 @@ export const OrderTrackingScreen: React.FC = () => {
             onPress={() => navigateTo('Home')}
             activeOpacity={0.8}
           >
-            <Text style={styles.menuBtnText}>Browse Canteen Menu</Text>
+            <Text style={styles.menuBtnText}>Browse menu</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -54,7 +54,7 @@ export const OrderTrackingScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Header title="Live Order Tracker" />
+      <Header title="Track order" />
 
       <ScrollView
         style={styles.scrollView}
@@ -63,7 +63,7 @@ export const OrderTrackingScreen: React.FC = () => {
       >
         {orders.length > 1 && (
           <View style={styles.orderSelector}>
-            <Text style={styles.orderSelectorTitle}>Your Orders:</Text>
+            <Text style={styles.orderSelectorTitle}>Your orders</Text>
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -91,13 +91,13 @@ export const OrderTrackingScreen: React.FC = () => {
         <View style={styles.etaCard}>
           <View style={styles.etaHeader}>
             <View>
-              <Text style={styles.etaSub}>ESTIMATED PICKUP STATUS</Text>
+              <Text style={styles.etaSub}>ESTIMATED PICKUP</Text>
               <Text style={styles.etaTitle}>
                 {currentOrder.status === 'Completed'
-                  ? 'Order Completed'
+                  ? 'Order completed'
                   : currentOrder.status === 'Ready for Pickup'
-                    ? 'Ready at Counter!'
-                    : `Approx. ${estimatedMinutesLeft} Mins Remaining`}
+                    ? 'Ready at the counter'
+                    : `About ${estimatedMinutesLeft} min left`}
               </Text>
             </View>
             <View style={styles.etaIconCircle}>
@@ -134,7 +134,7 @@ export const OrderTrackingScreen: React.FC = () => {
 
         <View style={styles.detailsCard}>
           <View style={styles.detailsHeader}>
-            <Text style={styles.detailsTitle}>Order Items Details</Text>
+            <Text style={styles.detailsTitle}>Items</Text>
             <Text style={styles.orderIdTag}>{currentOrder.orderNumber}</Text>
           </View>
 
@@ -156,7 +156,7 @@ export const OrderTrackingScreen: React.FC = () => {
           <View style={styles.billDivider} />
 
           <View style={styles.summaryTotalRow}>
-            <Text style={styles.summaryTotalLabel}>Total Paid ({currentOrder.paymentMethod})</Text>
+            <Text style={styles.summaryTotalLabel}>Total paid ({currentOrder.paymentMethod})</Text>
             <Text style={styles.summaryTotalAmount}>Rs. {currentOrder.total.toFixed(2)}</Text>
           </View>
         </View>
@@ -168,7 +168,7 @@ export const OrderTrackingScreen: React.FC = () => {
             activeOpacity={0.7}
           >
             <Ionicons name="call-outline" size={16} color={Colors.textPrimary} />
-            <Text style={styles.helpBtnText}>Canteen Helpdesk</Text>
+            <Text style={styles.helpBtnText}>Help</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -177,7 +177,7 @@ export const OrderTrackingScreen: React.FC = () => {
             activeOpacity={0.8}
           >
             <Ionicons name="refresh" size={16} color="#FFFFFF" />
-            <Text style={styles.reorderBtnText}>Reorder Items</Text>
+            <Text style={styles.reorderBtnText}>Reorder</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

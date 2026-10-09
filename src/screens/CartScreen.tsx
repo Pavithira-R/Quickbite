@@ -53,22 +53,20 @@ export const CartScreen: React.FC = () => {
   if (cart.length === 0) {
     return (
       <View style={styles.container}>
-        <Header title="Your Order Cart" showBack={false} />
+        <Header title="Your cart" showBack={false} />
         <View style={styles.emptyCartBox}>
           <View style={styles.emptyIconCircle}>
             <Ionicons name="cart-outline" size={54} color={Colors.textMuted} />
           </View>
-          <Text style={styles.emptyTitle}>Your cart is hungry!</Text>
-          <Text style={styles.emptySub}>
-            Explore our daily canteen menu and add delicious food to order ahead.
-          </Text>
+          <Text style={styles.emptyTitle}>Your cart is empty</Text>
+          <Text style={styles.emptySub}>Add something from the menu to order ahead.</Text>
           <TouchableOpacity
             style={styles.browseMenuBtn}
             onPress={() => navigateTo('Home')}
             activeOpacity={0.85}
           >
             <Ionicons name="restaurant-outline" size={18} color="#FFFFFF" />
-            <Text style={styles.browseMenuText}>Browse Canteen Menu</Text>
+            <Text style={styles.browseMenuText}>Browse menu</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -78,7 +76,7 @@ export const CartScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <Header
-        title="Your Order Cart"
+        title="Your cart"
         subtitle={`${cartItemCount} item(s) selected`}
         rightAction={
           <TouchableOpacity onPress={clearCart} style={styles.clearBtn} activeOpacity={0.7}>
@@ -93,7 +91,7 @@ export const CartScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.sectionCard}>
-          <Text style={styles.sectionHeader}>Selected Food Items</Text>
+          <Text style={styles.sectionHeader}>Items</Text>
 
           {cart.map((item, index) => {
             return (
@@ -169,7 +167,7 @@ export const CartScreen: React.FC = () => {
         </View>
 
         <View style={styles.sectionCard}>
-          <Text style={styles.sectionHeader}>Campus Discount Voucher</Text>
+          <Text style={styles.sectionHeader}>Promo code</Text>
           {appliedPromoCode ? (
             <View style={styles.appliedPromoBox}>
               <View style={styles.appliedPromoLeft}>
@@ -190,7 +188,7 @@ export const CartScreen: React.FC = () => {
               <View style={styles.promoInputRow}>
                 <TextInput
                   style={styles.promoInput}
-                  placeholder="Enter code e.g. STUDENT15"
+                  placeholder="Enter promo code"
                   placeholderTextColor={Colors.textMuted}
                   value={promoInput}
                   onChangeText={(t) => {
@@ -233,28 +231,26 @@ export const CartScreen: React.FC = () => {
         </View>
 
         <View style={styles.sectionCard}>
-          <Text style={styles.sectionHeader}>Order Bill Summary</Text>
+          <Text style={styles.sectionHeader}>Summary</Text>
 
           <View style={styles.billRow}>
-            <Text style={styles.billLabel}>Item Subtotal</Text>
+            <Text style={styles.billLabel}>Subtotal</Text>
             <Text style={styles.billValue}>Rs. {cartSubtotal.toFixed(2)}</Text>
           </View>
 
           <View style={styles.billRow}>
-            <Text style={styles.billLabel}>Campus Canteen Tax (5%)</Text>
+            <Text style={styles.billLabel}>Tax (5%)</Text>
             <Text style={styles.billValue}>Rs. {cartTax.toFixed(2)}</Text>
           </View>
 
           <View style={styles.billRow}>
-            <Text style={styles.billLabel}>Eco-Packaging & Cutlery Fee</Text>
+            <Text style={styles.billLabel}>Packaging</Text>
             <Text style={styles.billValue}>Rs. {cartPackagingFee.toFixed(2)}</Text>
           </View>
 
           {promoDiscount > 0 && (
             <View style={styles.billRow}>
-              <Text style={[styles.billLabel, { color: Colors.secondary }]}>
-                Campus Voucher Discount
-              </Text>
+              <Text style={[styles.billLabel, { color: Colors.secondary }]}>Discount</Text>
               <Text style={[styles.billValue, { color: Colors.secondary }]}>
                 -Rs. {promoDiscount.toFixed(2)}
               </Text>
@@ -265,8 +261,8 @@ export const CartScreen: React.FC = () => {
 
           <View style={styles.totalRow}>
             <View>
-              <Text style={styles.totalLabel}>Grand Total</Text>
-              <Text style={styles.totalSub}>Inclusive of all canteen charges</Text>
+              <Text style={styles.totalLabel}>Total</Text>
+              <Text style={styles.totalSub}>Including tax and packaging</Text>
             </View>
             <Text style={styles.grandTotalText}>Rs. {cartTotal.toFixed(2)}</Text>
           </View>
@@ -275,7 +271,7 @@ export const CartScreen: React.FC = () => {
 
       <View style={styles.bottomBar}>
         <View style={styles.bottomTotalCol}>
-          <Text style={styles.bottomTotalLabel}>Total Amount</Text>
+          <Text style={styles.bottomTotalLabel}>Total</Text>
           <Text style={styles.bottomTotalValue}>Rs. {cartTotal.toFixed(2)}</Text>
         </View>
 
@@ -284,7 +280,7 @@ export const CartScreen: React.FC = () => {
           onPress={() => navigateTo('Checkout')}
           activeOpacity={0.85}
         >
-          <Text style={styles.checkoutBtnText}>Proceed to Checkout</Text>
+          <Text style={styles.checkoutBtnText}>Checkout</Text>
           <Ionicons name="arrow-forward" size={18} color="#FFFFFF" />
         </TouchableOpacity>
       </View>

@@ -25,12 +25,12 @@ export const SplashScreen: React.FC = () => {
         <Text style={styles.appName}>
           Quick<Text style={styles.appNameHighlight}>Bite</Text>
         </Text>
-        <Text style={styles.tagline}>Campus Food Ordering App</Text>
+        <Text style={styles.tagline}>Campus food ordering</Text>
 
         <View style={styles.featureList}>
           <View style={styles.featureItem}>
             <Ionicons name="flash-outline" size={18} color={Colors.primary} />
-            <Text style={styles.featureText}>Skip the long canteen queues</Text>
+            <Text style={styles.featureText}>Skip the canteen queue</Text>
           </View>
           <View style={styles.featureItem}>
             <Ionicons name="time-outline" size={18} color={Colors.primary} />
@@ -38,7 +38,7 @@ export const SplashScreen: React.FC = () => {
           </View>
           <View style={styles.featureItem}>
             <Ionicons name="qr-code-outline" size={18} color={Colors.primary} />
-            <Text style={styles.featureText}>Fast counter pickup with QR code</Text>
+            <Text style={styles.featureText}>Pick up with a QR code</Text>
           </View>
         </View>
 
@@ -56,12 +56,8 @@ export const SplashScreen: React.FC = () => {
           onPress={() => loginUser('guest', 'Guest', true)}
           activeOpacity={0.7}
         >
-          <Text style={styles.guestButtonText}>Browse Menu as Guest →</Text>
+          <Text style={styles.guestButtonText}>Browse as guest</Text>
         </TouchableOpacity>
-      </View>
-
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>Cross-Platform Mobile Prototype • React Native / Expo</Text>
       </View>
     </View>
   );
@@ -197,13 +193,5 @@ const styles = StyleSheet.create({
     color: Colors.textMuted,
     fontSize: 14,
     fontWeight: '600',
-  },
-  footer: {
-    alignItems: 'center',
-  },
-  footerText: {
-    color: 'rgba(255, 255, 255, 0.4)',
-    fontSize: 11,
-    textAlign: 'center',
   },
 });

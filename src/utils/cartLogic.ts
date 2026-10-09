@@ -95,10 +95,10 @@ export const validatePromoCode = (
 ): { success: boolean; message: string; code: string } => {
   const cleanCode = normalizePromoCode(code);
   if (isPercentPromo(cleanCode)) {
-    return { success: true, message: '15% Student Discount applied!', code: cleanCode };
+    return { success: true, message: '15% student discount applied', code: cleanCode };
   }
   if (isFlatPromo(cleanCode)) {
-    return { success: true, message: 'Rs. 250.00 discount applied successfully!', code: cleanCode };
+    return { success: true, message: 'Rs. 250 discount applied', code: cleanCode };
   }
   return { success: false, message: 'Invalid or expired promo code', code: cleanCode };
 };

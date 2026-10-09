@@ -10,17 +10,17 @@ export const CheckoutScreen: React.FC = () => {
   const { cart, cartTotal, cartItemCount, user, placeOrder, navigateTo, showToast } = useApp();
 
   const pickupSlots: { id: string; label: string; icon: IconName }[] = [
-    { id: 'asap', label: 'Express ASAP (~10-15 min)', icon: 'flash-outline' },
-    { id: 'break1', label: 'Morning Break (10:45 AM)', icon: 'time-outline' },
-    { id: 'lunch', label: 'Lunch Break (1:15 PM)', icon: 'restaurant-outline' },
-    { id: 'break2', label: 'Afternoon Break (4:00 PM)', icon: 'cafe-outline' },
+    { id: 'asap', label: 'As soon as possible (10-15 min)', icon: 'flash-outline' },
+    { id: 'break1', label: 'Morning break (10:45 AM)', icon: 'time-outline' },
+    { id: 'lunch', label: 'Lunch break (1:15 PM)', icon: 'restaurant-outline' },
+    { id: 'break2', label: 'Afternoon break (4:00 PM)', icon: 'cafe-outline' },
   ];
 
   type PaymentOption = Order['paymentMethod'];
   const paymentMethods: { id: PaymentOption; label: string; icon: IconName; desc: string }[] = [
     {
       id: 'Campus Smartcard',
-      label: 'Campus Smartcard / RFID',
+      label: 'Campus Smartcard',
       icon: 'card-outline',
       desc: `Balance: Rs. ${user?.walletBalance.toFixed(2) || '0.00'}`,
     },
@@ -32,15 +32,15 @@ export const CheckoutScreen: React.FC = () => {
     },
     {
       id: 'Credit/Debit Card',
-      label: 'Credit / Debit Card',
+      label: 'Credit or debit card',
       icon: 'card',
       desc: 'Visa, Mastercard, Amex',
     },
     {
       id: 'Cash on Pickup',
-      label: 'Cash on Counter Pickup',
+      label: 'Cash on pickup',
       icon: 'cash-outline',
-      desc: 'Pay at canteen pickup counter #2',
+      desc: 'Pay at the counter when you collect',
     },
   ];
 
@@ -54,16 +54,13 @@ export const CheckoutScreen: React.FC = () => {
 
   const handleConfirmOrder = () => {
     if (cart.length === 0) {
-      showToast('Cart is empty. Please add items first.', 'error');
+      showToast('Your cart is empty.', 'error');
       navigateTo('Home');
       return;
     }
 
     if (isWalletInsufficient) {
-      showToast(
-        'Insufficient Smartcard balance. Please top-up or choose another payment method.',
-        'error',
-      );
+      showToast('Not enough Smartcard balance. Top up or choose another payment method.', 'error');
       return;
     }
 
@@ -76,7 +73,7 @@ export const CheckoutScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Header title="Checkout & Pickup" showBack />
+      <Header title="Checkout" showBack />
 
       <ScrollView
         style={styles.scrollView}
@@ -88,11 +85,9 @@ export const CheckoutScreen: React.FC = () => {
             <View style={styles.stepNumBadge}>
               <Text style={styles.stepNumText}>1</Text>
             </View>
-            <Text style={styles.sectionTitle}>Select Pickup Time Slot</Text>
+            <Text style={styles.sectionTitle}>Pickup time</Text>
           </View>
-          <Text style={styles.sectionSubtitle}>
-            Order ahead so food is fresh & hot right when your lecture finishes.
-          </Text>
+          <Text style={styles.sectionSubtitle}>Choose when you want to collect your order.</Text>
 
           <View style={styles.slotsGrid}>
             {pickupSlots.map((slot) => {
@@ -182,7 +177,7 @@ export const CheckoutScreen: React.FC = () => {
                   amount (Rs. {cartTotal.toFixed(2)}).
                 </Text>
                 <TouchableOpacity onPress={() => navigateTo('Profile')}>
-                  <Text style={styles.topUpLink}>Top-up campus wallet now →</Text>
+                  <Text style={styles.topUpLink}>Top up wallet</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -194,12 +189,12 @@ export const CheckoutScreen: React.FC = () => {
             <View style={styles.stepNumBadge}>
               <Text style={styles.stepNumText}>3</Text>
             </View>
-            <Text style={styles.sectionTitle}>Pickup / Kitchen Note</Text>
+            <Text style={styles.sectionTitle}>Note for the kitchen</Text>
           </View>
 
           <TextInput
             style={styles.notesInput}
-            placeholder="Add any specific pickup instruction (e.g., pack cutlery, separate bags)"
+            placeholder="e.g. pack cutlery, separate bags"
             placeholderTextColor={Colors.textMuted}
             value={orderNotes}
             onChangeText={setOrderNotes}
@@ -210,13 +205,13 @@ export const CheckoutScreen: React.FC = () => {
 
         <View style={styles.summaryBox}>
           <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Items in order ({cartItemCount})</Text>
+            <Text style={styles.summaryLabel}>Items ({cartItemCount})</Text>
             <Text style={styles.summaryVal}>
               {cart.map((c) => `${c.quantity}x ${c.menuItem.name}`).join(', ')}
             </Text>
           </View>
           <View style={styles.summaryRow}>
-            <Text style={styles.summaryLabel}>Total Payable Amount</Text>
+            <Text style={styles.summaryLabel}>Total</Text>
             <Text style={styles.summaryTotalVal}>Rs. {cartTotal.toFixed(2)}</Text>
           </View>
         </View>

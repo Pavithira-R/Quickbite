@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({
               <Text style={styles.brandName}>
                 Quick<Text style={styles.brandHighlight}>Bite</Text>
               </Text>
-              <Text style={styles.campusTag}>Campus Canteen • Express</Text>
+              <Text style={styles.campusTag}>Campus canteen</Text>
             </View>
           </TouchableOpacity>
         )}
