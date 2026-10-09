@@ -92,7 +92,6 @@ export const CartScreen: React.FC = () => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Cart items list */}
         <View style={styles.sectionCard}>
           <Text style={styles.sectionHeader}>Selected Food Items</Text>
 
@@ -119,7 +118,6 @@ export const CartScreen: React.FC = () => {
                     </TouchableOpacity>
                   </View>
 
-                  {/* Customization pills */}
                   <View style={styles.customizationsWrap}>
                     {item.customization?.size && (
                       <Text style={styles.customPill}>{item.customization.size}</Text>
@@ -137,7 +135,6 @@ export const CartScreen: React.FC = () => {
                     ) : null}
                   </View>
 
-                  {/* Price & Quantity stepper */}
                   <View style={styles.itemBottomRow}>
                     <Text style={styles.itemTotalPrice}>Rs. {item.itemTotal.toFixed(2)}</Text>
 
@@ -171,7 +168,6 @@ export const CartScreen: React.FC = () => {
           })}
         </View>
 
-        {/* Promo Code Box */}
         <View style={styles.sectionCard}>
           <Text style={styles.sectionHeader}>Campus Discount Voucher</Text>
           {appliedPromoCode ? (
@@ -236,7 +232,6 @@ export const CartScreen: React.FC = () => {
           )}
         </View>
 
-        {/* Bill Summary breakdown */}
         <View style={styles.sectionCard}>
           <Text style={styles.sectionHeader}>Order Bill Summary</Text>
 
@@ -278,7 +273,6 @@ export const CartScreen: React.FC = () => {
         </View>
       </ScrollView>
 
-      {/* Sticky Bottom Proceed Button */}
       <View style={styles.bottomBar}>
         <View style={styles.bottomTotalCol}>
           <Text style={styles.bottomTotalLabel}>Total Amount</Text>

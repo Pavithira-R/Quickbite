@@ -1,8 +1,9 @@
 import { CartItem, CartCustomization, MenuItem, OrderStatus, ScreenName } from '../types';
 
-export const TAX_RATE = 0.05; // 5% campus tax
-export const PACKAGING_FEE = 50.0; // Rs. 50 flat packaging fee
-export const FLAT_PROMO_DISCOUNT = 250.0; // Rs. 250 off
+// All amounts are in LKR
+export const TAX_RATE = 0.05;
+export const PACKAGING_FEE = 50.0;
+export const FLAT_PROMO_DISCOUNT = 250.0;
 
 const round2 = (value: number) => parseFloat(value.toFixed(2));
 
@@ -77,7 +78,6 @@ export const updateItemQuantity = (
   );
 };
 
-// Promo codes
 export const normalizePromoCode = (code: string) => code.trim().toUpperCase();
 
 export const isPercentPromo = (code: string) => code === 'STUDENT15' || code === 'QUICK15';
@@ -124,7 +124,7 @@ export const calculateCartTotals = (cart: CartItem[], promoCode: string): CartTo
   return { subtotal, tax, packagingFee, discount, total };
 };
 
-// Login form validation — returns an error message, or null when valid
+// Returns an error message, or null when the input is valid
 export const validateLoginInput = (studentIdOrEmail: string, password: string): string | null => {
   if (!studentIdOrEmail.trim()) {
     return 'Please enter your Student ID or Campus Email.';

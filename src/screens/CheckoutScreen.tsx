@@ -83,7 +83,6 @@ export const CheckoutScreen: React.FC = () => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Step 1: Pickup Time Slot */}
         <View style={styles.sectionCard}>
           <View style={styles.sectionHeaderRow}>
             <View style={styles.stepNumBadge}>
@@ -122,7 +121,6 @@ export const CheckoutScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Step 2: Payment Method */}
         <View style={styles.sectionCard}>
           <View style={styles.sectionHeaderRow}>
             <View style={styles.stepNumBadge}>
@@ -191,7 +189,6 @@ export const CheckoutScreen: React.FC = () => {
           )}
         </View>
 
-        {/* Step 3: Kitchen Instructions */}
         <View style={styles.sectionCard}>
           <View style={styles.sectionHeaderRow}>
             <View style={styles.stepNumBadge}>
@@ -211,7 +208,6 @@ export const CheckoutScreen: React.FC = () => {
           />
         </View>
 
-        {/* Order Summary Snapshot */}
         <View style={styles.summaryBox}>
           <View style={styles.summaryRow}>
             <Text style={styles.summaryLabel}>Items in order ({cartItemCount})</Text>
@@ -226,7 +222,6 @@ export const CheckoutScreen: React.FC = () => {
         </View>
       </ScrollView>
 
-      {/* Sticky Confirm & Place Order Button */}
       <View style={styles.bottomBar}>
         <TouchableOpacity
           style={[styles.confirmBtn, isSubmitting && { opacity: 0.7 }]}

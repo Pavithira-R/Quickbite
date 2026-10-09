@@ -22,13 +22,11 @@ import {
 } from '../utils/cartLogic';
 
 interface AppContextType {
-  // Navigation
   currentScreen: ScreenName;
   screenParams: any;
   navigateTo: (screen: ScreenName, params?: any) => void;
   goBack: () => void;
 
-  // Auth / User
   user: UserProfile | null;
   isGuest: boolean;
   loginUser: (emailOrId: string, role?: UserProfile['campusRole'], isGuestMode?: boolean) => void;
@@ -36,11 +34,9 @@ interface AppContextType {
   updateUserProfile: (updates: Partial<UserProfile>) => void;
   topUpWallet: (amount: number) => void;
 
-  // Selected item for detail view
   selectedMenuItem: MenuItem | null;
   setSelectedMenuItem: (item: MenuItem | null) => void;
 
-  // Menu items & favorites
   menuItems: MenuItem[];
   favorites: string[];
   toggleFavorite: (itemId: string) => void;
@@ -49,7 +45,6 @@ interface AppContextType {
   selectedCategory: string;
   setSelectedCategory: (cat: string) => void;
 
-  // Cart
   cart: CartItem[];
   addToCart: (item: MenuItem, quantity: number, customization?: CartCustomization) => void;
   removeFromCart: (cartItemId: string) => void;
@@ -60,14 +55,12 @@ interface AppContextType {
   applyPromoCode: (code: string) => { success: boolean; message: string };
   removePromoCode: () => void;
 
-  // Computed Cart values
   cartSubtotal: number;
   cartTax: number;
   cartPackagingFee: number;
   cartTotal: number;
   cartItemCount: number;
 
-  // Orders
   orders: Order[];
   activeOrder: Order | null;
   setActiveOrderById: (orderId: string) => void;
@@ -79,7 +72,6 @@ interface AppContextType {
   advanceOrderStatus: (orderId: string, specificStatus?: OrderStatus) => void;
   reorderPastOrder: (order: Order) => void;
 
-  // Toast notifications
   toast: { message: string; type: 'success' | 'info' | 'error' } | null;
   showToast: (message: string, type?: 'success' | 'info' | 'error') => void;
 }
@@ -87,37 +79,30 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Navigation state
   const [screenStack, setScreenStack] = useState<ScreenStack>([{ screen: 'Splash' }]);
   const currentScreen = screenStack[screenStack.length - 1]?.screen || 'Splash';
   const screenParams = screenStack[screenStack.length - 1]?.params;
 
-  // User state
   const [user, setUser] = useState<UserProfile | null>(null);
   const [isGuest, setIsGuest] = useState(false);
 
-  // Menu & Selection
   const [menuItems] = useState<MenuItem[]>(MENU_ITEMS);
   const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Cart state
   const [cart, setCart] = useState<CartItem[]>([]);
   const [appliedPromoCode, setAppliedPromoCode] = useState('');
 
-  // Orders state
   const [orders, setOrders] = useState<Order[]>([]);
   const [activeOrderId, setActiveOrderId] = useState<string | null>(null);
 
-  // Toast
   const [toast, setToast] = useState<{
     message: string;
     type: 'success' | 'info' | 'error';
   } | null>(null);
 
-  // Navigation handlers
   const navigateTo = (screen: ScreenName, params?: any) => {
     setScreenStack((prev) => pushScreen(prev, screen, params));
   };
@@ -126,7 +111,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setScreenStack((prev) => popScreen(prev));
   };
 
-  // Toast helper
   const showToast = (message: string, type: 'success' | 'info' | 'error' = 'info') => {
     setToast({ message, type });
     setTimeout(() => {
@@ -134,7 +118,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     }, 2800);
   };
 
-  // Auth actions
   const loginUser = (
     emailOrId: string,
     role: UserProfile['campusRole'] = 'Student',
@@ -208,7 +191,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     });
   };
 
-  // Cart operations
   const addToCart = (item: MenuItem, quantity: number = 1, customization?: CartCustomization) => {
     setCart((prev) => addItemToCart(prev, item, quantity, customization));
     showToast(`Added ${quantity}x "${item.name}" to cart!`, 'success');
@@ -233,7 +215,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setAppliedPromoCode('');
   };
 
-  // Promo code discounts
   const applyPromoCode = (code: string) => {
     const result = validatePromoCode(code);
     if (result.success) {
@@ -247,7 +228,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     showToast('Promo code removed', 'info');
   };
 
-  // Calculations
   const cartTotals = useMemo(
     () => calculateCartTotals(cart, appliedPromoCode),
     [cart, appliedPromoCode],
@@ -264,7 +244,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     return cart.reduce((acc, item) => acc + item.quantity, 0);
   }, [cart]);
 
-  // Orders logic
   const activeOrder = useMemo(() => {
     return orders.find((o) => o.id === activeOrderId) || orders[0] || null;
   }, [orders, activeOrderId]);
@@ -301,7 +280,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       qrCodeData: `QUICKBITE-ORDER-${orderNumber.replace('QB-', '')}-VERIFIED-${Date.now()}`,
     };
 
-    // Deduct from wallet if smartcard
     if (paymentMethod === 'Campus Smartcard' && user) {
       setUser((prev) =>
         prev ? { ...prev, walletBalance: Math.max(0, prev.walletBalance - cartTotal) } : null,

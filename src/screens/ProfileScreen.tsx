@@ -25,7 +25,6 @@ export const ProfileScreen: React.FC = () => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Profile Card */}
         <View style={styles.profileCard}>
           <View style={styles.profileHeader}>
             <View style={styles.avatarBox}>
@@ -45,7 +44,6 @@ export const ProfileScreen: React.FC = () => {
             </View>
           </View>
 
-          {/* Campus Smartcard Wallet Box */}
           <View style={styles.walletBox}>
             <View style={styles.walletLeft}>
               <Ionicons name="wallet-outline" size={24} color={Colors.primary} />
@@ -68,7 +66,6 @@ export const ProfileScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Order History Section */}
         <View style={styles.historySection}>
           <View style={styles.historySectionHeader}>
             <Text style={styles.historySectionTitle}>Campus Order History</Text>
@@ -115,7 +112,6 @@ export const ProfileScreen: React.FC = () => {
                   </View>
                 </View>
 
-                {/* Items in this order */}
                 <View style={styles.orderItemsList}>
                   {ord.items.map((it, i) => (
                     <Text key={i} style={styles.orderItemText}>
@@ -124,7 +120,6 @@ export const ProfileScreen: React.FC = () => {
                   ))}
                 </View>
 
-                {/* Footer with total & Reorder */}
                 <View style={styles.orderCardFooter}>
                   <Text style={styles.orderTotal}>Total: Rs. {ord.total.toFixed(2)}</Text>
 
@@ -150,7 +145,6 @@ export const ProfileScreen: React.FC = () => {
           })}
         </View>
 
-        {/* App Info & Logout */}
         <View style={styles.settingsSection}>
           <TouchableOpacity style={styles.logoutBtn} onPress={logoutUser} activeOpacity={0.8}>
             <Ionicons name="log-out-outline" size={18} color="#EF4444" />
@@ -159,7 +153,6 @@ export const ProfileScreen: React.FC = () => {
         </View>
       </ScrollView>
 
-      {/* Top-up Balance Modal */}
       <Modal visible={topUpModalVisible} transparent animationType="fade">
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>

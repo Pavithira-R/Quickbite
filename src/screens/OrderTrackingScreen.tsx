@@ -20,7 +20,6 @@ export const OrderTrackingScreen: React.FC = () => {
 
   const currentOrder = activeOrder || orders[0];
 
-  // Countdown timer simulation
   useEffect(() => {
     if (!currentOrder || currentOrder.status === 'Completed') return;
 
@@ -62,7 +61,6 @@ export const OrderTrackingScreen: React.FC = () => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Order Selector Tab if multiple orders exist */}
         {orders.length > 1 && (
           <View style={styles.orderSelector}>
             <Text style={styles.orderSelectorTitle}>Your Orders:</Text>
@@ -90,7 +88,6 @@ export const OrderTrackingScreen: React.FC = () => {
           </View>
         )}
 
-        {/* Live Estimate Card */}
         <View style={styles.etaCard}>
           <View style={styles.etaHeader}>
             <View>
@@ -129,14 +126,12 @@ export const OrderTrackingScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Dynamic Stepper Visualizer with Activity Simulation Controls */}
         <OrderProgressTracker
           status={currentOrder.status}
           onAdvanceStatus={() => advanceOrderStatus(currentOrder.id)}
           showControls={true}
         />
 
-        {/* Items Summary in this order */}
         <View style={styles.detailsCard}>
           <View style={styles.detailsHeader}>
             <Text style={styles.detailsTitle}>Order Items Details</Text>
@@ -166,7 +161,6 @@ export const OrderTrackingScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Quick Contact & Reorder Actions */}
         <View style={styles.quickActionRow}>
           <TouchableOpacity
             style={styles.helpBtn}

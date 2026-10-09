@@ -9,12 +9,10 @@ export const SplashScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      {/* Decorative gradient / background elements */}
       <View style={styles.circleBg1} />
       <View style={styles.circleBg2} />
 
       <View style={styles.content}>
-        {/* Logo and Icon */}
         <View style={styles.logoContainer}>
           <View style={styles.iconCircle}>
             <Ionicons name="fast-food" size={48} color="#FFFFFF" />
@@ -44,7 +42,6 @@ export const SplashScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* CTA Button */}
         <TouchableOpacity
           style={styles.startButton}
           onPress={() => navigateTo('Login')}
@@ -54,7 +51,6 @@ export const SplashScreen: React.FC = () => {
           <Ionicons name="arrow-forward" size={20} color="#FFFFFF" />
         </TouchableOpacity>
 
-        {/* Quick guest jump */}
         <TouchableOpacity
           style={styles.guestButton}
           onPress={() => loginUser('guest', 'Guest', true)}

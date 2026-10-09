@@ -23,17 +23,13 @@ export const HomeScreen: React.FC = () => {
 
   const [dietaryFilter, setDietaryFilter] = useState<'all' | 'veg'>('all');
 
-  // Filter menu items by category, search query, and dietary preference
   const filteredItems = useMemo(() => {
     return menuItems.filter((item) => {
-      // Category match
       const matchCategory = selectedCategory === 'all' || item.category === selectedCategory;
 
-      // Dietary filter match
       const matchDietary =
         dietaryFilter === 'all' || item.dietary === 'veg' || item.dietary === 'vegan';
 
-      // Search query match
       const matchSearch =
         !searchQuery.trim() ||
         item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -57,7 +53,6 @@ export const HomeScreen: React.FC = () => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Welcome greeting bar */}
         <View style={styles.greetingBar}>
           <View>
             <Text style={styles.greetingTitle}>
@@ -76,7 +71,6 @@ export const HomeScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Promo Announcement Banner */}
         <View style={styles.promoBanner}>
           <View style={styles.promoContent}>
             <View style={styles.promoTag}>
@@ -93,7 +87,6 @@ export const HomeScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Search Bar & Dietary Filter */}
         <View style={styles.searchSection}>
           <View style={styles.searchBox}>
             <Ionicons
@@ -116,7 +109,6 @@ export const HomeScreen: React.FC = () => {
             )}
           </View>
 
-          {/* Quick Veg-Only Toggle */}
           <TouchableOpacity
             style={[styles.vegToggleBtn, dietaryFilter === 'veg' && styles.vegToggleBtnActive]}
             onPress={() => setDietaryFilter(dietaryFilter === 'all' ? 'veg' : 'all')}
@@ -133,10 +125,8 @@ export const HomeScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Horizontal Category Selector */}
         <CategoryPills selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} />
 
-        {/* Section Header */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>
             {selectedCategory === 'all'
@@ -146,7 +136,6 @@ export const HomeScreen: React.FC = () => {
           <Text style={styles.itemCountText}>{filteredItems.length} items available</Text>
         </View>
 
-        {/* Items List */}
         {filteredItems.length === 0 ? (
           <View style={styles.emptyContainer}>
             <Ionicons name="search-outline" size={48} color={Colors.textMuted} />
@@ -174,7 +163,6 @@ export const HomeScreen: React.FC = () => {
         )}
       </ScrollView>
 
-      {/* Floating View Cart Pill if cart has items */}
       {cartItemCount > 0 && (
         <View style={styles.floatingCartContainer}>
           <TouchableOpacity

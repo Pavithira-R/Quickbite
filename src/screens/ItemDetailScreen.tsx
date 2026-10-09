@@ -48,7 +48,6 @@ export const ItemDetailScreen: React.FC = () => {
 
   const isFav = favorites.includes(item.id);
 
-  // Add-on toggle
   const toggleAddOn = (addon: CustomizationOption) => {
     setSelectedAddOns((prev) => {
       const exists = prev.some((a) => a.id === addon.id);
@@ -60,11 +59,9 @@ export const ItemDetailScreen: React.FC = () => {
     });
   };
 
-  // Quantity stepper
   const incrementQty = () => setQuantity((q) => q + 1);
   const decrementQty = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
 
-  // Dynamic unit price & total
   const unitPrice = calculateUnitPrice(item, {
     size: item.availableCustomizations?.sizes ? selectedSize : undefined,
     addOns: selectedAddOns,
@@ -101,7 +98,6 @@ export const ItemDetailScreen: React.FC = () => {
       />
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        {/* Hero Image */}
         <View style={styles.imageContainer}>
           <Image source={{ uri: item.image }} style={styles.image} resizeMode="cover" />
           <View style={styles.imageOverlay} />
@@ -131,7 +127,6 @@ export const ItemDetailScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Content Details */}
         <View style={styles.detailsContent}>
           <View style={styles.titleRow}>
             <Text style={styles.itemName}>{item.name}</Text>
@@ -156,7 +151,6 @@ export const ItemDetailScreen: React.FC = () => {
 
           <Text style={styles.description}>{item.description}</Text>
 
-          {/* Size Customizer if available */}
           {item.availableCustomizations?.sizes && (
             <View style={styles.sectionBlock}>
               <Text style={styles.sectionTitle}>Choose Portion Size</Text>
@@ -184,7 +178,6 @@ export const ItemDetailScreen: React.FC = () => {
             </View>
           )}
 
-          {/* Spice Level Customizer if available */}
           {item.availableCustomizations?.spiceLevels && (
             <View style={styles.sectionBlock}>
               <Text style={styles.sectionTitle}>Spice Level</Text>
@@ -215,7 +208,6 @@ export const ItemDetailScreen: React.FC = () => {
             </View>
           )}
 
-          {/* Add-ons Checklist if available */}
           {item.availableCustomizations?.addOns &&
             item.availableCustomizations.addOns.length > 0 && (
               <View style={styles.sectionBlock}>
@@ -244,7 +236,6 @@ export const ItemDetailScreen: React.FC = () => {
               </View>
             )}
 
-          {/* Special Instructions */}
           <View style={styles.sectionBlock}>
             <Text style={styles.sectionTitle}>Special Note to Canteen Chef (Optional)</Text>
             <TextInput
@@ -260,7 +251,6 @@ export const ItemDetailScreen: React.FC = () => {
         </View>
       </ScrollView>
 
-      {/* Sticky Bottom Action Bar with Quantity and Add-to-Cart */}
       <View style={styles.bottomBar}>
         <View style={styles.stepperBox}>
           <TouchableOpacity

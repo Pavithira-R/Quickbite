@@ -23,7 +23,7 @@ export const Toast: React.FC = () => {
   const getBgColor = () => {
     switch (toast.type) {
       case 'success':
-        return '#065F46'; // dark emerald
+        return '#065F46';
       case 'error':
         return '#991B1B';
       default:

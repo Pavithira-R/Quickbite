@@ -8,7 +8,6 @@ import { ScreenName } from '../types';
 export const BottomNavigation: React.FC = () => {
   const { currentScreen, navigateTo, cartItemCount, orders } = useApp();
 
-  // Hide bottom nav on splash, login, or checkout steps if desired, but show on core screens
   if (currentScreen === 'Splash' || currentScreen === 'Login') {
     return null;
   }

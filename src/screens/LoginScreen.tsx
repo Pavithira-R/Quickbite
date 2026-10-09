@@ -46,7 +46,6 @@ export const LoginScreen: React.FC = () => {
         contentContainerStyle={styles.scrollContainer}
         keyboardShouldPersistTaps="handled"
       >
-        {/* Header Branding */}
         <View style={styles.header}>
           <View style={styles.logoBadge}>
             <Ionicons name="fast-food" size={28} color="#FFFFFF" />
@@ -57,9 +56,7 @@ export const LoginScreen: React.FC = () => {
           <Text style={styles.subtitle}>Order ahead, skip the queue & collect in seconds</Text>
         </View>
 
-        {/* Card Container */}
         <View style={styles.card}>
-          {/* Role selector tab */}
           <View style={styles.roleTabContainer}>
             <TouchableOpacity
               style={[styles.roleTab, userRole === 'student' && styles.roleTabActive]}
@@ -96,7 +93,6 @@ export const LoginScreen: React.FC = () => {
             </TouchableOpacity>
           </View>
 
-          {/* Validation error message */}
           {errorMessage ? (
             <View style={styles.errorBox}>
               <Ionicons name="alert-circle" size={16} color="#DC2626" />
@@ -104,7 +100,6 @@ export const LoginScreen: React.FC = () => {
             </View>
           ) : null}
 
-          {/* Student ID / Email Input */}
           <View style={styles.inputGroup}>
             <Text style={styles.label}>
               {userRole === 'student' ? 'Student ID or Campus Email' : 'Staff ID or Email'}
@@ -132,7 +127,6 @@ export const LoginScreen: React.FC = () => {
             </View>
           </View>
 
-          {/* Password Input */}
           <View style={styles.inputGroup}>
             <View style={styles.labelRow}>
               <Text style={styles.label}>Password</Text>
@@ -171,20 +165,17 @@ export const LoginScreen: React.FC = () => {
             </View>
           </View>
 
-          {/* Login Button */}
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin} activeOpacity={0.85}>
             <Text style={styles.loginButtonText}>Sign In to Canteen</Text>
             <Ionicons name="arrow-forward" size={18} color="#FFFFFF" />
           </TouchableOpacity>
 
-          {/* Divider */}
           <View style={styles.dividerRow}>
             <View style={styles.dividerLine} />
             <Text style={styles.dividerText}>OR QUICK ACCESS</Text>
             <View style={styles.dividerLine} />
           </View>
 
-          {/* Guest Access Button */}
           <TouchableOpacity
             style={styles.guestButton}
             onPress={handleGuestAccess}

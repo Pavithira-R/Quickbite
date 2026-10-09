@@ -1,41 +1,41 @@
 export const Colors = {
-  // Crimson Velvet & Berry Red Primary
+  // Brand
   primary: '#E11D48',
   primaryDark: '#BE123C',
   primaryLight: '#FFE4E8',
   primaryHover: '#9F1239',
 
-  // Fresh Sage / Emerald Secondary
+  // Secondary
   secondary: '#059669',
   secondaryLight: '#ECFDF5',
   secondaryDark: '#047857',
 
-  // Warm Amber & Radiant Gold Accent
+  // Accent
   accent: '#F59E0B',
   accentLight: '#FEF3C7',
   accentDark: '#D97706',
 
-  // Deep Velvet Slate
+  // Dark
   dark: '#18181B',
   darkLight: '#27272A',
 
-  // Warm Gourmet Cream & Clean Surface
+  // Backgrounds
   background: '#FCF9F7',
   surface: '#FFFFFF',
   surfaceCard: '#FFFFFF',
 
-  // Typography
+  // Text
   textPrimary: '#18181B',
   textSecondary: '#52525B',
   textMuted: '#A1A1AA',
   textLight: '#FAF5FF',
 
-  // Borders & Dividers
+  // Borders
   border: '#F0E6E4',
   borderLight: '#F7F1F0',
   divider: '#EFE7E5',
 
-  // Status colors
+  // Order status
   statusPlaced: '#2563EB',
   statusPlacedBg: '#EFF6FF',
   statusPreparing: '#D97706',
@@ -45,7 +45,7 @@ export const Colors = {
   statusCompleted: '#71717A',
   statusCompletedBg: '#F4F4F5',
 
-  // Dietary
+  // Dietary tags
   veg: '#16A34A',
   vegBg: '#DCFCE7',
   nonVeg: '#E11D48',

@@ -98,7 +98,6 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
         </View>
       </View>
 
-      {/* Stepper list */}
       <View style={styles.stepperContainer}>
         {steps.map((step, idx) => {
           const isDone = idx < currentIndex;
@@ -107,7 +106,6 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
 
           return (
             <View key={step.key} style={styles.stepItem}>
-              {/* Left Column: Icon circle + line */}
               <View style={styles.indicatorCol}>
                 <View
                   style={[
@@ -134,7 +132,6 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
                 )}
               </View>
 
-              {/* Right Column: Label & description */}
               <View style={styles.stepDetails}>
                 <View style={styles.stepLabelRow}>
                   <Text
@@ -160,7 +157,6 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
         })}
       </View>
 
-      {/* Interactive Simulation Controls */}
       {showControls && (
         <View style={styles.controlsBox}>
           <View style={styles.controlsHeader}>

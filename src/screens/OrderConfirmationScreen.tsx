@@ -27,7 +27,6 @@ export const OrderConfirmationScreen: React.FC = () => {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Top Success Banner */}
         <View style={styles.successHeader}>
           <View style={styles.checkCircle}>
             <Ionicons name="checkmark-circle" size={54} color={Colors.secondary} />
@@ -38,7 +37,6 @@ export const OrderConfirmationScreen: React.FC = () => {
           </Text>
         </View>
 
-        {/* Pickup Ticket Card */}
         <View style={styles.ticketCard}>
           <View style={styles.ticketHeader}>
             <View>
@@ -53,7 +51,6 @@ export const OrderConfirmationScreen: React.FC = () => {
 
           <View style={styles.ticketDottedLine} />
 
-          {/* Pickup time highlight */}
           <View style={styles.pickupHighlightBox}>
             <Ionicons name="time" size={24} color={Colors.primary} />
             <View style={{ flex: 1 }}>
@@ -62,7 +59,6 @@ export const OrderConfirmationScreen: React.FC = () => {
             </View>
           </View>
 
-          {/* QR Code Verification Simulation */}
           <View style={styles.qrSection}>
             <View style={styles.qrBox}>
               <Ionicons name="qr-code" size={110} color={Colors.dark} />
@@ -71,7 +67,6 @@ export const OrderConfirmationScreen: React.FC = () => {
             <Text style={styles.tokenCode}>{order.qrCodeData}</Text>
           </View>
 
-          {/* Order Details List */}
           <View style={styles.itemsSummary}>
             <Text style={styles.itemsSummaryTitle}>Ordered Food Summary</Text>
             {order.items.map((item, idx) => (
@@ -93,7 +88,6 @@ export const OrderConfirmationScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Action Buttons */}
         <View style={styles.actionsBox}>
           <TouchableOpacity
             style={styles.trackBtn}

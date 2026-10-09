@@ -29,11 +29,9 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
 
   return (
     <TouchableOpacity style={styles.card} onPress={() => onPress(item)} activeOpacity={0.88}>
-      {/* Image container */}
       <View style={styles.imageContainer}>
         <Image source={{ uri: item.image }} style={styles.image} resizeMode="cover" />
 
-        {/* Top Badges */}
         <View style={styles.topBadgeRow}>
           <View style={[styles.dietaryTag, { backgroundColor: badge.bg }]}>
             <View style={[styles.dietaryDot, { backgroundColor: badge.color }]} />
@@ -43,7 +41,7 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
           <TouchableOpacity
             style={styles.favButton}
             onPress={(e) => {
-              // stop propagation on web/mobile
+              // Don't open the item detail when tapping the favourite button
               e?.stopPropagation?.();
               toggleFavorite(item.id);
             }}
@@ -57,7 +55,6 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
           </TouchableOpacity>
         </View>
 
-        {/* Popular or Special pill */}
         {item.isPopular && (
           <View style={styles.popularBadge}>
             <Ionicons name="flame" size={12} color="#FFFFFF" />
@@ -71,14 +68,12 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
           </View>
         )}
 
-        {/* Prep Time floating tag */}
         <View style={styles.prepTimeTag}>
           <Ionicons name="time-outline" size={12} color="#FFFFFF" />
           <Text style={styles.prepTimeText}>{item.prepTime}</Text>
         </View>
       </View>
 
-      {/* Content */}
       <View style={styles.content}>
         <View style={styles.headerRow}>
           <Text style={styles.title} numberOfLines={1}>
@@ -90,7 +85,6 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
           {item.description}
         </Text>
 
-        {/* Stats Row */}
         <View style={styles.metaRow}>
           <View style={styles.ratingBox}>
             <Ionicons name="star" size={13} color="#F59E0B" />
@@ -100,7 +94,6 @@ export const MenuCard: React.FC<MenuCardProps> = ({ item, onPress }) => {
           <Text style={styles.caloriesText}>🔥 {item.calories}</Text>
         </View>
 
-        {/* Price & Add to Cart action */}
         <View style={styles.bottomRow}>
           <View>
             <Text style={styles.priceLabel}>Price</Text>
