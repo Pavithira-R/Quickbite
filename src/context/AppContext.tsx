@@ -8,7 +8,7 @@ import {
   UserProfile, 
   ScreenName,
 } from '../types';
-import { MENU_ITEMS, INITIAL_USER_PROFILE, INITIAL_SAMPLE_ORDERS } from '../data/mockData';
+import { MENU_ITEMS } from '../data/mockData';
 import {
   addItemToCart,
   updateItemQuantity,
@@ -96,31 +96,23 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const screenParams = screenStack[screenStack.length - 1]?.params;
 
   // User state
-  const [user, setUser] = useState<UserProfile | null>(INITIAL_USER_PROFILE);
+  const [user, setUser] = useState<UserProfile | null>(null);
   const [isGuest, setIsGuest] = useState(false);
 
   // Menu & Selection
   const [menuItems] = useState<MenuItem[]>(MENU_ITEMS);
-  const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem | null>(MENU_ITEMS[0]);
-  const [favorites, setFavorites] = useState<string[]>(['m1', 'b1', 'c1']);
+  const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem | null>(null);
+  const [favorites, setFavorites] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   // Cart state
-  const [cart, setCart] = useState<CartItem[]>([
-    {
-      id: 'cart-sample-item-1',
-      menuItem: MENU_ITEMS[0],
-      quantity: 1,
-      customization: { spiceLevel: 'Medium' },
-      itemTotal: 950.00,
-    }
-  ]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [appliedPromoCode, setAppliedPromoCode] = useState('');
 
   // Orders state
-  const [orders, setOrders] = useState<Order[]>(INITIAL_SAMPLE_ORDERS);
-  const [activeOrderId, setActiveOrderId] = useState<string | null>('ord-101');
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [activeOrderId, setActiveOrderId] = useState<string | null>(null);
 
   // Toast
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
@@ -178,6 +170,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const logoutUser = () => {
     setUser(null);
     setIsGuest(false);
+    setCart([]);
+    setAppliedPromoCode('');
+    setOrders([]);
+    setActiveOrderId(null);
+    setFavorites([]);
     showToast('Signed out successfully', 'info');
     navigateTo('Login');
   };

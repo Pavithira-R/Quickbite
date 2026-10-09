@@ -85,8 +85,14 @@ export const ProfileScreen: React.FC = () => {
         <View style={styles.historySection}>
           <View style={styles.historySectionHeader}>
             <Text style={styles.historySectionTitle}>Campus Order History</Text>
-            <Text style={styles.orderCountBadge}>{orders.length} orders</Text>
+            <Text style={styles.orderCountBadge}>
+              {orders.length} {orders.length === 1 ? 'order' : 'orders'}
+            </Text>
           </View>
+
+          {orders.length === 0 && (
+            <Text style={styles.emptyHistoryText}>No orders yet. Your past orders will appear here.</Text>
+          )}
 
           {orders.map((ord) => {
             return (
@@ -350,6 +356,12 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: Colors.textMuted,
     fontWeight: '600',
+  },
+  emptyHistoryText: {
+    fontSize: 13,
+    color: Colors.textMuted,
+    textAlign: 'center',
+    paddingVertical: Spacing.md,
   },
   orderCard: {
     backgroundColor: Colors.background,

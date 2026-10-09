@@ -5,7 +5,7 @@ import { Colors, Spacing, BorderRadius } from '../theme/colors';
 import { useApp } from '../context/AppContext';
 
 export const SplashScreen: React.FC = () => {
-  const { navigateTo } = useApp();
+  const { navigateTo, loginUser } = useApp();
 
   return (
     <View style={styles.container}>
@@ -57,7 +57,7 @@ export const SplashScreen: React.FC = () => {
         {/* Quick guest jump */}
         <TouchableOpacity
           style={styles.guestButton}
-          onPress={() => navigateTo('Home')}
+          onPress={() => loginUser('guest', 'Guest', true)}
           activeOpacity={0.7}
         >
           <Text style={styles.guestButtonText}>Browse Menu as Guest →</Text>

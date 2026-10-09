@@ -1,4 +1,4 @@
-import { MenuItem, UserProfile, Order } from '../types';
+import { MenuItem } from '../types';
 
 export const CATEGORIES = [
   { id: 'all', label: 'All Items', icon: 'fast-food-outline' },
@@ -287,73 +287,5 @@ export const MENU_ITEMS: MenuItem[] = [
     dietary: 'veg',
     image: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80',
     description: 'Golden Spanish churros rolled in cinnamon sugar, served with thick warm caramel dulce de leche.',
-  }
-];
-
-export const INITIAL_USER_PROFILE: UserProfile = {
-  id: 'usr-10492',
-  name: 'Alex Johnson',
-  email: 'alex.j@campus.edu',
-  studentId: 'CS-2024-8841',
-  campusRole: 'Student',
-  walletBalance: 4500.00,
-  dietaryPreference: 'all',
-  phone: '+94 77 123 4567',
-};
-
-export const INITIAL_SAMPLE_ORDERS: Order[] = [
-  {
-    id: 'ord-101',
-    orderNumber: 'QB-4912',
-    items: [
-      {
-        id: 'cart-init-1',
-        menuItem: MENU_ITEMS[0], // Smash Burger (Rs. 950)
-        quantity: 1,
-        itemTotal: 950.00,
-        customization: { spiceLevel: 'Medium' }
-      },
-      {
-        id: 'cart-init-2',
-        menuItem: MENU_ITEMS[7], // Iced Caramel Macchiato (Rs. 580)
-        quantity: 1,
-        itemTotal: 580.00,
-      }
-    ],
-    subtotal: 1530.00,
-    tax: 76.50,
-    packagingFee: 50.00,
-    discount: 229.50,
-    total: 1427.00,
-    status: 'Ready for Pickup',
-    pickupTime: 'Today at 10:45 AM (Break 1)',
-    pickupCounter: 'Express Counter 2',
-    createdAt: 'Today, 10:35 AM',
-    paymentMethod: 'Campus Smartcard',
-    specialInstructions: 'Extra napkins please!',
-    qrCodeData: 'QUICKBITE-ORDER-4912-VERIFIED',
-  },
-  {
-    id: 'ord-100',
-    orderNumber: 'QB-3801',
-    items: [
-      {
-        id: 'cart-init-3',
-        menuItem: MENU_ITEMS[10], // Study Buddy Rush Combo (Rs. 1450)
-        quantity: 1,
-        itemTotal: 1450.00,
-      }
-    ],
-    subtotal: 1450.00,
-    tax: 72.50,
-    packagingFee: 50.00,
-    discount: 0.00,
-    total: 1572.50,
-    status: 'Completed',
-    pickupTime: 'Yesterday at 1:15 PM',
-    pickupCounter: 'Express Counter 1',
-    createdAt: 'Yesterday, 1:02 PM',
-    paymentMethod: 'LankaQR',
-    qrCodeData: 'QUICKBITE-ORDER-3801-COMPLETED',
   }
 ];
