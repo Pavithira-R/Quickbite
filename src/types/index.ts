@@ -1,3 +1,8 @@
+import type { ComponentProps } from 'react';
+import type { Ionicons } from '@expo/vector-icons';
+
+export type IconName = ComponentProps<typeof Ionicons>['name'];
+
 export type CategoryId = 'all' | 'meals' | 'beverages' | 'snacks' | 'combos' | 'desserts';
 
 export type DietaryType = 'veg' | 'non-veg' | 'vegan';
@@ -85,3 +90,8 @@ export type ScreenName =
   | 'OrderConfirmation'
   | 'OrderTracking'
   | 'Profile';
+
+export interface ScreenParams {
+  orderId?: string;
+  itemId?: string;
+}

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../theme/colors';
 import { useApp } from '../context/AppContext';
-import { ScreenName } from '../types';
+import { IconName, ScreenName } from '../types';
 
 export const BottomNavigation: React.FC = () => {
   const { currentScreen, navigateTo, cartItemCount, orders } = useApp();
@@ -19,8 +19,8 @@ export const BottomNavigation: React.FC = () => {
   interface TabItem {
     id: ScreenName;
     label: string;
-    icon: string;
-    activeIcon: string;
+    icon: IconName;
+    activeIcon: IconName;
     badge?: number;
   }
 
@@ -67,7 +67,7 @@ export const BottomNavigation: React.FC = () => {
             >
               <View style={styles.iconWrapper}>
                 <Ionicons
-                  name={(isActive ? tab.activeIcon : tab.icon) as any}
+                  name={isActive ? tab.activeIcon : tab.icon}
                   size={22}
                   color={isActive ? Colors.primary : Colors.textMuted}
                 />

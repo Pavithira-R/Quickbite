@@ -4,12 +4,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors, Spacing, BorderRadius } from '../theme/colors';
 import { useApp } from '../context/AppContext';
 import { Header } from '../components/Header';
-import { Order } from '../types';
+import { IconName, Order } from '../types';
 
 export const CheckoutScreen: React.FC = () => {
   const { cart, cartTotal, cartItemCount, user, placeOrder, navigateTo, showToast } = useApp();
 
-  const pickupSlots = [
+  const pickupSlots: { id: string; label: string; icon: IconName }[] = [
     { id: 'asap', label: 'Express ASAP (~10-15 min)', icon: 'flash-outline' },
     { id: 'break1', label: 'Morning Break (10:45 AM)', icon: 'time-outline' },
     { id: 'lunch', label: 'Lunch Break (1:15 PM)', icon: 'restaurant-outline' },
@@ -17,7 +17,7 @@ export const CheckoutScreen: React.FC = () => {
   ];
 
   type PaymentOption = Order['paymentMethod'];
-  const paymentMethods: { id: PaymentOption; label: string; icon: string; desc: string }[] = [
+  const paymentMethods: { id: PaymentOption; label: string; icon: IconName; desc: string }[] = [
     {
       id: 'Campus Smartcard',
       label: 'Campus Smartcard / RFID',
@@ -105,7 +105,7 @@ export const CheckoutScreen: React.FC = () => {
                   activeOpacity={0.7}
                 >
                   <Ionicons
-                    name={slot.icon as any}
+                    name={slot.icon}
                     size={20}
                     color={isSelected ? Colors.primary : Colors.textMuted}
                   />
@@ -147,7 +147,7 @@ export const CheckoutScreen: React.FC = () => {
                       ]}
                     >
                       <Ionicons
-                        name={pm.icon as any}
+                        name={pm.icon}
                         size={20}
                         color={isSelected ? Colors.primary : Colors.textSecondary}
                       />

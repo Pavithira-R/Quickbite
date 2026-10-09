@@ -7,6 +7,7 @@ import {
   OrderStatus,
   UserProfile,
   ScreenName,
+  ScreenParams,
 } from '../types';
 import { MENU_ITEMS } from '../data/mockData';
 import {
@@ -23,8 +24,8 @@ import {
 
 interface AppContextType {
   currentScreen: ScreenName;
-  screenParams: any;
-  navigateTo: (screen: ScreenName, params?: any) => void;
+  screenParams: ScreenParams | undefined;
+  navigateTo: (screen: ScreenName, params?: ScreenParams) => void;
   goBack: () => void;
 
   user: UserProfile | null;
@@ -103,7 +104,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     type: 'success' | 'info' | 'error';
   } | null>(null);
 
-  const navigateTo = (screen: ScreenName, params?: any) => {
+  const navigateTo = (screen: ScreenName, params?: ScreenParams) => {
     setScreenStack((prev) => pushScreen(prev, screen, params));
   };
 

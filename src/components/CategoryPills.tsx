@@ -30,7 +30,7 @@ export const CategoryPills: React.FC<CategoryPillsProps> = ({
               activeOpacity={0.7}
             >
               <Ionicons
-                name={cat.icon as any}
+                name={cat.icon}
                 size={16}
                 color={isSelected ? '#FFFFFF' : Colors.textSecondary}
               />

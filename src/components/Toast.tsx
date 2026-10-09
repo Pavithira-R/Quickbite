@@ -3,13 +3,14 @@ import { View, Text, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { BorderRadius, Spacing } from '../theme/colors';
 import { useApp } from '../context/AppContext';
+import { IconName } from '../types';
 
 export const Toast: React.FC = () => {
   const { toast } = useApp();
 
   if (!toast) return null;
 
-  const getIconName = () => {
+  const getIconName = (): IconName => {
     switch (toast.type) {
       case 'success':
         return 'checkmark-circle';
@@ -33,7 +34,7 @@ export const Toast: React.FC = () => {
 
   return (
     <View style={[styles.container, { backgroundColor: getBgColor() }]}>
-      <Ionicons name={getIconName() as any} size={20} color="#FFFFFF" style={styles.icon} />
+      <Ionicons name={getIconName()} size={20} color="#FFFFFF" style={styles.icon} />
       <Text style={styles.text}>{toast.message}</Text>
     </View>
   );

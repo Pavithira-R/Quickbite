@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { OrderStatus } from '../types';
+import { IconName, OrderStatus } from '../types';
 import { Colors, BorderRadius, Spacing } from '../theme/colors';
 
 interface OrderProgressTrackerProps {
@@ -15,7 +15,7 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
   onAdvanceStatus,
   showControls = false,
 }) => {
-  const steps: { key: OrderStatus; label: string; icon: string; desc: string }[] = [
+  const steps: { key: OrderStatus; label: string; icon: IconName; desc: string }[] = [
     {
       key: 'Placed',
       label: 'Order Placed',
@@ -119,7 +119,7 @@ export const OrderProgressTracker: React.FC<OrderProgressTrackerProps> = ({
                     <Ionicons name="checkmark" size={16} color="#FFFFFF" />
                   ) : (
                     <Ionicons
-                      name={step.icon as any}
+                      name={step.icon}
                       size={15}
                       color={isCurrent ? '#FFFFFF' : Colors.textMuted}
                     />

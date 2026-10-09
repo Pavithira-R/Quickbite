@@ -1,4 +1,11 @@
-import { CartItem, CartCustomization, MenuItem, OrderStatus, ScreenName } from '../types';
+import {
+  CartItem,
+  CartCustomization,
+  MenuItem,
+  OrderStatus,
+  ScreenName,
+  ScreenParams,
+} from '../types';
 
 // All amounts are in LKR
 export const TAX_RATE = 0.05;
@@ -150,9 +157,13 @@ export const getNextOrderStatus = (status: OrderStatus): OrderStatus => {
 export const generateOrderNumber = () => `QB-${Math.floor(1000 + Math.random() * 9000)}`;
 
 // Navigation stack: Splash, Login and Home reset the stack; other screens push onto it
-export type ScreenStack = { screen: ScreenName; params?: any }[];
+export type ScreenStack = { screen: ScreenName; params?: ScreenParams }[];
 
-export const pushScreen = (stack: ScreenStack, screen: ScreenName, params?: any): ScreenStack => {
+export const pushScreen = (
+  stack: ScreenStack,
+  screen: ScreenName,
+  params?: ScreenParams,
+): ScreenStack => {
   if (screen === 'Splash' || screen === 'Login' || screen === 'Home') {
     return [{ screen, params }];
   }
