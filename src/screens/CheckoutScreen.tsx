@@ -42,16 +42,16 @@ export const CheckoutScreen: React.FC = () => {
       desc: `Balance: Rs. ${user?.walletBalance.toFixed(2) || '0.00'}`,
     },
     {
-      id: 'UPI / GPay',
-      label: 'UPI / Google Pay / Apple Pay',
-      icon: 'phone-portrait-outline',
-      desc: 'Instant 1-tap campus digital payment',
+      id: 'LankaQR',
+      label: 'LankaQR',
+      icon: 'qr-code-outline',
+      desc: 'Scan & pay with your bank or wallet app',
     },
     {
       id: 'Credit/Debit Card',
       label: 'Credit / Debit Card',
       icon: 'card',
-      desc: 'Visa, Mastercard, RuPay',
+      desc: 'Visa, Mastercard, Amex',
     },
     {
       id: 'Cash on Pickup',
@@ -77,7 +77,7 @@ export const CheckoutScreen: React.FC = () => {
     }
 
     if (isWalletInsufficient) {
-      showToast('Insufficient Smartcard balance. Please top-up or choose UPI/Cash.', 'error');
+      showToast('Insufficient Smartcard balance. Please top-up or choose another payment method.', 'error');
       return;
     }
 

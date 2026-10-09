@@ -353,7 +353,7 @@ export const INITIAL_SAMPLE_ORDERS: Order[] = [
     pickupTime: 'Yesterday at 1:15 PM',
     pickupCounter: 'Express Counter 1',
     createdAt: 'Yesterday, 1:02 PM',
-    paymentMethod: 'UPI / GPay',
+    paymentMethod: 'LankaQR',
     qrCodeData: 'QUICKBITE-ORDER-3801-COMPLETED',
   }
 ];

@@ -59,7 +59,7 @@ export interface Order {
   pickupTime: string;
   pickupCounter: string;
   createdAt: string;
-  paymentMethod: 'Campus Smartcard' | 'UPI / GPay' | 'Credit/Debit Card' | 'Cash on Pickup';
+  paymentMethod: 'Campus Smartcard' | 'LankaQR' | 'Credit/Debit Card' | 'Cash on Pickup';
   specialInstructions?: string;
   qrCodeData: string;
 }
