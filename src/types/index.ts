@@ -72,7 +72,7 @@ export interface UserProfile {
   campusRole: 'Student' | 'Faculty / Staff' | 'Guest';
   walletBalance: number;
   dietaryPreference: 'all' | 'veg';
-  phone: string;
+  phone?: string;
 }
 
 export type ScreenName = 

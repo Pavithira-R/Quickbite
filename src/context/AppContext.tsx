@@ -154,7 +154,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         campusRole: 'Guest',
         walletBalance: 1500.00,
         dietaryPreference: 'all',
-        phone: 'N/A'
       });
       showToast('Logged in as Campus Guest', 'success');
       navigateTo('Home');
@@ -171,7 +170,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       campusRole: role,
       walletBalance: 4500.00,
       dietaryPreference: 'all',
-      phone: '+1 (555) 839-2019'
     });
     showToast('Welcome to QuickBite Canteen!', 'success');
     navigateTo('Home');
